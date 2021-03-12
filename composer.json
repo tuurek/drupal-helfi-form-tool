@@ -19,7 +19,9 @@
         "drupal/helfi_platform_config": "^1.0",
         "drupal/helfi_tpr": "^1.0",
         "drupal/helfi_tunnistamo": "^1.0",
+        "drupal/paragraphs": "^1.12",
         "drupal/webform": "^6.0",
+        "drupal/webform_rest": "^4.0",
         "drush/drush": "^10.4"
     },
     "require-dev": {
