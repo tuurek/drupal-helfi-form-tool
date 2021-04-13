@@ -1,0 +1,12 @@
+name: Hel.fi Form Tool Admin
+type: theme
+description: The HDBT Admin based sub-theme for Form Tool Admin
+core_version_requirement: ^8 || ^9
+
+# Defines the base theme
+base theme: hdbt_admin
+
+# Defines libraries group in which we can add css/js.
+libraries:
+  - form_tool_admin/global-styling
+  - form_tool_admin/global-scripting
