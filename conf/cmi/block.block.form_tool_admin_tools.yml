@@ -1,0 +1,27 @@
+uuid: 8ca1d60a-82d1-4308-bf6a-3138710afdc3
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - form_tool_admin
+_core:
+  default_config_hash: z1s_0oxpOjcA1atdCgI_EmNSXDJj76BuQclUwezMmcw
+id: form_tool_admin_tools
+theme: form_tool_admin
+region: sidebar_first
+weight: -3
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Tools
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

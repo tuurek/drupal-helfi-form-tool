@@ -1,0 +1,12 @@
+uuid: 91483dc3-4cbd-40a6-b8c8-f2ec9f07dd99
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: _B3q0O_xZZoTEPGo67JMyvbBEstnyqiAJjk8to3c1QM
+id: media.image
+label: Image
+targetEntityType: media
+cache: true

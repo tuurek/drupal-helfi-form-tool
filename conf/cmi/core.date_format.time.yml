@@ -1,0 +1,10 @@
+uuid: 46a2d4ec-3395-422a-b5ab-b98deb5a353d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: m9KQTmQxMNWAdMMidmQsDSS4daorJXBZWqvHoIk7dAs
+id: time
+label: 'Default time'
+locked: false
+pattern: 'H:i'

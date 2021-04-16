@@ -1,0 +1,12 @@
+uuid: 861e73b9-53ee-4235-b6d4-d94c3fb328c5
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DAeI-rU8N6t2oPB9MB8U-i0Jz_3PpbeRfNkllyPuVzM
+id: accordion_item
+label: 'Accordion item'
+icon_uuid: null
+icon_default: null
+description: 'One item in an accordion that includes title and content.'
+behavior_plugins: {  }

@@ -1,0 +1,22 @@
+uuid: c0fdc7e8-0b38-4114-b6dd-f4a02a94bc51
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - form_tool_admin
+_core:
+  default_config_hash: cIXgZqCUh5llJLOsOxqd5Tfm0ExTbsfImZVx3yS_jsA
+id: form_tool_admin_messages
+theme: form_tool_admin
+region: sidebar_first
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

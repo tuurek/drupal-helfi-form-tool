@@ -1,0 +1,9 @@
+uuid: 811c1894-8bdc-454a-8c97-482c17d6f349
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Mqgf6_xfg7HLsBnW3BSP9e9EuHWJXsEMbt240DMt_5E
+id: node__page
+label: 'Content: Page'
+tags: {  }
