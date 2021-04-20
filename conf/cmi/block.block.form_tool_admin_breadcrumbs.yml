@@ -1,0 +1,22 @@
+uuid: 0da6e593-fbe8-47bd-abde-4348259512aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - form_tool_admin
+_core:
+  default_config_hash: X6F3oSAls1r1jwOVU5n7EG6Uaz0yFqo-GQcEXDzxxLk
+id: form_tool_admin_breadcrumbs
+theme: form_tool_admin
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }
