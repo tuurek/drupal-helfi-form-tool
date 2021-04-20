@@ -1,9 +1,0 @@
-uuid: 08ed8d07-596e-4940-b6a4-0acfca08761f
-langcode: en
-status: true
-dependencies: {  }
-_core:
-  default_config_hash: Mqgf6_xfg7HLsBnW3BSP9e9EuHWJXsEMbt240DMt_5E
-id: node__page
-label: 'Content: Page'
-tags: {  }
