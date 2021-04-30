@@ -1,0 +1,14 @@
+uuid: 6223751d-1b75-47f9-a478-848c74968420
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.webform_admin
+  module:
+    - user
+id: user_add_role_action.webform_admin
+label: 'Add the Webform Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: webform_admin

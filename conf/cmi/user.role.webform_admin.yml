@@ -1,0 +1,35 @@
+uuid: ec43afa7-6742-45c8-9838-7e33a50c257b
+langcode: fi
+status: true
+dependencies: {  }
+id: webform_admin
+label: 'Webform Admin'
+weight: 4
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access any webform configuration'
+  - 'access own webform configuration'
+  - 'access webform help'
+  - 'access webform overview'
+  - 'access webform submission user'
+  - 'administer menu'
+  - 'administer webform'
+  - 'administer webform element access'
+  - 'administer webform submission'
+  - 'create webform'
+  - 'delete any webform'
+  - 'delete any webform submission'
+  - 'delete own webform'
+  - 'delete own webform submission'
+  - 'edit any webform'
+  - 'edit any webform submission'
+  - 'edit own webform'
+  - 'edit own webform submission'
+  - 'edit webform assets'
+  - 'edit webform source'
+  - 'edit webform twig'
+  - 'edit webform variants'
+  - 'view any webform submission'
+  - 'view own webform submission'
+  - 'view the administration theme'
