@@ -7,14 +7,15 @@ display:
           submit_button: Käytä
           reset_button_label: Palauta
           exposed_sorts_label: Lajittele
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
       pager:
         options:
           tags:
             previous: ‹‹
             next: ››
             first: '« Ensimmäinen'
+            last: 'Viimeinen »'
           expose:
             items_per_page_label: 'Merkintöjä sivua kohti'
             items_per_page_options_all_label: '- Kaikki -'
@@ -33,6 +34,9 @@ display:
         view_webform_submission:
           label: Toimenpiteet
           text: näkymä
+      header:
+        result:
+          content: 'Näytetään @start - @end / @total'
       arguments:
         in_draft:
           exception:

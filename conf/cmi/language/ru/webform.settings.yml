@@ -7,6 +7,8 @@ settings:
   dialog_options:
     narrow:
       title: Узкий
+    normal:
+      title: Нормальный
     wide:
       title: Широкий
 element:
