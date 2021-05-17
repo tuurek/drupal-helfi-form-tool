@@ -33,7 +33,6 @@ display:
           separator: ', '
         view_webform_submission:
           label: Funktioner
-          text: visa
       header:
         result:
           content: 'Visar @start - @end av @total'
@@ -51,10 +50,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Klistrad
           separator: ', '
         locked:
-          label: Låst
           separator: ', '
         created:
           label: Skapad
@@ -66,13 +63,6 @@ display:
           separator: ', '
         operations:
           label: Funktioner
-      filters:
-        sticky:
-          expose:
-            label: Klistrad
-        locked:
-          expose:
-            label: Låst
   embed_manage:
     display_options:
       fields:
@@ -83,10 +73,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Klistrad
           separator: ', '
         locked:
-          label: Låst
           separator: ', '
         created:
           label: Skapad
@@ -98,17 +86,8 @@ display:
           separator: ', '
         view_webform_submission:
           label: Funktioner
-          text: visa
         edit_webform_submission:
           label: Funktioner
-          text: redigera
-      filters:
-        sticky:
-          expose:
-            label: Klistrad
-        locked:
-          expose:
-            label: Låst
   embed_review:
     display_options:
       fields:
@@ -117,10 +96,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Klistrad
           separator: ', '
         locked:
-          label: Låst
           separator: ', '
         created:
           label: Skapad
@@ -132,11 +109,3 @@ display:
           separator: ', '
         view_webform_submission:
           label: Funktioner
-          text: visa
-      filters:
-        sticky:
-          expose:
-            label: Klistrad
-        locked:
-          expose:
-            label: Låst

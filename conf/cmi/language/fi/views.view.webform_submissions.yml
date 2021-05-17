@@ -12,8 +12,8 @@ display:
       pager:
         options:
           tags:
-            previous: ‹‹
-            next: ››
+            previous: '‹ Edellinen'
+            next: 'Seuraava ›'
             first: '« Ensimmäinen'
             last: 'Viimeinen »'
           expose:
@@ -33,7 +33,6 @@ display:
           separator: ', '
         view_webform_submission:
           label: Toimenpiteet
-          text: näkymä
       header:
         result:
           content: 'Näytetään @start - @end / @total'
@@ -51,10 +50,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Kiinnitetty
           separator: ', '
         locked:
-          label: Lukittu
           separator: ', '
         created:
           label: Luotu
@@ -66,13 +63,6 @@ display:
           separator: ', '
         operations:
           label: Toimenpiteet
-      filters:
-        sticky:
-          expose:
-            label: Kiinnitetty
-        locked:
-          expose:
-            label: Lukittu
   embed_manage:
     display_options:
       fields:
@@ -83,10 +73,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Kiinnitetty
           separator: ', '
         locked:
-          label: Lukittu
           separator: ', '
         created:
           label: Luotu
@@ -98,17 +86,8 @@ display:
           separator: ', '
         view_webform_submission:
           label: Toimenpiteet
-          text: näkymä
         edit_webform_submission:
           label: Toimenpiteet
-          text: muokkaa
-      filters:
-        sticky:
-          expose:
-            label: Kiinnitetty
-        locked:
-          expose:
-            label: Lukittu
   embed_review:
     display_options:
       fields:
@@ -117,10 +96,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Kiinnitetty
           separator: ', '
         locked:
-          label: Lukittu
           separator: ', '
         created:
           label: Luotu
@@ -132,11 +109,3 @@ display:
           separator: ', '
         view_webform_submission:
           label: Toimenpiteet
-          text: näkymä
-      filters:
-        sticky:
-          expose:
-            label: Kiinnitetty
-        locked:
-          expose:
-            label: Lukittu

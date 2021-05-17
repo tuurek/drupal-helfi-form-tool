@@ -33,7 +33,6 @@ display:
           separator: ', '
         view_webform_submission:
           label: Операции
-          text: представление
       header:
         result:
           content: 'Отображается с @start по @end из @total'
@@ -51,10 +50,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Прикреплено
           separator: ', '
         locked:
-          label: Заблокировано
           separator: ', '
         created:
           label: Создано
@@ -66,13 +63,6 @@ display:
           separator: ', '
         operations:
           label: Операции
-      filters:
-        sticky:
-          expose:
-            label: Прикреплено
-        locked:
-          expose:
-            label: Заблокировано
   embed_manage:
     display_options:
       fields:
@@ -83,10 +73,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Прикреплено
           separator: ', '
         locked:
-          label: Заблокировано
           separator: ', '
         created:
           label: Создано
@@ -98,17 +86,8 @@ display:
           separator: ', '
         view_webform_submission:
           label: Операции
-          text: представление
         edit_webform_submission:
           label: Операции
-          text: изменить
-      filters:
-        sticky:
-          expose:
-            label: Прикреплено
-        locked:
-          expose:
-            label: Заблокировано
   embed_review:
     display_options:
       fields:
@@ -117,10 +96,8 @@ display:
         in_draft:
           separator: ', '
         sticky:
-          label: Прикреплено
           separator: ', '
         locked:
-          label: Заблокировано
           separator: ', '
         created:
           label: Создано
@@ -132,11 +109,3 @@ display:
           separator: ', '
         view_webform_submission:
           label: Операции
-          text: представление
-      filters:
-        sticky:
-          expose:
-            label: Прикреплено
-        locked:
-          expose:
-            label: Заблокировано

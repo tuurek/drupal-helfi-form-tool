@@ -1,3 +1,2 @@
-title: Kontakt
 settings:
-  confirmation_message: 'Ditt meddelande har skickats.'
+  confirmation_url: /node/1

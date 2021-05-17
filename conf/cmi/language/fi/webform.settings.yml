@@ -5,11 +5,7 @@ settings:
   default_preview_next_button_label: Esikatselu
   default_preview_label: Esikatselu
   dialog_options:
-    narrow:
-      title: Kapea
     normal:
       title: Normaali
-    wide:
-      title: Leveä
 element:
   default_more_title: Lisää
