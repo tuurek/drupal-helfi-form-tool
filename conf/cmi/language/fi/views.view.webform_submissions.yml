@@ -1,3 +1,4 @@
+label: Verkkolomakelähetykset
 display:
   default:
     display_title: Isäntä
@@ -22,8 +23,10 @@ display:
             offset_label: Offset
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Keskeneräinen
           separator: ', '
         created:
           label: Luotu
@@ -33,6 +36,7 @@ display:
           separator: ', '
         view_webform_submission:
           label: Toimenpiteet
+          text: näkymä
       header:
         result:
           content: 'Näytetään @start - @end / @total'
@@ -40,72 +44,112 @@ display:
         in_draft:
           exception:
             title: Kaikki
+      title: Verkkolomakelähetykset
   embed_administer:
     display_options:
       fields:
         webform_submission_bulk_form:
           action_title: Toiminto
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Keskeneräinen
           separator: ', '
         sticky:
+          label: Kiinnitetty
           separator: ', '
         locked:
+          label: Lukittu
           separator: ', '
         created:
           label: Luotu
           separator: ', '
         completed:
+          label: Valmis
           separator: ', '
         remote_addr:
           label: 'IP osoite'
           separator: ', '
         operations:
           label: Toimenpiteet
+      filters:
+        sticky:
+          expose:
+            label: Kiinnitetty
+        locked:
+          expose:
+            label: Lukittu
   embed_manage:
     display_options:
       fields:
         webform_submission_bulk_form:
           action_title: Toiminto
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Keskeneräinen
           separator: ', '
         sticky:
+          label: Kiinnitetty
           separator: ', '
         locked:
+          label: Lukittu
           separator: ', '
         created:
           label: Luotu
           separator: ', '
         completed:
+          label: Valmis
           separator: ', '
         remote_addr:
           label: 'IP osoite'
           separator: ', '
         view_webform_submission:
           label: Toimenpiteet
+          text: näkymä
         edit_webform_submission:
           label: Toimenpiteet
+          text: muokkaa
+      filters:
+        sticky:
+          expose:
+            label: Kiinnitetty
+        locked:
+          expose:
+            label: Lukittu
   embed_review:
     display_options:
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Keskeneräinen
           separator: ', '
         sticky:
+          label: Kiinnitetty
           separator: ', '
         locked:
+          label: Lukittu
           separator: ', '
         created:
           label: Luotu
           separator: ', '
         completed:
+          label: Valmis
           separator: ', '
         remote_addr:
           label: 'IP osoite'
           separator: ', '
         view_webform_submission:
           label: Toimenpiteet
+          text: näkymä
+      filters:
+        sticky:
+          expose:
+            label: Kiinnitetty
+        locked:
+          expose:
+            label: Lukittu

@@ -1,0 +1,14 @@
+uuid: fd38632c-fe75-45af-8cfe-16e9a0cc6d61
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_hallinnoija
+  module:
+    - user
+id: user_add_role_action.verkkolomake_hallinnoija
+label: 'Add the Verkkolomake-hallinnoija role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: verkkolomake_hallinnoija

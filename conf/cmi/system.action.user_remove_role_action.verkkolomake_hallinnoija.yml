@@ -1,0 +1,14 @@
+uuid: 991be02b-ee7b-48e3-863e-de4b01292c57
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_hallinnoija
+  module:
+    - user
+id: user_remove_role_action.verkkolomake_hallinnoija
+label: 'Remove the Verkkolomake-hallinnoija role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: verkkolomake_hallinnoija

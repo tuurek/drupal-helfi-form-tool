@@ -1,0 +1,29 @@
+uuid: 852cdfd9-a6eb-4d92-ad4d-056b0b614136
+langcode: fi
+status: true
+dependencies: {  }
+id: verkkolomake_hallinnoija
+label: Verkkolomake-hallinnoija
+weight: 4
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access site in maintenance mode'
+  - 'access toolbar'
+  - 'access webform overview'
+  - 'access webform submission user'
+  - 'administer rest resources'
+  - 'administer webform element access'
+  - 'cancel account'
+  - 'change own username'
+  - 'create url aliases'
+  - 'create webform'
+  - 'delete own webform'
+  - 'delete own webform submission'
+  - 'edit own webform'
+  - 'schedule publishing of nodes'
+  - 'view own unpublished content'
+  - 'view own webform submission'
+  - 'view scheduled content'
+  - 'view the administration theme'
