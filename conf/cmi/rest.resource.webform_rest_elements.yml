@@ -1,0 +1,18 @@
+uuid: 11f1053f-f3fe-4e76-b5e1-adc3b29240d5
+langcode: fi
+status: true
+dependencies:
+  module:
+    - serialization
+    - user
+    - webform_rest
+id: webform_rest_elements
+plugin_id: webform_rest_elements
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

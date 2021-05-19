@@ -1,0 +1,59 @@
+uuid: 9cf2fe29-2a1c-429b-8ad8-e744442a6c30
+langcode: fi
+status: true
+dependencies:
+  config:
+    - field.field.node.esitiedot.field_arkalauontoinen_tieto
+    - field.field.node.esitiedot.field_lomake
+    - field.field.node.esitiedot.field_omistaja
+    - field.field.node.esitiedot.field_toimiala
+    - node.type.esitiedot
+  module:
+    - options
+    - user
+    - webform
+id: node.esitiedot.default
+targetEntityType: node
+bundle: esitiedot
+mode: default
+content:
+  field_arkalauontoinen_tieto:
+    weight: 103
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_lomake:
+    weight: 104
+    label: above
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    type: webform_entity_reference_entity_view
+    region: content
+  field_omistaja:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_toimiala:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
