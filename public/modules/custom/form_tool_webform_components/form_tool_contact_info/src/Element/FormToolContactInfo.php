@@ -34,7 +34,6 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function getCompositeElements(array $element) {
     $elements = [];
-    $class = static::class;
     $elements['delivery_method'] = [
       '#type' => 'radios',
       '#title' => t('Delivery'),
@@ -42,107 +41,102 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#options' => [
         'email' => t('Email'),
         'postal' => t('Postal Delivery'),
+        'cod' => t('Cash on Delivery'),
+        'pickup' => t('Pick Up'),
       ],
-      '#pre_render' => [[$class, 'deliveryOptions']],
+      '#after_build' => [[get_called_class(), 'deliveryOptions']],
     ];
     $elements['first_name'] = [
       '#type' => 'textfield',
       '#title' => t('First name'),
-      '#after_build' => [[$class, 'postalAddress']],
+      '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['last_name'] = [
       '#type' => 'textfield',
       '#title' => t('Last name'),
-      '#after_build' => [[$class, 'postalAddress']],
+      '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'postalAddress']],
+      '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'postalAddress']],
+      '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'postalAddress']],
+      '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'postalAddress']],
+      '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['cod'] = [
       '#type' => 'item',
       '#markup' => 'Postiennakon hinta asiakirjan tilaajalle 9,20 €.',
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_first_name'] = [
       '#type' => 'textfield',
       '#title' => t('First name'),
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
       '#title' => t('Last name'),
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
       // Use #after_build to add #states.
-      '#after_build' => [[$class, 'codPostalAddress']],
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['pickup'] = [
       '#type' => 'item',
       '#markup' => 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki.',
-      '#after_build' => [[$class, 'pickup']],
+      '#after_build' => [[get_called_class(), 'pickup']],
     ];
     $elements['email'] = [
       '#type' => 'textfield',
       '#title' => t('Email'),
-      '#after_build' => [[$class, 'email']],
+      '#after_build' => [[get_called_class(), 'email']],
     ];
+
     return $elements;
   }
 
   /**
    * Performs the after_build callback.
    */
-  public static function deliveryOptions(array $element) {
-    $element['#description'] = print_r($element['#options']['email'], true);
-    $options = [
-      'email' => t('Email'),
-      'postal' => t('Postal Delivery'),
-      'cod' => t('Cash on Delivery'),
-      'pickup' => t('Pick Up'),
-    ];
-    $element['#options'] = $options;
+  public static function deliveryOptions(array $element, FormStateInterface $form_state) {
     return $element;
   }
 

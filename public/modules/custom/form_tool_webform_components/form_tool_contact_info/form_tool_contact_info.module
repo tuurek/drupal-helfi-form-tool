@@ -46,22 +46,36 @@ function form_tool_contact_info_form_webform_ui_element_form_alter(array &$form,
     $options['postal'] = t('Postal Delivery');
     $options['cod'] = t('Cash on Delivery');
     $options['pickup'] = t('Pickup');
-    $form['custom_values']['form_tool_contact_info']['delivery_type'] = [
+    $form['delivery_type'] = [
       '#type' => 'checkboxes',
       '#title' => t('Delivery Method'),
       '#options' => $options,
       '#default_value' => array_keys($options),
     ];
-    foreach (array_keys($form['actions']) as $action) {
-      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-        $form['actions']['submit']['#submit'][] = 'form_tool_contact_info_submit';
-      }
-    }
+    $form['custom_values']['form_tool_contact_info']['cod_text'] = [
+      '#type' => 'textfield',
+      '#title' => t('Cash on Delivery Description'),
+      '#default_value' => 'Postiennakon hinta asiakirjan tilaajalle 9,20 €.'
+    ];
+      $form['custom_values']['form_tool_contact_info']['pickup_text'] = [
+      '#type' => 'textfield',
+      '#title' => t('Pickup Description'),
+      '#default_value' => 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki.'
+    ];
+  //$form['#validate'][] = 'form_tool_contact_info_validate';
+    $form['actions']['submit']['#validate'][] = 'form_tool_contact_info_validate';
+
   }
 }
 
-function form_tool_contact_info_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+function form_tool_contact_info_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+//function form_tool_contact_info_validate(&$element, FormStateInterface $form_state, &$complete_form) {
+
   //  $account = $form_state->getFormObject()->getEntity();
+  /*$form['delivery_method']['#options'] = [
+    'email' => t('Email'),
+    'pickup' => t('Pick Up'),
+  ];
   $emailtrue = $form['custom_values']['form_tool_contact_info']['delivery_type']['email']['#checked'];
   $postaltrue = $form['custom_values']['form_tool_contact_info']['delivery_type']['postal']['#checked'];
   $codtrue = $form['custom_values']['form_tool_contact_info']['delivery_type']['cod']['#checked'];
@@ -74,7 +88,7 @@ function form_tool_contact_info_submit(&$form, \Drupal\Core\Form\FormStateInterf
   if ($codtrue == 1)
     $optionArray['cod'] = t('Cash on Delivery');
   if ($pickuptrue == 1)
-    $optionArray['pickup'] = t('Pickup');
+    $optionArray['pickup'] = t('Pickup');*/
 /*    echo $form_state->getValues();
 // $form_state->setValue(array('properties','delivery_method__options'), $optionArray);
   echo '<pre>';
