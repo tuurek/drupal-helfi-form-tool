@@ -10,9 +10,9 @@ use Drupal\webform\WebformSubmissionInterface;
  *
  * @WebformElement(
  *   id = "form_tool_contact_info",
- *   label = @Translation("Webform example composite"),
- *   description = @Translation("Provides a webform element example."),
- *   category = @Translation("Example elements"),
+ *   label = @Translation("Delivery Method"),
+ *   description = @Translation("Delivery Method component."),
+ *   category = @Translation("Composite elements"),
  *   multiline = TRUE,
  *   composite = TRUE,
  *   states_wrapper = TRUE,

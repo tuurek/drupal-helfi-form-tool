@@ -33,7 +33,6 @@ function template_preprocess_form_tool_contact_info(array &$variables) {
   _template_preprocess_webform_composite($variables);
 }
 
-
 /**
  * Implements hook_form_FORM_ID_alter().
  *
