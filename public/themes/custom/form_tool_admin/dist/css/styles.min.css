@@ -23,5 +23,26 @@
   .form-content .form-item .hds-text-input__input-wrapper {
     min-width: 50%; }
 
+.webform-ui-element-form .webform-admin-composite-elements table, .webform-ui-element-form .webform-admin-composite-elements tr, .webform-ui-element-form .webform-admin-composite-elements th {
+  display: block; }
+
+.webform-ui-element-form .webform-admin-composite-elements tr th {
+  display: none; }
+
+.webform-ui-element-form .webform-admin-composite-elements td {
+  display: inline-block;
+  width: 69%; }
+  .webform-ui-element-form .webform-admin-composite-elements td:first-child {
+    width: 30%; }
+  .webform-ui-element-form .webform-admin-composite-elements td > hr {
+    display: none; }
+  .webform-ui-element-form .webform-admin-composite-elements td > div.form-type-textfield {
+    display: inline-block; }
+    .webform-ui-element-form .webform-admin-composite-elements td > div.form-type-textfield .form-element {
+      width: 100%; }
+
+.webform-ui-element-form .webform-admin-composite-elements tr:nth-child(5) td, .webform-ui-element-form .webform-admin-composite-elements tr:nth-child(6) td {
+  width: 100%; }
+
 
 /*# sourceMappingURL=styles.min.css.map*/
