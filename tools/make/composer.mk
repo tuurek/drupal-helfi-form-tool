@@ -1,9 +1,9 @@
 BUILD_TARGETS := composer-install
 CLEAN_FOLDERS += vendor
 ifeq ($(ENV),production)
-	COMPOSER_ARGS := --no-dev --optimize-autoloader --prefer-dist
+	COMPOSER_ARGS := --no-dev --optimize-autoloader --prefer-dist --no-suggest
 else
-	COMPOSER_ARGS :=
+	COMPOSER_ARGS := --no-suggest
 endif
 
 PHONY += composer-info

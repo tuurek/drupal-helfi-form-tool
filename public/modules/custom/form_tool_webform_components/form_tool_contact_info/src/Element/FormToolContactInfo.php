@@ -4,6 +4,7 @@ namespace Drupal\form_tool_contact_info\Element;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Element\WebformCompositeBase;
+use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Provides a 'form_tool_contact_info'.
@@ -26,7 +27,13 @@ class FormToolContactInfo extends WebformCompositeBase {
    * {@inheritdoc}
    */
   public function getInfo() {
-    return parent::getInfo() + ['#theme' => 'form_tool_contact_info'];
+    $info = parent::getInfo();
+    $class = get_class($this);
+    $info['#pre_render'] = [
+      [$class, 'preRenderCompositeFormElement'],
+    ];
+    $info['#theme'] = 'form_tool_contact_info';
+    return parent::getInfo() + $info;
   }
 
   /**
@@ -34,6 +41,26 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function getCompositeElements(array $element) {
     $elements = [];
+    $elements['Toimitustapa: Email'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Email'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Postitoimitus'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Postal Delivery'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Postiennakko'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Cash on Delivery'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Nouto'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Pickup'),
+      '#title_display' => 'before',
+    ];
     $elements['delivery_method'] = [
       '#type' => 'radios',
       '#title' => t('Delivery'),
@@ -129,6 +156,14 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#title' => t('Email'),
       '#after_build' => [[get_called_class(), 'email']],
     ];
+    $elements['Postiennakko -teksti'] = [
+      '#type' => 'item',
+      '#title' => t('Postiennakon hinta asiakirjan tilaajalle 9,20 €'),
+    ];
+    $elements['Nouto -teksti'] = [
+      '#type' => 'textfield',
+      '#title' => t('Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki.'),
+    ];
 
     return $elements;
   }
@@ -207,40 +242,37 @@ class FormToolContactInfo extends WebformCompositeBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Performs the after_build callback.
    */
-  protected function defineDefaultProperties() {
-    $properties = [
-      // Element settings.
-      'title' => '',
-      'default_value' => [],
-      // Description/Help.
-      'help' => '',
-      'help_title' => '',
-      'description' => '',
-      'more' => '',
-      'more_title' => '',
-      // Form display.
-      'title_display' => 'invisible',
-      'description_display' => '',
-      'help_display' => '',
-      // Form validation.
-      'required' => FALSE,
-      // Submission display.
-      'format' => $this->getItemDefaultFormat(),
-      'format_html' => '',
-      'format_text' => '',
-      'format_items' => $this->getItemsDefaultFormat(),
-      'format_items_html' => '',
-      'format_items_text' => '',
-      // Address settings.
-      'available_countries' => [],
-      'field_overrides' => [],
-      'langcode_override' => '',
-    ] + $this->defineDefaultBaseProperties()
-      + $this->defineDefaultMultipleProperties();
-    unset($properties['multiple__header']);
-    return $properties;
+  public static function preRenderWebformCompositeFormElement($element) {
+    $element = parent::preRenderWebformCompositeFormElement($element);
+    //$element['delivery_method'] = print_r(array_keys($element['delivery_method']), false);
+    //$element['delivery_method'] = print_r($element['delivery_method']['#webform_element'], false);
+    if ($element['Toimitustapa: Email']['#access'] != 1) {
+      unset($element['delivery_method']['email']);
+    }
+    unset($element['Toimitustapa: Email']);
+    if ($element['Toimitustapa: Postitoimitus']['#access'] != 1) {
+      unset($element['delivery_method']['postal']);
+    }
+    unset($element['Toimitustapa: Postitoimitus']);
+    if ($element['Toimitustapa: Postiennakko']['#access'] != 1) {
+      unset($element['delivery_method']['cod']);
+    }
+    unset($element['Toimitustapa: Postiennakko']);
+    if ($element['Toimitustapa: Nouto']['#access'] != 1) {
+      unset($element['delivery_method']['pickup']);
+    }
+    unset($element['Toimitustapa: Nouto']);
+    if ($element['Nouto -teksti']['#title'] != '') {
+      $element['pickup']['#markup'] = $element['Nouto -teksti']['#title'];
+    }
+    unset($element['Nouto -teksti']);
+    if ($element['Postiennakko -teksti']['#title'] != '') {
+      $element['cod']['#markup'] = $element['Postiennakko -teksti']['#title'];
+    }
+    unset($element['Postiennakko -teksti']);
+    return $element;
   }
 
 }

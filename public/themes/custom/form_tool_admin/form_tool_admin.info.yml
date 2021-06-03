@@ -5,6 +5,7 @@ core_version_requirement: ^8 || ^9
 
 # Defines the base theme
 base theme: hdbt_admin
+tags: sub-theme
 
 # Defines libraries group in which we can add css/js.
 libraries:

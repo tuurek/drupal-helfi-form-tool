@@ -44,14 +44,6 @@ class FormToolContactInfo extends WebformCompositeBase {
     // @see \Drupal\webform\Plugin\WebformElementBase::defaultBaseProperties
     $properties = parent::defineDefaultProperties();
 
-    unset($properties[0]);
-    unset($properties[1]);
-    unset($properties[2]);
-    unset($properties[3]);
-    unset($properties[4]);
-    unset($properties[5]);
-    unset($properties[6]);
-    unset($properties['display']);
     unset($properties['format_attributes']);
     unset($properties['required']);
     unset($properties['required_container']);
@@ -267,6 +259,47 @@ class FormToolContactInfo extends WebformCompositeBase {
     unset($properties['multiple__add_more_button_label']);
     unset($properties['multiple__add_more_input_label']);
     unset($properties['multiple__add_more_items']);
+    unset($properties['choices']);
+    unset($properties['chosen']);
+    unset($properties['flex']);
+    unset($properties['Toimitustapa: Email__type']);
+    unset($properties['Toimitustapa: Email__title_display']);
+    unset($properties['Toimitustapa: Email__description']);
+    unset($properties['Toimitustapa: Email__help']);
+    unset($properties['Toimitustapa: Email__required']);
+    unset($properties['Toimitustapa: Email__placeholder']);
+    unset($properties['Toimitustapa: Postitoimitus__type']);
+    unset($properties['Toimitustapa: Postitoimitus__title_display']);
+    unset($properties['Toimitustapa: Postitoimitus__description']);
+    unset($properties['Toimitustapa: Postitoimitus__help']);
+    unset($properties['Toimitustapa: Postitoimitus__required']);
+    unset($properties['Toimitustapa: Postitoimitus__placeholder']);
+    unset($properties['Toimitustapa: Postiennakko__type']);
+    unset($properties['Toimitustapa: Postiennakko__title_display']);
+    unset($properties['Toimitustapa: Postiennakko__description']);
+    unset($properties['Toimitustapa: Postiennakko__help']);
+    unset($properties['Toimitustapa: Postiennakko__required']);
+    unset($properties['Toimitustapa: Postiennakko__placeholder']);
+    unset($properties['Toimitustapa: Nouto__type']);
+    unset($properties['Toimitustapa: Nouto__title_display']);
+    unset($properties['Toimitustapa: Nouto__description']);
+    unset($properties['Toimitustapa: Nouto__help']);
+    unset($properties['Toimitustapa: Nouto__required']);
+    unset($properties['Toimitustapa: Nouto__placeholder']);
+    unset($properties['Postiennakko -teksti__type']);
+    unset($properties['Postiennakko -teksti__title_display']);
+    unset($properties['Postiennakko -teksti__description']);
+    unset($properties['Postiennakko -teksti__help']);
+    unset($properties['Postiennakko -teksti__required']);
+    unset($properties['Postiennakko -teksti__placeholder']);
+    unset($properties['Postiennakko -teksti__access']);
+    unset($properties['Nouto -teksti__type']);
+    unset($properties['Nouto -teksti__title_display']);
+    unset($properties['Nouto -teksti__description']);
+    unset($properties['Nouto -teksti__help']);
+    unset($properties['Nouto -teksti__required']);
+    unset($properties['Nouto -teksti__placeholder']);
+    unset($properties['Nouto -teksti__access']);
     return $properties;
   }
 

@@ -1,12 +1,9 @@
-TEST_TARGETS += test-phpunit
-FIX_TARGETS :=
-LINT_PHP_TARGETS :=
+TEST_TARGETS += lint-php lint-js test-phpunit
 
 PHONY += fix
 fix: ## Fix code style
-	$(call step,Fix code...)
-	$(call sub_step,Following targets will be run: $(FIX_TARGETS))
-	@$(MAKE) $(FIX_TARGETS)
+	$(call step,Fix code with PHP Code Beautifier and Fixer...)
+	@docker run --rm -it $(subst $(space),'',$(LINT_PATHS_PHP)) druidfi/drupal-qa:$(DRUPAL_VERSION) bash -c "phpcbf ."
 
 PHONY += lint
 lint: lint-php lint-js ## Check code style
@@ -25,8 +22,7 @@ lint-js: ## Check code style for JS files
 PHONY += lint-php
 lint-php: ## Check code style for PHP files
 	$(call step,Check code style for PHP files...)
-	$(call sub_step,Following targets will be run: $(LINT_PHP_TARGETS))
-	@$(MAKE) $(LINT_PHP_TARGETS)
+	@docker run --rm $(subst $(space),'',$(LINT_PATHS_PHP)) druidfi/drupal-qa:$(DRUPAL_VERSION) bash -c "phpcs -n ."
 	$(call test_result,lint-php,"[OK]")
 
 PHONY += test

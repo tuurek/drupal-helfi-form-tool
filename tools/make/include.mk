@@ -5,8 +5,6 @@ ifeq ($(COMPOSER_JSON_EXISTS),yes)
 include $(DRUIDFI_TOOLS_MAKE_DIR)composer.mk
 endif
 
-include $(DRUIDFI_TOOLS_MAKE_DIR)qa.mk
-
 ifeq ($(PACKAGE_JSON_EXISTS),yes)
 include $(DRUIDFI_TOOLS_MAKE_DIR)javascript.mk
 endif
@@ -26,3 +24,5 @@ endif
 ifeq ($(SYSTEM),AMAZEEIO)
 include $(DRUIDFI_TOOLS_MAKE_DIR)amazeeio.mk
 endif
+
+include $(DRUIDFI_TOOLS_MAKE_DIR)qa.mk
