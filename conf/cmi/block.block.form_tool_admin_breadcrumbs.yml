@@ -1,4 +1,4 @@
-uuid: 803ecf58-6c90-4ee4-9a50-931831a8dc2c
+uuid: 99085431-19ba-4329-9dd7-3c7191bda227
 langcode: en
 status: true
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
   theme:
     - form_tool_admin
 _core:
-  default_config_hash: X6F3oSAls1r1jwOVU5n7EG6Uaz0yFqo-GQcEXDzxxLk
+  default_config_hash: clgCxwr7ypYLIYpfVgTG_4BgQCPanKczpeySOX4jNWA
 id: form_tool_admin_breadcrumbs
 theme: form_tool_admin
 region: breadcrumb

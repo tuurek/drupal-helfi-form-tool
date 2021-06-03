@@ -1,4 +1,4 @@
-uuid: 45b58b86-452f-48a5-b958-480f205dd757
+uuid: 850ca8f1-3e78-4928-9ffb-9d845c2f23d2
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,11 @@ dependencies:
   theme:
     - form_tool_admin
 _core:
-  default_config_hash: cIXgZqCUh5llJLOsOxqd5Tfm0ExTbsfImZVx3yS_jsA
+  default_config_hash: 2yPLRrw1jCqzuBzE0D13FBIutCxCAqjnsYoRv45h2nc
 id: form_tool_admin_messages
 theme: form_tool_admin
-region: sidebar_first
-weight: -3
+region: highlighted
+weight: 0
 provider: null
 plugin: system_messages_block
 settings:

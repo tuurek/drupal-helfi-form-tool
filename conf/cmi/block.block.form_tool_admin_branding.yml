@@ -1,4 +1,4 @@
-uuid: 47e421cd-45bf-440d-925d-29993fe44822
+uuid: 70178a24-d785-4387-b380-4e1b8edbc555
 langcode: en
 status: true
 dependencies:
@@ -7,10 +7,10 @@ dependencies:
   theme:
     - form_tool_admin
 _core:
-  default_config_hash: ZzdJcSkjBoQgZejw_QMj17rr48OGJ1nrMTff0Ll9Hhw
-id: form_tool_admin_sitebranding
+  default_config_hash: 4BLFLng-hIe1si_lSDCibEGS1c31h6ja824FhbA0DR8
+id: form_tool_admin_branding
 theme: form_tool_admin
-region: sidebar_first
+region: header
 weight: -4
 provider: null
 plugin: system_branding_block
@@ -20,6 +20,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: true
+  use_site_name: false
   use_site_slogan: false
 visibility: {  }

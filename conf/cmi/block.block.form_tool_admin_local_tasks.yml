@@ -1,15 +1,15 @@
-uuid: fb4d5993-24b2-4044-a592-74f96f5de275
+uuid: 4733c176-6701-4af6-ad75-e2700c2f6756
 langcode: en
 status: true
 dependencies:
   theme:
     - form_tool_admin
 _core:
-  default_config_hash: _UoTG8MagibHn89173NtrwtSq5ylXJRanQkHTZmRGe4
+  default_config_hash: gP_8CvWazldE1DIEaUV9-kWTAYqdFNFH6TXLj8Xxv80
 id: form_tool_admin_local_tasks
 theme: form_tool_admin
-region: sidebar_first
-weight: -4
+region: content
+weight: -20
 provider: null
 plugin: local_tasks_block
 settings:

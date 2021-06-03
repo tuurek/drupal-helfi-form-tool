@@ -13,6 +13,7 @@ module:
   datetime: 0
   dblog: 0
   default_content: 0
+  devel: 0
   diff: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
@@ -80,6 +81,7 @@ module:
   token: 0
   token_filter: 0
   toolbar: 0
+  twig_debugger: 0
   twig_tweak: 0
   update: 0
   user: 0

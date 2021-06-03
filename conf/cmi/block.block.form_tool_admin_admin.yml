@@ -1,24 +1,24 @@
-uuid: 14506e40-68cb-4488-83fb-44b7de3b38bb
+uuid: f29700f6-7ec6-403c-aed6-e327144746e0
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.tools
+    - system.menu.admin
   module:
     - system
   theme:
     - form_tool_admin
 _core:
-  default_config_hash: 4JOrEScR1mBXz1EvuerEYIzsoe6IUnSdcOG9eIH-bd4
-id: form_tool_admin_tools
+  default_config_hash: YjIaMRFlO16BQ_DuPkzbBaDq4dkRbfXwKMtBqd7dk94
+id: form_tool_admin_admin
 theme: form_tool_admin
 region: sidebar_first
-weight: 0
+weight: 1
 provider: null
-plugin: 'system_menu_block:tools'
+plugin: 'system_menu_block:admin'
 settings:
-  id: 'system_menu_block:tools'
-  label: Tools
+  id: 'system_menu_block:admin'
+  label: Administration
   provider: system
   label_display: visible
   level: 1
