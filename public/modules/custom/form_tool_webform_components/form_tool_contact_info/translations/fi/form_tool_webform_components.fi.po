@@ -1,0 +1,13 @@
+
+msgid "Person responsible (Owner)"
+msgstr "Lomakkeen vastuuhenkilö (omistaja)"
+
+msgid "The sector that handles the form data"
+msgstr "Toimiala, joka käsittelee lomakkeen tiedot"
+
+msgid "Does the form contain sensitive information"
+msgstr "Käsitelläänkö lomakkeella arkaluontoista henkilötietoa"
+
+msgid "Form Pre-Information"
+msgstr "Lomakkeen esitiedot"
+
