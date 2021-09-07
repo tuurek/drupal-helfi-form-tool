@@ -1,0 +1,15 @@
+{
+    "name": "drupal/form_tool_media_form",
+    "description": "Integrates FormTool Forms with Media",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+      "league/uri": "^6.0"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "drupal/coder": "^8.3",
+        "phpspec/prophecy-phpunit": "^2"
+    }
+}

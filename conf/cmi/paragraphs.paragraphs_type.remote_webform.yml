@@ -1,0 +1,10 @@
+uuid: 4bf24637-2289-4f7b-bda3-f2cc7841a0c2
+langcode: fi
+status: true
+dependencies: {  }
+id: remote_webform
+label: 'Remote Webform'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

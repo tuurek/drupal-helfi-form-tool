@@ -1,0 +1,9 @@
+name: form_tool_media_form
+type: module
+description: Provides media types for Form Tool forms
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - media
+  - link

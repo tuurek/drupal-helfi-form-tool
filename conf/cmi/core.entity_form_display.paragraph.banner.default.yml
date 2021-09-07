@@ -15,7 +15,7 @@ dependencies:
     - select2_icon
     - text
 _core:
-  default_config_hash: cUl5PG2elS-k5_0QkIjSKWmdrnqkv8IfEZC7PTqQWYc
+  default_config_hash: 8wgVOUD1i4Nrbf2GrsDH0Qr3YSFafxtiGarqH6RLLUc
 id: paragraph.banner.default
 targetEntityType: paragraph
 bundle: banner
@@ -41,8 +41,9 @@ content:
       placeholder_url: ''
       placeholder_title: ''
       link_target: ''
+      icon: ''
     third_party_settings: {  }
-    type: link_target_field_widget
+    type: link_target_icon_field_widget
     region: content
   field_banner_link_design:
     weight: 5

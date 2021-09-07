@@ -1,9 +1,14 @@
 uuid: b2088633-888b-440a-a7cf-30692c59ab44
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 _core:
-  default_config_hash: kFGhYfEdjkm3d-WQGG4rp8L8O4_XlBetFwaL7TlTh54
+  default_config_hash: oTxiQLrfQcytWnp3OQEH6hF02S3MqtUJSmHZL6g4mlw
 id: columns
 label: Columns
 icon_uuid: null

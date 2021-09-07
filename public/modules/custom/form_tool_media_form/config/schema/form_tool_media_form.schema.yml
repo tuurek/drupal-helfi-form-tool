@@ -1,0 +1,11 @@
+media.source.hel_remote_webform:
+  type: media.source.field_aware
+  label: '"Form" media source configuration'
+
+field.formatter.settings.form:
+  type: mapping
+  label: 'Hel form formatter'
+  mapping:
+    link_title:
+      type: label
+      label: 'Link title'

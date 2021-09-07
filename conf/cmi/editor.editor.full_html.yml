@@ -7,7 +7,7 @@ dependencies:
   module:
     - ckeditor
 _core:
-  default_config_hash: gbKl_x1IJKUaF94IUbOx7E4G4-5WM7C33s7ABH74Rz8
+  default_config_hash: OAvmyVNNhuk6W9C_M5zVB7sF3sPuuyFO8FyZv-ZGu3o
 format: full_html
 editor: ckeditor
 settings:
@@ -51,6 +51,7 @@ settings:
             - Paste
             - PasteFromWord
             - SpecialChar
+            - Table
             - Source
   plugins:
     drupallink:

@@ -1,0 +1,30 @@
+uuid: 28234c5b-169a-4b04-9fbe-5e15262671ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.from_library.field_reusable_paragraph
+    - paragraphs.paragraphs_type.from_library
+  module:
+    - select2
+_core:
+  default_config_hash: RBhuX9npNnq2pmFG3bnj9977tRJQYZ1VTb45-BHjmqE
+id: paragraph.from_library.default
+targetEntityType: paragraph
+bundle: from_library
+mode: default
+content:
+  field_reusable_paragraph:
+    weight: 0
+    settings:
+      width: 100%
+      match_operator: CONTAINS
+      match_limit: 20
+      autocomplete: false
+    third_party_settings: {  }
+    type: select2_entity_reference
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true
