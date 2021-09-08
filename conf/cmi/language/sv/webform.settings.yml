@@ -5,7 +5,11 @@ settings:
   default_preview_next_button_label: Förhandsgranska
   default_preview_label: Förhandsgranska
   dialog_options:
+    narrow:
+      title: Smal
     normal:
       title: Normal
+    wide:
+      title: Bred
 element:
   default_more_title: Mer

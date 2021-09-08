@@ -2,7 +2,7 @@ label: Taxonomiterm
 description: 'Innehåll som hör till en viss taxonomiterm.'
 display:
   default:
-    display_title: Huvud
+    display_title: Förvald
     display_options:
       exposed_form:
         options:
@@ -24,6 +24,7 @@ display:
         tid:
           exception:
             title: Alla
+          title: '{{ arguments.tid }}'
   feed_1:
     display_title: Innehållsflöde
   page_1:

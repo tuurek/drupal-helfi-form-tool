@@ -3,7 +3,7 @@ langcode: fi
 status: true
 dependencies: {  }
 id: remote_webform
-label: 'Remote Webform'
+label: Lomaketyökalu-upotus
 icon_uuid: null
 icon_default: null
 description: ''
