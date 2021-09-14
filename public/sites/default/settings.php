@@ -73,7 +73,6 @@ if ($reverse_proxy_address = getenv('DRUPAL_REVERSE_PROXY_ADDRESS')) {
   $settings['reverse_proxy_addresses'] = $reverse_proxy_address;
   $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
 }
-$settings['install_profile'] = 'minimal';
 
 if ($env = getenv('APP_ENV')) {
   if (file_exists(__DIR__ . '/' . $env . '.settings.php')) {
