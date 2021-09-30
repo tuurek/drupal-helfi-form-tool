@@ -35,7 +35,7 @@ function template_preprocess_form_tool_contact_info(array &$variables) {
 }
 
 function form_tool_contact_info_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form') {
+  if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
     $bundle = $form_state->getFormObject()->getEntity();
     // Because hidden by default.
     $form["third_party_settings"]["#access"] = true;
