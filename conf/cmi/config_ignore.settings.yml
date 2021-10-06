@@ -1,5 +1,6 @@
 ignored_config_entities:
   - 'eu_cookie_compliance.cookie_category*'
   - '*.site_settings'
+  - 'webform.webform.*'
 _core:
   default_config_hash: QkouijUZWSmzRC1sUOJntoclIHqPYGTSt2534poifsQ

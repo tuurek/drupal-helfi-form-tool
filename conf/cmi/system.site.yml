@@ -1,7 +1,7 @@
 uuid: ad566281-464e-4fcc-92b6-4293a4a5497c
-name: Testiupotussivusto
-mail: admin@example.com
-slogan: ''
+name: Lomaketyökalu
+mail: ext.petri.leinonen@hel.fi
+slogan: 'Hel.fi Lomaketyökalu'
 page:
   403: ''
   404: ''
