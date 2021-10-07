@@ -2,6 +2,8 @@ uuid: 65eb238e-2bf8-47a5-8943-073923fd9026
 langcode: en
 status: true
 dependencies:
+  config:
+    - system.menu.admin
   module:
     - node
     - scheduler
@@ -9,9 +11,9 @@ dependencies:
 _core:
   default_config_hash: LTfFZy_nemFOcbdoYD7tu1uw3uHbcYcQ6wlGJ7deGEk
 id: scheduler_scheduled_content
-label: 'Scheduled content'
+label: 'Ajastettu sisältö'
 module: views
-description: 'Find and manage scheduled content.'
+description: 'Etsi ja ylläpidä ajastettua sisältöä.'
 tag: ''
 base_table: node_field_revision
 base_field: vid
@@ -34,13 +36,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: Suodatin
           reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
       pager:
         type: full
         options:
@@ -49,10 +51,10 @@ display:
           id: 0
           total_pages: null
           tags:
-            previous: '‹ previous'
-            next: 'next ›'
-            first: '« first'
-            last: 'last »'
+            previous: '‹ edellinen'
+            next: 'seuraava ›'
+            first: '« ensimmäinen'
+            last: 'viimeinen »'
       style:
         type: table
         options:
@@ -179,7 +181,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: Toiminto
           include_exclude: exclude
           selected_actions: {  }
           plugin_id: node_bulk_form
@@ -191,7 +193,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Title
+          label: Otsikko
           exclude: false
           alter:
             alter_text: false
@@ -238,7 +240,7 @@ display:
           relationship: nid
           group_type: group
           admin_label: ''
-          label: 'Content Type'
+          label: Sisältötyyppi
           exclude: false
           alter:
             alter_text: false
@@ -303,7 +305,7 @@ display:
           relationship: revision_uid
           group_type: group
           admin_label: ''
-          label: Author
+          label: Kirjoittaja
           exclude: false
           alter:
             alter_text: false
@@ -368,7 +370,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Status
+          label: Tila
           exclude: false
           alter:
             alter_text: false
@@ -413,8 +415,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_true: Published
-            format_custom_false: Unpublished
+            format_custom_true: Julkaistu
+            format_custom_false: Julkaisematon
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -435,7 +437,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Publish on'
+          label: Julkaisupäivämäärä
           exclude: false
           alter:
             alter_text: false
@@ -502,7 +504,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Unpublish on'
+          label: 'Julkaisun peruutuspäivämäärä'
           exclude: false
           alter:
             alter_text: false
@@ -569,7 +571,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Toimenpiteet
           exclude: false
           alter:
             alter_text: false
@@ -668,7 +670,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Title
+            label: Otsikko
             description: ''
             use_operator: false
             operator: title_op
@@ -711,7 +713,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: 'Content type'
+            label: Sisältötyyppi
             description: ''
             use_operator: false
             operator: type_op
@@ -754,7 +756,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Status
+            label: Tila
             description: ''
             use_operator: false
             operator: status_op
@@ -770,7 +772,7 @@ display:
             operator_list: {  }
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Julkaisutila
             description: ''
             identifier: status
             optional: true
@@ -781,11 +783,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: Julkaistu
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: Julkaisematon
                 operator: '='
                 value: '0'
           plugin_id: boolean
@@ -804,7 +806,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: Kieli
             description: ''
             use_operator: false
             operator: langcode_op
@@ -933,7 +935,7 @@ display:
           entity_field: unpublish_on
           plugin_id: date
       sorts: {  }
-      title: 'Scheduled Content'
+      title: 'Ajastettu sisältö'
       header: {  }
       footer: {  }
       empty:
@@ -946,7 +948,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'No scheduled content.'
+          content: 'Ei vielä ajastettua sisältöä.'
           plugin_id: text_custom
       arguments: {  }
       relationships:
@@ -979,7 +981,7 @@ display:
           2: OR
       display_extenders: {  }
     display_plugin: default
-    display_title: Master
+    display_title: Isäntä
     id: default
     position: 0
     cache_metadata:
@@ -996,9 +998,9 @@ display:
     display_options:
       path: admin/content/scheduled
       menu:
-        type: tab
-        title: Scheduled
-        description: ''
+        type: normal
+        title: Ajastettu
+        description: 'Content scheduled for publishing and unpublishing'
         expanded: false
         parent: system.admin_content
         weight: -10
@@ -1006,15 +1008,15 @@ display:
         menu_name: admin
       tab_options:
         type: normal
-        title: Content
+        title: Sisältö
         description: 'Find and manage scheduled content'
         menu_name: admin
         weight: -10
       display_extenders: {  }
-      display_description: 'Overview of all scheduled content, as a tab on main ''content admin'' page'
+      display_description: 'Yleiskatsaus koko ajoitetusta sisällöstä.'
       display_comment: 'Revision nid relationship is required because the content type is only stored at ''content'' level, not ''content revision'' level.'
     display_plugin: page
-    display_title: 'Content Overview'
+    display_title: Sisältö
     id: overview
     position: 1
     cache_metadata:
@@ -1032,7 +1034,7 @@ display:
       path: user/%user/scheduled
       menu:
         type: tab
-        title: Scheduled
+        title: Ajastettu
         description: ''
         parent: system.admin_content
         weight: -10
@@ -1040,7 +1042,7 @@ display:
         menu_name: admin
       tab_options:
         type: normal
-        title: Content
+        title: Sisältö
         description: 'Find and manage scheduled content'
         menu_name: admin
         weight: -10
@@ -1064,7 +1066,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Kaikki
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -1105,10 +1107,10 @@ display:
           admin_label: ''
           empty: true
           tokenize: true
-          content: 'No scheduled content for user {{ arguments.uid }}'
+          content: '{{ arguments.uid }} käyttäjä ei ole ajastanut sisältöä.'
           plugin_id: text_custom
     display_plugin: page
-    display_title: 'User profile tab'
+    display_title: Käyttäjäprofiili
     id: user_page
     position: 2
     cache_metadata:

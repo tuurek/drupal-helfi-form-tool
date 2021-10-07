@@ -1,0 +1,22 @@
+uuid: f7b3bfb7-faa2-4d75-997b-dfd30d493f04
+langcode: en
+status: false
+dependencies:
+  module:
+    - helfi_platform_config
+  theme:
+    - hdbt
+_core:
+  default_config_hash: NGwdfNLrACjqgqO8nuIYG7P4pXxSCQ51eykE4-xME6M
+id: reactandshare
+theme: hdbt
+region: after_content
+weight: -7
+provider: null
+plugin: react_and_share
+settings:
+  id: react_and_share
+  label: 'React and Share'
+  provider: helfi_platform_config
+  label_display: '0'
+visibility: {  }
