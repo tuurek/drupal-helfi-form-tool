@@ -118,6 +118,7 @@ theme:
   gin: 0
   hdbt_admin: 0
   form_tool_admin: 0
+  helfi_form_subtheme: 0
 profile: minimal
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

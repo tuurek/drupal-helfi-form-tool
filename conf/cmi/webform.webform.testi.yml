@@ -24,11 +24,14 @@ title: testi
 description: ''
 category: ''
 elements: |-
-  toimitustapa:
-    '#type': form_tool_contact_info
-    '#title': Toimitustapa
-    '#Toimitustapa: Postiennakko__access': false
-    '#Toimitustapa: Nouto__access': false
+  sivu1:
+    '#type': webform_wizard_page
+    '#title': sivu1
+    toimitustapa:
+      '#type': form_tool_contact_info
+      '#title': Toimitustapa
+      '#Toimitustapa: Postiennakko__access': false
+      '#Toimitustapa: Nouto__access': false
 css: ''
 javascript: ''
 settings:

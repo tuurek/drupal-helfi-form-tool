@@ -1,0 +1,31 @@
+uuid: 9e40fd33-fbf1-4d5c-b635-00fa8c789d51
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - hdbt_content
+  theme:
+    - helfi_form_subtheme
+_core:
+  default_config_hash: 78yiI6vde7AAMhp5ktXyPS5VcKtVs4_JuJccNBI1K7Q
+id: helfi_form_subtheme_sidebarcontentblock
+theme: helfi_form_subtheme
+region: sidebar_first
+weight: 1
+provider: null
+plugin: sidebar_content_block
+settings:
+  id: sidebar_content_block
+  label: 'Sidebar content block'
+  provider: hdbt_content
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      article: article
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
