@@ -3,12 +3,6 @@
  * Webform example composite styles.
  */
 
-.form_tool_contact_info_multiple-table--first_name {}
-
-.form_tool_contact_info_multiple-table--last_name {}
-
-.form_tool_contact_info_multiple-table--date_of_birth {}
-
 .form_tool_contact_info_multiple-table--sex {
   min-width: 100px;
 }

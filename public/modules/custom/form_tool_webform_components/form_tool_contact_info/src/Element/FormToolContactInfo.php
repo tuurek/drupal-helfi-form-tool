@@ -21,12 +21,14 @@ use Drupal\webform\WebformSubmissionInterface;
  * @see \Drupal\webform\Element\WebformCompositeBase
  * @see \Drupal\form_tool_contact_info\Element\FormToolContactInfo
  */
-class FormToolContactInfo extends WebformCompositeBase {
+class FormToolContactInfo extends WebformCompositeBase
+{
 
   /**
    * {@inheritdoc}
    */
-  public function getInfo() {
+  public function getInfo()
+  {
     $info = parent::getInfo();
     $class = get_class($this);
     $info['#pre_render'] = [
@@ -39,7 +41,8 @@ class FormToolContactInfo extends WebformCompositeBase {
   /**
    * {@inheritdoc}
    */
-  public static function getCompositeElements(array $element) {
+  public static function getCompositeElements(array $element)
+  {
     $elements = [];
     $elements['Toimitustapa: Email'] = [
       '#type' => 'checkbox',
@@ -171,14 +174,16 @@ class FormToolContactInfo extends WebformCompositeBase {
   /**
    * Performs the after_build callback.
    */
-  public static function deliveryOptions(array $element, FormStateInterface $form_state) {
+  public static function deliveryOptions(array $element, FormStateInterface $form_state)
+  {
     return $element;
   }
 
   /**
    * Performs the after_build callback.
    */
-  public static function email(array $element, FormStateInterface $form_state) {
+  public static function email(array $element, FormStateInterface $form_state)
+  {
     // Add #states targeting the specific element and table row.
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
@@ -194,7 +199,8 @@ class FormToolContactInfo extends WebformCompositeBase {
   /**
    * Performs the after_build callback.
    */
-  public static function postalAddress(array $element, FormStateInterface $form_state) {
+  public static function postalAddress(array $element, FormStateInterface $form_state)
+  {
     // Add #states targeting the specific element and table row.
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
@@ -210,7 +216,8 @@ class FormToolContactInfo extends WebformCompositeBase {
   /**
    * Performs the after_build callback.
    */
-  public static function codPostalAddress(array $element, FormStateInterface $form_state) {
+  public static function codPostalAddress(array $element, FormStateInterface $form_state)
+  {
     // Add #states targeting the specific element and table row.
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
@@ -226,7 +233,8 @@ class FormToolContactInfo extends WebformCompositeBase {
   /**
    * Performs the after_build callback.
    */
-  public static function pickup(array $element, FormStateInterface $form_state) {
+  public static function pickup(array $element, FormStateInterface $form_state)
+  {
     // Add #states targeting the specific element and table row.
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
@@ -244,7 +252,8 @@ class FormToolContactInfo extends WebformCompositeBase {
   /**
    * Performs the after_build callback.
    */
-  public static function preRenderWebformCompositeFormElement($element) {
+  public static function preRenderWebformCompositeFormElement($element)
+  {
     $element = parent::preRenderWebformCompositeFormElement($element);
     //$element['delivery_method'] = print_r(array_keys($element['delivery_method']), false);
     //$element['delivery_method'] = print_r($element['delivery_method']['#webform_element'], false);
@@ -274,5 +283,4 @@ class FormToolContactInfo extends WebformCompositeBase {
     unset($element['Postiennakko -teksti']);
     return $element;
   }
-
 }
