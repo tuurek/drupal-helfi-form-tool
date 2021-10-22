@@ -24,22 +24,19 @@ use Drupal\webform\WebformSubmissionInterface;
  * @see \Drupal\webform\Plugin\WebformElementInterface
  * @see \Drupal\webform\Annotation\WebformElement
  */
-class FormToolContactInfo extends WebformCompositeBase
-{
+class FormToolContactInfo extends WebformCompositeBase {
 
   /**
    * {@inheritdoc}
    */
-  protected function formatHtmlItemValue(array $element, WebformSubmissionInterface $webform_submission, array $options = [])
-  {
+  protected function formatHtmlItemValue(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {
     return $this->formatTextItemValue($element, $webform_submission, $options);
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function defineDefaultProperties()
-  {
+  protected function defineDefaultProperties() {
     // Here you define your webform element's default properties,
     // which can be inherited.
     //
@@ -309,8 +306,7 @@ class FormToolContactInfo extends WebformCompositeBase
   /**
    * {@inheritdoc}
    */
-  protected function formatTextItemValue(array $element, WebformSubmissionInterface $webform_submission, array $options = [])
-  {
+  protected function formatTextItemValue(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {
     $value = $this->getValue($element, $webform_submission, $options);
 
     $lines = [];
@@ -321,4 +317,5 @@ class FormToolContactInfo extends WebformCompositeBase
       ($value['date_of_birth'] ? ' (' . $value['date_of_birth'] . ')' : '');
     return $lines;
   }
+
 }

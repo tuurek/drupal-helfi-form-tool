@@ -229,8 +229,6 @@ class FormToolContactInfo extends WebformCompositeBase {
     // Add #states targeting the specific element and table row.
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
-    // $element['#markup'] = $form_state->getValue('hidden_pickup');
-
     $element['#states']['visible'] = [
       [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'pickup']],
     ];
@@ -245,8 +243,6 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function preRenderWebformCompositeFormElement($element) {
     $element = parent::preRenderWebformCompositeFormElement($element);
-    // $element['delivery_method'] = print_r(array_keys($element['delivery_method']), false);
-    // $element['delivery_method'] = print_r($element['delivery_method']['#webform_element'], false);
     if ($element['Toimitustapa: Email']['#access'] != 1) {
       unset($element['delivery_method']['email']);
     }
@@ -273,4 +269,5 @@ class FormToolContactInfo extends WebformCompositeBase {
     unset($element['Postiennakko -teksti']);
     return $element;
   }
+
 }
