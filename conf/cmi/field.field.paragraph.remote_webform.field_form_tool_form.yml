@@ -4,13 +4,12 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_form_tool_form
-    - media.type.hel_remote_webform
     - paragraphs.paragraphs_type.remote_webform
 id: paragraph.remote_webform.field_form_tool_form
 field_name: field_form_tool_form
 entity_type: paragraph
 bundle: remote_webform
-label: 'Remote Webform'
+label: 'Lomaketyökalun lomake'
 description: ''
 required: true
 translatable: false
@@ -19,8 +18,7 @@ default_value_callback: ''
 settings:
   handler: 'default:media'
   handler_settings:
-    target_bundles:
-      hel_remote_webform: hel_remote_webform
+    target_bundles: {  }
     sort:
       field: _none
       direction: ASC
