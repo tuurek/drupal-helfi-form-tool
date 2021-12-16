@@ -7,6 +7,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "ext-json": "*",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.6.7",
         "druidfi/omen": "^0.2.0",
@@ -20,7 +21,7 @@
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_ahjo": "^1.0",
         "drupal/helfi_hauki": "^1.0",
-        "drupal/helfi_platform_config": "^1.0",
+        "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_tpr": "^1.0",
         "drupal/helfi_tunnistamo": "^2.0",
         "drupal/paragraphs": "^1.12",

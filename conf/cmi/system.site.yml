@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+langcode: en
 uuid: ad566281-464e-4fcc-92b6-4293a4a5497c
 name: Lomaketyökalu
 mail: ext.petri.leinonen@hel.fi
@@ -8,7 +11,4 @@ page:
   front: /user/login
 admin_compact_mode: false
 weight_select_max: 100
-langcode: en
 default_langcode: en
-_core:
-  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
