@@ -28,7 +28,9 @@
         "drupal/twig_debugger": "^1.1",
         "drupal/webform": "^6.0",
         "drupal/webform_rest": "^4.0",
-        "drush/drush": "^10.4"
+        "drush/drush": "^10.4",
+        "jumbojett/openid-connect-php": "^0.9.2",
+        "ext-json": "*"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
