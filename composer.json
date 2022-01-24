@@ -23,12 +23,14 @@
         "drupal/helfi_hauki": "^1.0",
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_tpr": "^1.0",
-        "drupal/helfi_tunnistamo": "^2.0",
+        "drupal/helfi_tunnistamo": "dev-UHF-3813",
         "drupal/paragraphs": "^1.12",
+        "drupal/seckit": "^2.0",
         "drupal/smtp": "^1.0",
         "drupal/twig_debugger": "^1.1",
         "drupal/webform": "^6.0",
         "drupal/webform_rest": "^4.0",
+        "drupal/x_frame_options_configuration": "^1.2",
         "drush/drush": "^10.4"
     },
     "require-dev": {
@@ -43,7 +45,13 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true
+        }
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
