@@ -5,7 +5,7 @@
 trigger:
   branches:
     include:
-    - develop
+    - refs/tags/deploy-to-dev
   paths:
     exclude:
     - README.md
@@ -33,4 +33,4 @@ resources:
     name: lomaketyokalu/lomaketyokalu-pipelines
 
 extends:
-  template: azure-pipelines-drupal-devtest.yml@lomaketyokalu-pipelines
+  template: azure-pipelines-drupal-dev.yml@lomaketyokalu-pipelines
