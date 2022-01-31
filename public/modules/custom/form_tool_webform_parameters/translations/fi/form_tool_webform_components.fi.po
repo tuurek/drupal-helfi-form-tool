@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2021-05-31 11:00+0300\n"
-"PO-Revision-Date: 2021-05-31 11:00+0300\n"
+"PO-Revision-Date: 2022-01-28 11:00+0300\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -25,3 +25,20 @@ msgstr "Käsitelläänkö lomakkeella arkaluonteista henkilötietoa"
 msgid "Form Pre-Information"
 msgstr "Lomakkeen esitiedot"
 
+msgid "AD Grouo of the handlers of form data"
+msgstr "Lomakkeen vastausten käsittelijöiden AD-ryhmä"
+
+msgid "Login requirements"
+msgstr "Tunnistautumisvaatimus lomakkeelle"
+
+msgid "No Authentication"
+msgstr "Ei tarvetta tunnistautumiselle"
+
+msgid "Weak Authentication"
+msgstr "Heikko tunnistautuminen"
+
+msgid "Strong Authentication"
+msgstr "Vahva tunnistautuminen"
+
+msgid "Postal address for paper form delivery"
+msgstr "Lomakkeen paperiversion toimitusosoite"

@@ -1,7 +1,4 @@
 <?php
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
-
 /**
  * @file
  * Provides an example that shows how to create a Webform composite.
@@ -32,46 +29,4 @@ function form_tool_contact_info_theme() {
 function template_preprocess_form_tool_contact_info(array &$variables) {
   // Here you can get the composite element and alter it.
   _template_preprocess_webform_composite($variables);
-}
-
-function form_tool_contact_info_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
-    $bundle = $form_state->getFormObject()->getEntity();
-    // Because hidden by default.
-    $form["third_party_settings"]["#access"] = true;
-    $form['third_party_settings']['#tree'] = TRUE;
-
-    $form['third_party_settings']['#title'] = t('Form Pre-Information');
-
-    $form['third_party_settings']['form_tool_contact_info'] = [
-        '#type' => 'details',
-        '#title' => t('Form Pre-Information'),
-        '#open' => true,
-        '#input' => false,
-      ];
-
-    $form['third_party_settings']['form_tool_contact_info']['owner'] = [
-      '#type' => 'textfield',
-      '#title' => t('Person responsible (Owner)'),
-      '#default_value' => $bundle->getThirdPartySetting('form_tool_contact_info', 'owner'),
-      '#required' => TRUE,
-    ];
-
-    $form['third_party_settings']['form_tool_contact_info']['sector'] = [
-      '#type' => 'textfield',
-      '#title' => t('The sector that handles the form data'),
-      '#default_value' => $bundle->getThirdPartySetting('form_tool_contact_info', 'sector'),
-      '#required' => TRUE,
-    ];
-    $form['third_party_settings']['form_tool_contact_info']['sensitive'] = [
-      '#type' => 'radios',
-      '#title' => t('Does the form contain sensitive information'),
-      '#options' => [
-        '1' => t('Yes'),
-        '0' => t('No'),
-      ],
-      '#required' => TRUE,
-      '#default_value' => $bundle->getThirdPartySetting('form_tool_contact_info', 'sensitive')
-    ];
-  }
 }

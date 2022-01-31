@@ -1,0 +1,81 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
+
+
+/**
+ * @file
+ * Primary module hooks for Hel.fi Form Tool Webform Parameters module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
+    $bundle = $form_state->getFormObject()->getEntity();
+    // Because hidden by default.
+    $form["third_party_settings"]["#access"] = true;
+    $form['third_party_settings']['#tree'] = TRUE;
+
+    $form['third_party_settings']['#title'] = t('Form Pre-Information');
+
+    $form['third_party_settings']['form_tool_webform_parameters'] = [
+        '#type' => 'details',
+        '#title' => t('Form Pre-Information'),
+        '#open' => true,
+        '#input' => false,
+      ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['owner'] = [
+      '#type' => 'textfield',
+      '#title' => t('Person responsible (Owner)'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'owner'),
+      '#required' => TRUE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['sector'] = [
+      '#type' => 'textfield',
+      '#title' => t('The sector that handles the form data'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'sector'),
+      '#required' => TRUE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['ad_group'] = [
+      '#type' => 'textfield',
+      '#title' => t('AD Grouo of the handlers of form data'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'ad_group'),
+      '#required' => FALSE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['postal_address'] = [
+      '#type' => 'textarea',
+      '#title' => t("Postal address for paper form delivery"),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'postal_adress'),
+      '#required' => FALSE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['login'] = [
+      '#type' => 'radios',
+      '#title' => t('Login requirements'),
+      '#options' => [
+        '0' => t('No Authentication'),
+        '1' => t('Weak Authentication'),
+        '2' => t('Strong Authentication'),
+      ],
+      '#required' => FALSE,
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'login')
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['sensitive'] = [
+      '#type' => 'radios',
+      '#title' => t('Does the form contain sensitive information'),
+      '#options' => [
+        '1' => t('Yes'),
+        '0' => t('No'),
+      ],
+      '#required' => TRUE,
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'sensitive')
+    ];
+  }
+}

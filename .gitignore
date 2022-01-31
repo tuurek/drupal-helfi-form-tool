@@ -6,6 +6,8 @@ public/libraries
 public/modules/contrib
 public/themes/contrib
 public/sites/default/files
+public/sites/default/*.settings.php
+public/sites/default/*.services.yml
 vendor
 
 # Ignore the folder created by PhpStorm
