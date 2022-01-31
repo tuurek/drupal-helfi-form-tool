@@ -27,3 +27,4 @@ hidden:
   field_omistaja: true
   field_toimiala: true
   langcode: true
+  toc_enabled: true
