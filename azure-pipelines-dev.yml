@@ -5,7 +5,7 @@
 trigger:
   branches:
     include:
-    - refs/tags/deploy-to-dev
+    - feature/LOM-146-tunnistamo-sso
   paths:
     exclude:
     - README.md
