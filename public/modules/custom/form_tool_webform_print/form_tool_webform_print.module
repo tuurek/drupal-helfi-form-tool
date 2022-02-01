@@ -108,7 +108,7 @@ function form_tool_webform_print_theme_suggestions_page(array $variables) {
  */
 function template_preprocess_webform_submission_form__form_tool_webform_print(&$variables) {
   $webform= \Drupal\webform\Entity\Webform::load($variables['form']['#webform_id']);
-  $variables['formsettings'] = $webform->getThirdPartySettings('form_tool_parameters');
+  $variables['formsettings'] = $webform->getThirdPartySettings('form_tool_webform_parameters');
 
   //$variables['title'] = $variables['page']['#title'];
 
