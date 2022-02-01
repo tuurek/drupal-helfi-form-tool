@@ -4,10 +4,18 @@ status: open
 dependencies:
   module:
     - form_tool_contact_info
+    - form_tool_webform_parameters
 third_party_settings:
   form_tool_contact_info:
     owner: as
     sector: sa
+    sensitive: '0'
+  form_tool_webform_parameters:
+    owner: 'Omistajan nimmi'
+    sector: 'Toimialan nimi'
+    ad_group: 'AD-ryhmä ID'
+    postal_address: "Toimitus\r\nOsoitekatu 2 a 9\r\n00204 toimitusla\r\nSuomi?"
+    login: '0'
     sensitive: '0'
 weight: 0
 open: null
@@ -64,6 +72,9 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
