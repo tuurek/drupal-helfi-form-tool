@@ -24,10 +24,11 @@
 </table>
 <header class="webform-print-header">
   {{ helsinki_logo|raw }}
-    <div class="webform-print-header-left-text">
+  <div class="webform-print-header-left-text">
+    {{ formsettings.postal_address | nl2br }}
   </div>
   <div class="webform-print-header-right-text">
-  {{ metadata.applicationType }}
+  {{ formsettings.sector }}
   </div>
 </header>
 <footer class="webform-print-footer">
