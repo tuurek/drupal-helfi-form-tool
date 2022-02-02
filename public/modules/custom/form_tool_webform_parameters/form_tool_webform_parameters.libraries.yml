@@ -1,0 +1,7 @@
+# Custom module library for general purposes.
+form_tool_webform_parameters:
+  js:
+    js/form-tool-webform-parameters.js: {}
+  css:
+    component:
+      css/form-tool-webform-parameters.css: {}

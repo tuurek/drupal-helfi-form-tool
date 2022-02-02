@@ -22,8 +22,10 @@ display:
             offset_label: Kompensera
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Draft
           separator: ', '
         created:
           label: Skapad
@@ -47,8 +49,10 @@ display:
         webform_submission_bulk_form:
           action_title: Åtgärd
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Draft
           separator: ', '
         sticky:
           label: Klistrad
@@ -80,8 +84,10 @@ display:
         webform_submission_bulk_form:
           action_title: Åtgärd
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Draft
           separator: ', '
         sticky:
           label: Klistrad
@@ -115,8 +121,10 @@ display:
     display_options:
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Draft
           separator: ', '
         sticky:
           label: Klistrad

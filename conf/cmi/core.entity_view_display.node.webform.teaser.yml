@@ -32,4 +32,5 @@ content:
     region: content
 hidden:
   langcode: true
+  toc_enabled: true
   webform: true
