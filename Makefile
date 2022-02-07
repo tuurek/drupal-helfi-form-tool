@@ -1,6 +1,8 @@
 PHONY :=
 PROJECT_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
+# test1030
+
 # Include project env vars (if exists)
 -include .env
 -include .env.local
