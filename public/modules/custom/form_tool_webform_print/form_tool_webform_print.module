@@ -5,9 +5,6 @@
  * Creates a printable page of the webform.
  */
 
-use Drupal\block\Entity\Block;
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\form_tool_webform_print\FormToolWebformPrintPreRender;
 use Drupal\form_tool_webform_print\FormToolWebformPrintHelper;
 
