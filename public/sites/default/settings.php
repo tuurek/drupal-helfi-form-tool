@@ -28,6 +28,13 @@ if ($ssl_ca_path = getenv('AZURE_SQL_SSL_CA_PATH')) {
     \PDO::MYSQL_ATTR_SSL_CA => $ssl_ca_path,
     \PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => FALSE,
   ];
+  // Azure specific filesystem fixes.
+  $settings['php_storage']['twig']['directory'] = '/tmp';
+  $settings['php_storage']['twig']['secret'] = $settings['hash_salt'];
+  $settings['file_chmod_directory'] = 16895;
+  $settings['file_chmod_file'] = 16895;
+
+  $config['system.performance']['cache']['page']['max_age'] = 86400;
 }
 
 // Only in Wodby environment.
@@ -41,6 +48,17 @@ $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: '000';
 
 $config['openid_connect.client.tunnistamo']['settings']['client_id'] = getenv('TUNNISTAMO_CLIENT_ID');
 $config['openid_connect.client.tunnistamo']['settings']['client_secret'] = getenv('TUNNISTAMO_CLIENT_SECRET');
+
+if(getenv('APP_ENV') == 'production'){
+  $config['openid_connect.client.tunnistamo']['settings']['is_production'] = true;
+  $config['openid_connect.client.tunnistamo']['settings']['environment_url'] = 'https://api.hel.fi/sso';
+} else {
+  if(getenv('APP_ENV') == 'development') {
+    $config['openid_connect.client.tunnistamo']['settings']['environment_url'] = 'https://tunnistamo.test.hel.ninja';
+  }
+  $config['openid_connect.client.tunnistamo']['settings']['is_production'] = false;
+}
+
 // Drupal route(s).
 $routes = (getenv('DRUPAL_ROUTES')) ? explode(',', getenv('DRUPAL_ROUTES')) : [];
 
