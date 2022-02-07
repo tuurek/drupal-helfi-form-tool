@@ -5,7 +5,7 @@ namespace Drupal\form_tool_webform_print;
 use Drupal\Core\Security\TrustedCallbackInterface;
 
 /**
- * Implements trusted prerender callbacks for the Webform share module.
+ * Implements trusted prerender callbacks for the Webform print module.
  *
  * @internal
  */
