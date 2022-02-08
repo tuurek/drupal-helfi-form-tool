@@ -43,7 +43,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
 
     $form['third_party_settings']['form_tool_webform_parameters']['ad_group'] = [
       '#type' => 'textfield',
-      '#title' => t('AD Grouo of the handlers of form data'),
+      '#title' => t('AD Group of the handlers of form data'),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'ad_group'),
       '#required' => FALSE,
     ];
