@@ -24,8 +24,6 @@ function form_tool_webform_print_preprocess_webform_container_base_html(&$variab
  * Implements hook_element_info_alter().
  */
 function form_tool_webform_print_element_info_alter(&$type) {
-  print_r($type);
-
   $type['page']['#pre_render'][] = [FormToolWebformPrintPreRender::class, 'page'];
 }
 
