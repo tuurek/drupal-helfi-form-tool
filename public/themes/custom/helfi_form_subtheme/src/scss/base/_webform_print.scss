@@ -1,4 +1,16 @@
 .webform-submission-data-preview-page, .webform-print-page-html {
+  .hds-notification,
+  .webform-progress-tracker-mobile,
+  .webform-progress-tracker,
+  .messages__container,
+  header.header,
+  nav.breadcrumb,
+  .tools__container,
+  footer.footer,
+  button,
+  .form-actions {
+    display: none !important;
+  }
   .webform-print-wrapper-table {
     border: 0px transparent solid;
     width: 100%;
@@ -63,18 +75,6 @@
       border-top: 0px var(--color-black-20) solid !important;
       padding-top: 0 !important;
     }
-    .hds-notification,
-    .webform-progress-tracker-mobile,
-    .webform-progress-tracker,
-    .messages__container,
-    header.header,
-    nav.breadcrumb,
-    .tools__container,
-    footer.footer,
-    button,
-    .form-actions {
-      display: none !important;
-    }
 
     div.main-content {
       margin: 0;
@@ -88,9 +88,6 @@
       }
       .hds-text-input .hds-text-input__input[readonly], .hds-text-input .hds-text-input__input {
         border: 2px black solid;
-      }
-      section {
-        page-break-inside: avoid;
       }
 
       label {
