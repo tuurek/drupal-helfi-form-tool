@@ -1,0 +1,6 @@
+form_tool_handler.settings_form:
+  title: form_tool_handler
+  description: Configure form_tool_handler.
+  parent: system.admin_config_system
+  route_name: form_tool_handler.settings_form
+  weight: 10
