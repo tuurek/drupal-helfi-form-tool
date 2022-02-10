@@ -234,5 +234,8 @@ third_party_settings:
     ad_group: {  }
     postal_address: {  }
     privacy_policy: {  }
+    privacy_policy_sv: {  }
+    privacy_policy_en: {  }
+    privacy_policy_ru: {  }
     login_type: {  }
     sensitive: {  }
