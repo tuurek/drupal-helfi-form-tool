@@ -2,6 +2,44 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
 
+/**
+ * @param $sector The name of the sector.
+ *
+ * @return string The url to the privacy policy link for the sector.
+ */
+function _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings) {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if ($language == 'fi') {
+    if (array_key_exists('privacy_policy', $formsettings)) {
+      return $formsettings['privacy_policy'];
+    } else {
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+      return 'https://asiakirjajulkisuus.hel.fi/';
+    }
+  } else if ($language == 'sv') {
+    if (array_key_exists('privacy_policy_sv', $formsettings)) {
+      return $formsettings['privacy_policy_sv'];
+    } else {
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+      return 'https://asiakirjajulkisuus.hel.fi/';
+    }
+  } else if ($language == 'en') {
+    if (array_key_exists('privacy_policy_en', $formsettings)) {
+      return $formsettings['privacy_policy_en'];
+    } else {
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+      return 'https://asiakirjajulkisuus.hel.fi/';
+    }
+  } else if ($language == 'ru') {
+    if (array_key_exists('privacy_policy_ru', $formsettings)) {
+      return $formsettings['privacy_policy_ru'];
+    } else {
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+      return 'https://asiakirjajulkisuus.hel.fi/';
+    }
+  }
+  return 'https://asiakirjajulkisuus.hel.fi/';
+}
 
 /**
  * @file
@@ -12,10 +50,22 @@ use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
  * @see https://www.drupal.org/node/2217931
  */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (array_key_exists('#webform_id', $form)) {
+    $webform= \Drupal\webform\Entity\Webform::load($form['#webform_id']);
+    $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
+
+    $privacy_policy_link = _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings);
+    $privacy_policy_string = t('I have read and approved').' <a href="'.$privacy_policy_link.'">'.t('the privacy policy').'</a>.';
+    $form['privacy_policy_acceptance'] = array(
+      '#type' => 'checkbox',
+      '#title' => $privacy_policy_string,
+      '#required' => TRUE,
+    );
+  }
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
     $bundle = $form_state->getFormObject()->getEntity();
     // Because hidden by default.
-    $form["third_party_settings"]["#access"] = true;
+    $form['third_party_settings']['#access'] = true;
     $form['third_party_settings']['#tree'] = TRUE;
 
     $form['third_party_settings']['#title'] = t('Form Pre-Information');
@@ -50,12 +100,46 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
 
     $form['third_party_settings']['form_tool_webform_parameters']['postal_address'] = [
       '#type' => 'textarea',
-      '#title' => t("Postal address for paper form delivery"),
+      '#title' => t('Postal address for paper form delivery'),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'postal_adress'),
       '#required' => FALSE,
     ];
 
-    $form['third_party_settings']['form_tool_webform_parameters']['login'] = [
+    $form['third_party_settings']['form_tool_webform_parameters']['privacy_policy'] = [
+      '#type' => 'textfield',
+      '#title' => t('URL of Privacy Policy (Finnish)'),
+      '#description' => t('If left empty, will use the default privacy policy from sector'),
+      '#placeholder' => t('https://asiakirjajulkisuus.hel.fi/'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'privacy_policy'),
+      '#required' => FALSE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['privacy_policy_sv'] = [
+      '#type' => 'textfield',
+      '#title' => t('URL of Privacy Policy (Swedish)'),
+      '#description' => t('If left empty, will use the default privacy policy from sector'),
+      '#placeholder' => t('https://asiakirjajulkisuus.hel.fi/'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'privacy_policy_sv'),
+      '#required' => FALSE,
+    ];
+    $form['third_party_settings']['form_tool_webform_parameters']['privacy_policy_en'] = [
+      '#type' => 'textfield',
+      '#title' => t('URL of Privacy Policy (English)'),
+      '#description' => t('If left empty, will use the default privacy policy from sector'),
+      '#placeholder' => t('https://asiakirjajulkisuus.hel.fi/'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'privacy_policy_en'),
+      '#required' => FALSE,
+    ];
+    $form['third_party_settings']['form_tool_webform_parameters']['privacy_policy_ru'] = [
+      '#type' => 'textfield',
+      '#title' => t('URL of Privacy Policy (Russian)'),
+      '#description' => t('If left empty, will use the default privacy policy from sector'),
+      '#placeholder' => t('https://asiakirjajulkisuus.hel.fi/'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'privacy_policy_ru'),
+      '#required' => FALSE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['login_type'] = [
       '#type' => 'radios',
       '#title' => t('Login requirements'),
       '#options' => [
@@ -64,7 +148,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
         '2' => t('Strong Authentication'),
       ],
       '#required' => FALSE,
-      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'login')
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'login_type')
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['sensitive'] = [

@@ -7,6 +7,9 @@
 
 use Drupal\form_tool_webform_print\FormToolWebformPrintPreRender;
 use Drupal\form_tool_webform_print\FormToolWebformPrintHelper;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
 
 function form_tool_webform_print_preprocess_webform_container_base_html(&$variables) {
   if ($variables['element']['#type'] == 'webform_section') {
@@ -47,12 +50,37 @@ function form_tool_webform_print_page_top(array &$page_top) {
  */
 function form_tool_webform_print_theme($existing, $type, $theme, $path) {
   return [
+    // Using dedicated html and page template ensures the shared webforms
+    // output is as simple as possible.
+    'html__form_tool_webform_print' => [
+      'render element' => 'html',
+    ],
+    'page__form_tool_webform_print' => [
+      'render element' => 'page',
+    ],
     'webform_submission_form__form_tool_webform_print' => [
       'render element' => 'page',
     ],
   ];
 }
 
+
+/**
+ * Implements hook_block_access().
+ */
+function form_tool_webform_print_block_access(Block $block, $operation, AccountInterface $account) {
+  if (!FormToolWebformPrintHelper::isPage()) {
+    return AccessResult::neutral();
+  }
+
+  // Only adjust block view access.
+  if ($operation !== 'view') {
+    return AccessResult::neutral();
+  }
+
+  // Hide all blocks to improve the webform print page's performance.
+  return AccessResult::forbidden();
+}
 /**
  * Implements hook_theme_suggestions_HOOK().
  */

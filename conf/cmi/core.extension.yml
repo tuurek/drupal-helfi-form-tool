@@ -82,6 +82,7 @@ module:
   responsive_image: 0
   rest: 0
   restui: 0
+  role_delegation: 0
   scheduler: 0
   select2: 0
   select2_icon: 0
@@ -118,7 +119,6 @@ module:
   paragraphs: 11
   minimal: 1000
   eu_cookie_compliance: 1001
-  role_delegation: 0
 theme:
   stark: 0
   stable9: 0

@@ -1,7 +1,0 @@
-{
-    "name": "drupal/form_tool_config",
-    "description": "Form Tool config",
-    "type": "drupal-custom-module",
-    "license": "GPL-2.0-or-later",
-    "minimum-stability": "dev"
-}

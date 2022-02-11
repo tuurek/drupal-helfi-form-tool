@@ -31,6 +31,11 @@ elements: |-
   area:
     '#type': textarea
     '#title': area
+    '#description': Kuvaus
+    '#help_title': 'Ohjeen otsikko'
+    '#help': Ohjeteksti
+    '#more_title': 'Lue lisää'
+    '#more': 'Lue lis&auml;&auml; teksti'
 css: ''
 javascript: ''
 settings:
@@ -168,6 +173,7 @@ settings:
 access:
   create:
     roles:
+      - anonymous
       - authenticated
     users: {  }
     permissions: {  }

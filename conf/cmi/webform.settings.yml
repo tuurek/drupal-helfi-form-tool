@@ -227,4 +227,15 @@ requirements:
   clientside_validation: true
   bootstrap: true
   spam: true
-third_party_settings: {  }
+third_party_settings:
+  form_tool_webform_parameters:
+    owner: {  }
+    sector: {  }
+    ad_group: {  }
+    postal_address: {  }
+    privacy_policy: {  }
+    privacy_policy_sv: {  }
+    privacy_policy_en: {  }
+    privacy_policy_ru: {  }
+    login_type: {  }
+    sensitive: {  }
