@@ -13,28 +13,28 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
     if (array_key_exists('privacy_policy', $formsettings)) {
       return $formsettings['privacy_policy'];
     } else {
-      // TODO Figure out default links for $formsettings['sectors']
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
       return 'https://asiakirjajulkisuus.hel.fi/';
     }
   } else if ($language == 'sv') {
     if (array_key_exists('privacy_policy_sv', $formsettings)) {
       return $formsettings['privacy_policy_sv'];
     } else {
-      // TODO Figure out default links for $formsettings['sectors']
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
       return 'https://asiakirjajulkisuus.hel.fi/';
     }
   } else if ($language == 'en') {
     if (array_key_exists('privacy_policy_en', $formsettings)) {
       return $formsettings['privacy_policy_en'];
     } else {
-      // TODO Figure out default links for $formsettings['sectors']
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
       return 'https://asiakirjajulkisuus.hel.fi/';
     }
   } else if ($language == 'ru') {
     if (array_key_exists('privacy_policy_ru', $formsettings)) {
       return $formsettings['privacy_policy_ru'];
     } else {
-      // TODO Figure out default links for $formsettings['sectors']
+      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
       return 'https://asiakirjajulkisuus.hel.fi/';
     }
   }
