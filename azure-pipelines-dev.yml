@@ -5,7 +5,7 @@
 trigger:
   branches:
     include:
-    - refs/tags/deploy-to-dev
+    - feature/LOM-147-yksinkertainen-lomakekasittelija
   paths:
     exclude:
     - README.md
