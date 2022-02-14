@@ -22,7 +22,6 @@
  */
 function form_tool_handler_element_configuration_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
 
-  $d = 'asdf';
 }
 
 /**
@@ -38,7 +37,6 @@ function form_tool_handler_entity_type_alter(array &$entity_types) {
  */
 function form_tool_handler_webform_access_rules() {
 
-  $d = 'adsf';
 }
 
 /**
@@ -46,5 +44,15 @@ function form_tool_handler_webform_access_rules() {
  */
 function form_tool_handler_webform_access_rules_alter(array &$access_rules) {
 
-  $d = 'asdf';
+}
+
+/**
+ * Implements hook_theme().
+ */
+function form_tool_handler_theme($existing, $type, $theme, $path) {
+  return [
+    'submission_print' => [
+      'variables' => ['submission' => NULL],
+    ],
+  ];
 }
