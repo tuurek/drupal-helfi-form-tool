@@ -1,0 +1,14 @@
+uuid: 035f3c8a-ae9f-415e-bcd7-5ba853e136ec
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.helsinkiprofiili_vahva
+  module:
+    - user
+id: user_remove_role_action.helsinkiprofiili_vahva
+label: 'Remove the HelsinkiProfiili-Vahva role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: helsinkiprofiili_vahva
