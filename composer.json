@@ -115,6 +115,8 @@
         ],
         "post-update-cmd": [
             "@copy-commit-message-script"
-        ]
+        ],
+        "phpcs": "vendor/bin/phpcs public/modules/custom --standard=Drupal",
+        "phpcbf": "vendor/bin/phpcbf public/modules/custom --standard=Drupal"
     }
 }
