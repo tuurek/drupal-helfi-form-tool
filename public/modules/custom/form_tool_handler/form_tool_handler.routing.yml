@@ -4,4 +4,4 @@ form_tool_handler.view_submission:
     _title: 'Nayta Lomake'
     _controller: '\Drupal\form_tool_handler\Controller\FormSubmissionController::build'
   requirements:
-    _permission: 'view	own submission'
+    _permission: 'view own webform submission'

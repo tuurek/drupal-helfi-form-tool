@@ -95,9 +95,12 @@ class FormSubmissionController extends ControllerBase {
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
     $entity = \Drupal::service('entity.repository')->loadEntityByUuid('webform_submission', $data->submission_uuid);
 
+    $data = $entity->getData();
+    $data['id'] = $id;
+
     return [
       '#theme' => 'submission_print',
-      '#submission' => $entity->getData(),
+      '#submission' => $data,
     ];
   }
 
