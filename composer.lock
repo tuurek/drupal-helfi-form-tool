@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc5d7fbe4e854275a84ae65860d0a371",
+    "content-hash": "8707c636834c9327b213bca3f4165adc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4561,16 +4561,16 @@
         },
         {
             "name": "drupal/helfi_atv",
-            "version": "dev-develop",
+            "version": "dev-feature/LOM-182-atv-dokumentin-rakenne",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "bcac47139770860adc295d3c8cab75cb80a4ae4f"
+                "reference": "76bb64559ea2cb3afd2eb7a785fdb3b6381d1b44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/bcac47139770860adc295d3c8cab75cb80a4ae4f",
-                "reference": "bcac47139770860adc295d3c8cab75cb80a4ae4f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/76bb64559ea2cb3afd2eb7a785fdb3b6381d1b44",
+                "reference": "76bb64559ea2cb3afd2eb7a785fdb3b6381d1b44",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4584,10 +4584,10 @@
             ],
             "description": "ATV integration module",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/develop",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/feature/LOM-182-atv-dokumentin-rakenne",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2022-02-04T08:17:08+00:00"
+            "time": "2022-02-14T13:02:05+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4684,16 +4684,16 @@
         },
         {
             "name": "drupal/helfi_helsinki_profiili",
-            "version": "dev-develop",
+            "version": "dev-feature/LOM-174-kirjautuneen-kayttajan-rooli-valinta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "5f5a1dc2bba2f65f16890f402bb51e7486ce37b7"
+                "reference": "8ef3d49cc047d91de2243103c4b094085d7553ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/5f5a1dc2bba2f65f16890f402bb51e7486ce37b7",
-                "reference": "5f5a1dc2bba2f65f16890f402bb51e7486ce37b7",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/8ef3d49cc047d91de2243103c4b094085d7553ab",
+                "reference": "8ef3d49cc047d91de2243103c4b094085d7553ab",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4706,10 +4706,10 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/develop",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/feature/LOM-174-kirjautuneen-kayttajan-rooli-valinta",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2022-01-20T12:41:09+00:00"
+            "time": "2022-02-14T13:10:13+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
@@ -4925,16 +4925,16 @@
         },
         {
             "name": "drupal/helfi_tunnistamo",
-            "version": "2.0.2",
+            "version": "dev-feature/LOM-174-konfiguroitava-roolin-asetus",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "9c946089d704430dda4e741092db1b6db0b0fe81"
+                "reference": "1641435386080b9942f0858e23bde4bab747fb9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/9c946089d704430dda4e741092db1b6db0b0fe81",
-                "reference": "9c946089d704430dda4e741092db1b6db0b0fe81",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/1641435386080b9942f0858e23bde4bab747fb9e",
+                "reference": "1641435386080b9942f0858e23bde4bab747fb9e",
                 "shasum": ""
             },
             "require": {
@@ -4950,10 +4950,10 @@
             ],
             "description": "Tunnistamo integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/2.0.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/feature/LOM-174-konfiguroitava-roolin-asetus",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2022-01-31T13:21:47+00:00"
+            "time": "2022-02-11T06:43:59+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -16994,7 +16994,8 @@
         "drupal/cache_control_override": 15,
         "drupal/helfi_atv": 20,
         "drupal/helfi_drupal_tools": 20,
-        "drupal/helfi_helsinki_profiili": 20
+        "drupal/helfi_helsinki_profiili": 20,
+        "drupal/helfi_tunnistamo": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
