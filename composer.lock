@@ -4932,12 +4932,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "1641435386080b9942f0858e23bde4bab747fb9e"
+                "reference": "5b88de8b3981d4a84ffa4de16ce1bfe2ea0b608c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/1641435386080b9942f0858e23bde4bab747fb9e",
-                "reference": "1641435386080b9942f0858e23bde4bab747fb9e",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/5b88de8b3981d4a84ffa4de16ce1bfe2ea0b608c",
+                "reference": "5b88de8b3981d4a84ffa4de16ce1bfe2ea0b608c",
                 "shasum": ""
             },
             "require": {
@@ -4956,7 +4956,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/feature/LOM-174-konfiguroitava-roolin-asetus",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2022-02-11T06:43:59+00:00"
+            "time": "2022-02-15T05:48:27+00:00"
         },
         {
             "name": "drupal/image_style_quality",
