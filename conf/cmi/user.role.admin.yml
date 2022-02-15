@@ -1,11 +1,41 @@
 uuid: 2d375037-9763-4a76-81c0-7e7bcf5bf469
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - media.type.file
+    - media.type.image
+    - media.type.remote_video
+    - media.type.soundcloud
+    - node.type.landing_page
+    - node.type.page
+    - taxonomy.vocabulary.keywords
+  module:
+    - block
+    - config_translation
+    - content_translation
+    - eu_cookie_compliance
+    - file
+    - helfi_api_base
+    - locale
+    - media
+    - menu_link_content
+    - node
+    - paragraphs
+    - paragraphs_library
+    - path
+    - pathauto
+    - redirect
+    - scheduler
+    - simple_sitemap
+    - system
+    - taxonomy
+    - toolbar
+    - view_unpublished
 _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
-label: Admin
+label: Ylläpitäjä
 weight: 2
 is_admin: null
 permissions:
@@ -101,6 +131,8 @@ permissions:
   - 'update media'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view any unpublished content'
   - 'view landing_page revisions'
   - 'view media'
   - 'view own unpublished content'
@@ -110,5 +142,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'view any unpublished content'
-  - 'view any unpublished content'
