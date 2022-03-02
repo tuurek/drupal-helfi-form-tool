@@ -120,7 +120,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['cod'] = [
       '#type' => 'item',
-      '#markup' => 'Postiennakon hinta asiakirjan tilaajalle 9,20 €.',
+      '#markup' => t('Cash on delviery price is 9,20 €'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_first_name'] = [
@@ -169,7 +169,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['Postiennakko -teksti'] = [
       '#type' => 'item',
-      '#title' => t('Postiennakon hinta asiakirjan tilaajalle 9,20 €'),
+      '#title' => t('Cash on delviery price is 9,20 €'),
     ];
     $elements['Nouto -teksti'] = [
       '#type' => 'textfield',
