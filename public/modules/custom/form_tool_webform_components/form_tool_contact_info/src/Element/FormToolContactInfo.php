@@ -40,6 +40,17 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function getCompositeElements(array $element) {
     $elements = [];
+    $elements['Info'] = [
+      '#type' => 'item',
+      '#markup' => '<section aria-label="Notification" class="hds-notification">
+      <div class="hds-notification__content">
+        <div class="hds-notification__label" role="heading" aria-level="2">
+          <span class="hds-icon hds-icon--alert-circle-fill" aria-hidden="true"></span>
+          <span>'.t('Selecting a delivery method may prompt further questions').'</span>
+        </div>
+      </div>
+    </section>',
+    ];
     $elements['Toimitustapa: Email'] = [
       '#type' => 'checkbox',
       '#title' => t('Email'),
@@ -70,6 +81,7 @@ class FormToolContactInfo extends WebformCompositeBase {
         'cod' => t('Cash on Delivery'),
         'pickup' => t('Pick Up'),
       ],
+      '#required' => TRUE,
       '#after_build' => [[get_called_class(), 'deliveryOptions']],
     ];
     $elements['first_name'] = [
@@ -243,21 +255,32 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function preRenderWebformCompositeFormElement($element) {
     $element = parent::preRenderWebformCompositeFormElement($element);
+
+
     if ($element['Toimitustapa: Email']['#access'] != 1) {
       unset($element['delivery_method']['email']);
+    } else {
+      $element['delivery_method']['email']['#title'] = $element['Toimitustapa: Email']['#title'];
     }
     unset($element['Toimitustapa: Email']);
     if ($element['Toimitustapa: Postitoimitus']['#access'] != 1) {
       unset($element['delivery_method']['postal']);
+    } else {
+      $element['delivery_method']['postal']['#title'] = $element['Toimitustapa: Postitoimitus']['#title'];
     }
     unset($element['Toimitustapa: Postitoimitus']);
     if ($element['Toimitustapa: Postiennakko']['#access'] != 1) {
       unset($element['delivery_method']['cod']);
+    } else {
+      $element['delivery_method']['cod']['#title'] = $element['Toimitustapa: Postiennakko']['#title'];
     }
     unset($element['Toimitustapa: Postiennakko']);
     if ($element['Toimitustapa: Nouto']['#access'] != 1) {
       unset($element['delivery_method']['pickup']);
+    } else {
+      $element['delivery_method']['pickup']['#title'] = $element['Toimitustapa: Nouto']['#title'];
     }
+    $element['delivery_method']['#title'] = $element['#title'];
     unset($element['Toimitustapa: Nouto']);
     if ($element['Nouto -teksti']['#title'] != '') {
       $element['pickup']['#markup'] = $element['Nouto -teksti']['#title'];
@@ -267,6 +290,29 @@ class FormToolContactInfo extends WebformCompositeBase {
       $element['cod']['#markup'] = $element['Postiennakko -teksti']['#title'];
     }
     unset($element['Postiennakko -teksti']);
+
+    $elements['Toimitustapa: Email'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Email'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Postitoimitus'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Postal Delivery'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Postiennakko'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Cash on Delivery'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Nouto'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Pickup'),
+      '#title_display' => 'before',
+    ];
+
+
     return $element;
   }
 

@@ -49,6 +49,9 @@ msgstr "Olen lukenut ja hyväksynyt"
 msgid "the privacy policy"
 msgstr "rekisteriselosteen"
 
+msgid "Privacy Policy"
+msgstr "Rekisteriseloste"
+
 msgid "If left empty, will use the default privacy policy from sector"
 msgstr "Jos tämä jätetään tyhjäksi, käytetään toimialan oletusrekisteriselostetta"
 
