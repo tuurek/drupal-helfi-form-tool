@@ -46,7 +46,7 @@ class FormToolContactInfo extends WebformCompositeBase {
       <div class="hds-notification__content">
         <div class="hds-notification__label" role="heading" aria-level="2">
           <span class="hds-icon hds-icon--alert-circle-fill" aria-hidden="true"></span>
-          <span>'.t('Selecting a delivery method may prompt further questions').'</span>
+          <span>' . t('Selecting a delivery method may prompt further questions') . '</span>
         </div>
       </div>
     </section>',
@@ -256,28 +256,31 @@ class FormToolContactInfo extends WebformCompositeBase {
   public static function preRenderWebformCompositeFormElement($element) {
     $element = parent::preRenderWebformCompositeFormElement($element);
 
-
     if ($element['Toimitustapa: Email']['#access'] != 1) {
       unset($element['delivery_method']['email']);
-    } else {
+    }
+    else {
       $element['delivery_method']['email']['#title'] = $element['Toimitustapa: Email']['#title'];
     }
     unset($element['Toimitustapa: Email']);
     if ($element['Toimitustapa: Postitoimitus']['#access'] != 1) {
       unset($element['delivery_method']['postal']);
-    } else {
+    }
+    else {
       $element['delivery_method']['postal']['#title'] = $element['Toimitustapa: Postitoimitus']['#title'];
     }
     unset($element['Toimitustapa: Postitoimitus']);
     if ($element['Toimitustapa: Postiennakko']['#access'] != 1) {
       unset($element['delivery_method']['cod']);
-    } else {
+    }
+    else {
       $element['delivery_method']['cod']['#title'] = $element['Toimitustapa: Postiennakko']['#title'];
     }
     unset($element['Toimitustapa: Postiennakko']);
     if ($element['Toimitustapa: Nouto']['#access'] != 1) {
       unset($element['delivery_method']['pickup']);
-    } else {
+    }
+    else {
       $element['delivery_method']['pickup']['#title'] = $element['Toimitustapa: Nouto']['#title'];
     }
     $element['delivery_method']['#title'] = $element['#title'];
@@ -311,7 +314,6 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#title' => t('Pickup'),
       '#title_display' => 'before',
     ];
-
 
     return $element;
   }

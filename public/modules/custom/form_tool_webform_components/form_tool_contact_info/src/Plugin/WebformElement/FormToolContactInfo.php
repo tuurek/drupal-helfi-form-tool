@@ -44,7 +44,6 @@ class FormToolContactInfo extends WebformCompositeBase {
     // @see \Drupal\webform\Plugin\WebformElementBase::defaultBaseProperties
     $properties = parent::defineDefaultProperties();
 
-
     unset($properties['format_attributes']);
     unset($properties['required']);
     unset($properties['required_container']);
