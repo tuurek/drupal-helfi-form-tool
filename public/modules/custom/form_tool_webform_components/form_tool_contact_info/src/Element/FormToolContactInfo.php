@@ -173,7 +173,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['Nouto -teksti'] = [
       '#type' => 'textfield',
-      '#title' => t('Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki.'),
+      '#title' => t('Pick-up from Töysänkatu 2 D, 00510 Helsinki.'),
     ];
 
     return $elements;

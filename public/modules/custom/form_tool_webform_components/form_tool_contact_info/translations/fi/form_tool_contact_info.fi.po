@@ -52,5 +52,5 @@ msgstr "Puhelinnumero"
 msgid "Cash on delviery price is 9,20 €"
 msgstr "Postiennakon hinta asiakirjan tilaajalle 9,20 €"
 
-msgid "Email"
+msgid "Pick-up from Töysänkatu 2 D, 00510 Helsinki."
 msgstr "Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki."
