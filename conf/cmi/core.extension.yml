@@ -89,6 +89,7 @@ module:
   restui: 0
   role_delegation: 0
   scheduler: 0
+  seckit: 0
   select2: 0
   select2_icon: 0
   serialization: 0
