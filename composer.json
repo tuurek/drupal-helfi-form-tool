@@ -27,7 +27,7 @@
         "drupal/helfi_helsinki_profiili": "dev-develop",
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_tpr": "^1.0",
-        "drupal/helfi_tunnistamo": "dev-feature/LOM-174-konfiguroitava-roolin-asetus",
+        "drupal/helfi_tunnistamo": "^2.0",
         "drupal/paragraphs": "^1.12",
         "drupal/seckit": "^2.0",
         "drupal/smtp": "^1.0",

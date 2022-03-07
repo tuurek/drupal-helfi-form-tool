@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityHandlerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\webform\WebformSubmissionStorage;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -69,9 +70,12 @@ class FormToolSubmissionStorage extends WebformSubmissionStorage {
         /** @var \Drupal\helfi_atv\AtvDocument $document */
         try {
           $document = $this->atvService->getDocument($data->document_uuid);
-          $submission->setData($document->getContent());
+
+          $documentContent = $document->getContent();
+
+          $submission->setData($documentContent);
         }
-        catch (\Exception $e) {
+        catch (\Exception | GuzzleException $e) {
           $this->loggerFactory->get('form_tool_handler')->error($e->getMessage());
         }
 

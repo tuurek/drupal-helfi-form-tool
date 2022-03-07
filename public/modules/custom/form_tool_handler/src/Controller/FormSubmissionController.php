@@ -96,11 +96,20 @@ class FormSubmissionController extends ControllerBase {
     $entity = \Drupal::service('entity.repository')->loadEntityByUuid('webform_submission', $data->submission_uuid);
 
     $data = $entity->getData();
-    $data['id'] = $id;
 
+    $formElements = $entity->getWebform()->getElementsDecoded();
+
+    foreach ($formElements as $key => $value) {
+      $formElements[$key]['value'] = $data[$key];
+    }
+
+    $formElements['id'] = $id;
+
+    // Wanna see content? uncomment this.
+    // kint($formElements);
     return [
       '#theme' => 'submission_print',
-      '#submission' => $data,
+      '#submission' => $formElements,
     ];
   }
 

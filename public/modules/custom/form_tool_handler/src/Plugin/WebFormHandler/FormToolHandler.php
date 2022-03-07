@@ -11,6 +11,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
+use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
 use Drupal\webform\WebformSubmissionInterface;
@@ -24,8 +25,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("form_tool webform handler"),
  *   category = @Translation("Helfi"),
  *   description = @Translation("Handles all form tools submissions"),
- *   cardinality = \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
- *   results = \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_PROCESSED,
+ *   cardinality =
+ *   \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
+ *   results =
+ *   \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_PROCESSED,
  * )
  */
 final class FormToolHandler extends WebformHandlerBase {
@@ -117,8 +120,8 @@ final class FormToolHandler extends WebformHandlerBase {
    */
   public function __construct(
     array $configuration,
-          $plugin_id,
-          $plugin_definition,
+                                                  $plugin_id,
+                                                  $plugin_definition,
     LoggerChannelFactoryInterface $logger_factory,
     ConfigFactoryInterface $config_factory,
     EntityTypeManagerInterface $entity_type_manager,
@@ -173,8 +176,8 @@ final class FormToolHandler extends WebformHandlerBase {
    */
   public function access(
     WebformSubmissionInterface $webform_submission,
-    $operation,
-  AccountInterface $account = NULL
+                               $operation,
+    AccountInterface $account = NULL
   ): AccessResultInterface {
     $retval = parent::access($webform_submission, $operation, $account);
 
@@ -214,6 +217,58 @@ final class FormToolHandler extends WebformHandlerBase {
   }
 
   /**
+   * Return Application environment shortcode.
+   *
+   * @return string
+   *   Shortcode from current environment.
+   */
+  public static function getAppEnv(): string {
+    $appEnv = getenv('APP_ENV');
+
+    if ($appEnv == 'development') {
+      $appParam = 'DEV';
+    }
+    else {
+      if ($appEnv == 'production') {
+        $appParam = '';
+      }
+      else {
+        if ($appEnv == 'testing') {
+          $appParam = 'TEST';
+        }
+        else {
+          if ($appEnv == 'staging') {
+            $appParam = 'STAGE';
+          }
+          else {
+            $appParam = 'LOCAL';
+          }
+        }
+      }
+    }
+    return $appParam;
+  }
+
+  /**
+   * HEL-{esitiedoista-lyhenne}-{webform-juokseva-id}.
+   *
+   * @param \Drupal\webform\Entity\WebformSubmission $submission
+   *   Webform data.
+   * @param array $thirdPartySettings
+   *   Settings from form config.
+   *
+   * @return string
+   *   Generated number.
+   */
+  public static function createSubmissionId(WebformSubmission $submission, array $thirdPartySettings): string {
+
+    $appParam = self::getAppEnv();
+
+    return 'HEL-' . strtoupper($thirdPartySettings['form_code']) . '-' . sprintf('%08d', $submission->id()) . '-' . $appParam;
+
+  }
+
+  /**
    * Confirm form callback.
    *
    * @param array $form
@@ -235,17 +290,18 @@ final class FormToolHandler extends WebformHandlerBase {
       /** @var \Drupal\webform\WebformSubmissionForm $webformSubmissionForm */
       $webformSubmissionForm = $form_state->getFormObject();
 
-      $thirdPartySettings = $webformSubmissionForm->getWebform()->getThirdPartySettings('form_tool_webform_parameters');
+      $thirdPartySettings = $webformSubmissionForm->getWebform()
+        ->getThirdPartySettings('form_tool_webform_parameters');
 
-      // HEL-{esitiedoista-lyhenne}-{webform-juokseva-id}.
-      $formToolSubmissionId = 'HEL-' . strtoupper($thirdPartySettings['form_code']) . '-' . sprintf('%08d', $webform_submission->id());
+      $formToolSubmissionId = $this->createSubmissionId($webform_submission, $thirdPartySettings);
 
       $documentValues = [
         'service' => 'lomaketyokalu-' . $this->appEnv,
         'type' => strtoupper($thirdPartySettings['form_code']),
         'status' => 'DRAFT',
         // @todo Not sure about this data hash
-        'transaction_id' => $webform_submission->getDataHash(),
+      //   'transaction_id' => md5($webform_submission->getChangedTime()),
+        'transaction_id' => $formToolSubmissionId,
         'business_id' => '',
         'tos_function_id' => 'f917d43aab76420bb2ec53f6684da7f7',
         'tos_record_id' => '89837a682b5d410e861f8f3688154163',
@@ -260,18 +316,24 @@ final class FormToolHandler extends WebformHandlerBase {
         $documentValues['user_id'] = $helsinkiProfiili['sub'];
       }
 
-      $atvDocument = $this->atvService->createDocument($documentValues);
-      $atvDocument->setContent($this->submittedFormData);
+      try {
+        $atvDocument = $this->atvService->createDocument($documentValues);
 
-      $newDocument = $this->atvService->postDocument($atvDocument);
+        $atvDocument->setContent($this->submittedFormData);
 
-      $result = $this->connection->insert('form_tool')
-        ->fields([
-          'submission_uuid' => $webform_submission->uuid(),
-          'document_uuid' => $newDocument->getId(),
-          'form_tool_id' => $formToolSubmissionId,
-        ])
-        ->execute();
+        $newDocument = $this->atvService->postDocument($atvDocument);
+
+        $result = $this->connection->insert('form_tool')
+          ->fields([
+            'submission_uuid' => $webform_submission->uuid(),
+            'document_uuid' => $newDocument->getId(),
+            'form_tool_id' => $formToolSubmissionId,
+          ])
+          ->execute();
+      }
+      catch (\Exception $e) {
+        $this->getLogger('form_tool_handler')->error($e->getMessage());
+      }
     }
     else {
       $this->messenger()
@@ -298,7 +360,8 @@ final class FormToolHandler extends WebformHandlerBase {
    */
   public function postLoad(WebformSubmissionInterface $webform_submission) {
     if (!$this->isNewSubmission($webform_submission->uuid())) {
-      $this->messenger()->addWarning('No data is saved after initial submission.');
+      $this->messenger()
+        ->addWarning('No data is saved after initial submission.');
     }
   }
 

@@ -37,7 +37,7 @@ class FormToolHandlerSubscriber implements EventSubscriberInterface {
    *   Response event.
    */
   public function onKernelRequest(GetResponseEvent $event) {
-    $this->messenger->addStatus(__FUNCTION__);
+    // $this->messenger->addStatus(__FUNCTION__);
   }
 
   /**
@@ -47,7 +47,7 @@ class FormToolHandlerSubscriber implements EventSubscriberInterface {
    *   Response event.
    */
   public function onKernelResponse(FilterResponseEvent $event) {
-    $this->messenger->addStatus(__FUNCTION__);
+    // $this->messenger->addStatus(__FUNCTION__);
   }
 
   /**
