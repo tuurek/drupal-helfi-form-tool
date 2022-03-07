@@ -1,7 +1,16 @@
 uuid: 852cdfd9-a6eb-4d92-ad4d-056b0b614136
 langcode: fi
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.esitiedot
+  module:
+    - node
+    - path
+    - scheduler
+    - system
+    - toolbar
+    - webform
 id: verkkolomake_hallinnoija
 label: Verkkolomake-hallinnoija
 weight: 4
@@ -28,6 +37,5 @@ permissions:
   - 'schedule publishing of nodes'
   - 'view esitiedot revisions'
   - 'view own unpublished content'
-  - 'view own webform submission'
   - 'view scheduled content'
   - 'view the administration theme'

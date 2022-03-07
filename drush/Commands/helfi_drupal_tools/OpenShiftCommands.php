@@ -121,7 +121,7 @@ final class OpenShiftCommands extends DrushCommands {
 
     $fullCommand = 'oc ' . implode(' ', $command);
     $this->io()->note('Running: ' . $fullCommand);
-    $process = new Process(['oc', ...$command]);
+    $process = new Process(['oc', ...$command], timeout: 3600);
     $process->start();
 
     if (!$callback && $showOutput) {
@@ -190,6 +190,26 @@ final class OpenShiftCommands extends DrushCommands {
         sprintf('%s:/tmp/dump.sql', $pod),
         DRUPAL_ROOT . '/..',
       ]);
+    });
+    return self::EXIT_SUCCESS;
+  }
+
+  /**
+   * Sanitizes the current database.
+   *
+   * @command helfi:oc:sanitize-database
+   *
+   * @return int
+   *   The exit code.
+   */
+  public function sanitizeDatabase() : int {
+    $process = $this->processManager()->process([
+      'drush',
+      'sql-query',
+      "UPDATE file_managed SET uri = REPLACE(uri, 'azure://', 'public://')",
+    ]);
+    $process->run(function ($type, $output) {
+      $this->io()->write($output);
     });
     return self::EXIT_SUCCESS;
   }

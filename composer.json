@@ -20,12 +20,14 @@
         "drupal/hdbt": "^1.0",
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_ahjo": "^1.0",
+        "drupal/helfi_atv": "dev-develop",
         "drupal/helfi_azure_fs": "^1.0",
         "drupal/helfi_drupal_tools": "dev-main",
         "drupal/helfi_hauki": "^1.0",
+        "drupal/helfi_helsinki_profiili": "dev-develop",
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_tpr": "^1.0",
-        "drupal/helfi_tunnistamo": "2.0.2",
+        "drupal/helfi_tunnistamo": "^2.0",
         "drupal/paragraphs": "^1.12",
         "drupal/seckit": "^2.0",
         "drupal/smtp": "^1.0",
@@ -113,6 +115,8 @@
         ],
         "post-update-cmd": [
             "@copy-commit-message-script"
-        ]
+        ],
+        "phpcs": "vendor/bin/phpcs public/modules/custom --standard=Drupal",
+        "phpcbf": "vendor/bin/phpcbf public/modules/custom --standard=Drupal"
     }
 }

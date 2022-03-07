@@ -1,0 +1,14 @@
+uuid: 8fd152d4-57f0-4502-a919-502fbfdf4ebc
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.helsinkiprofiili_vahva
+  module:
+    - user
+id: user_add_role_action.helsinkiprofiili_vahva
+label: 'Add the HelsinkiProfiili-Vahva role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: helsinkiprofiili_vahva

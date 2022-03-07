@@ -40,6 +40,29 @@ final class SelfUpdateCommands extends DrushCommands {
   }
 
   /**
+   * Make sure the destination folder exists.
+   *
+   * @param string $destination
+   *   The destination file.
+   */
+  private function ensureFolder(string $destination) : void {
+    $parts = explode('/', $destination);
+    array_pop($parts);
+
+    if (count($parts) === 0) {
+      return;
+    }
+
+    $folder = implode('/', $parts);
+
+    if (!is_dir($folder)) {
+      if (!mkdir($folder, 0755, TRUE)) {
+        throw new \InvalidArgumentException('Failed to create folder: ' . $folder);
+      }
+    }
+  }
+
+  /**
    * Copies source file to destination.
    *
    * @param string $source
@@ -52,10 +75,11 @@ final class SelfUpdateCommands extends DrushCommands {
    */
   private function copyFile(string $source, string $destination) : bool {
     try {
+      $this->ensureFolder($destination);
       $resource = Utils::tryFopen($destination, 'w');
       $this->httpClient()->request('GET', $source, ['sink' => $resource]);
     }
-    catch (GuzzleException $e) {
+    catch (GuzzleException | \InvalidArgumentException $e) {
       $this->io()->error($e->getMessage());
       return FALSE;
     }
@@ -82,6 +106,25 @@ final class SelfUpdateCommands extends DrushCommands {
   }
 
   /**
+   * Checks if file can be updated.
+   *
+   * @param string $file
+   *   The file.
+   *
+   * @return bool
+   *   TRUE if file can be updated automatically.
+   */
+  private function fileCanBeUpdated(string $file) : bool {
+    $isCI = getenv('CI');
+
+    if ($isCI) {
+      // Workflows cannot be updated in CI.
+      return !str_starts_with($file, '.github/workflows');
+    }
+    return TRUE;
+  }
+
+  /**
    * Updates files from platform.
    *
    * @param bool $updateDist
@@ -97,6 +140,12 @@ final class SelfUpdateCommands extends DrushCommands {
       // Fallback source to destination if source is not defined.
       if (is_numeric($source)) {
         $source = $destination;
+      }
+      // Check if we can update given file. For example, we can't
+      // update GitHub workflow files in CI with our current GITHUB_TOKEN.
+      // @todo Remove this once we use token with more permissions.
+      if (!$this->fileCanBeUpdated($source)) {
+        continue;
       }
       $isDist = $this->fileIsDist($source);
 
@@ -130,7 +179,7 @@ final class SelfUpdateCommands extends DrushCommands {
    *   Whether the given file is dist or not.
    */
   private function fileIsDist(string $file) : bool {
-    return str_starts_with($file, '.dist');
+    return str_ends_with($file, '.dist');
   }
 
   /**
@@ -305,6 +354,9 @@ final class SelfUpdateCommands extends DrushCommands {
         'docker-compose.yml',
         'phpunit.xml.dist',
         'phpunit.platform.xml',
+        'tools/make/project/install.mk',
+        'tools/make/project/git.mk',
+        'tools/commit-msg',
       ])
       ->removeFiles([
         'docker/local/Dockerfile',

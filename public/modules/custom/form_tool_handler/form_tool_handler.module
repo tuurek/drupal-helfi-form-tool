@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for form_tool_handler module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Perform alterations before a webform element configuration form is populated.
+ *
+ * @param array $form
+ *   Nested array of form elements that comprise the webform element properties.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ *
+ * @see webform_example_element_properties.module
+ * @ingroup form_api
+ */
+function form_tool_handler_element_configuration_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function form_tool_handler_entity_type_alter(array &$entity_types) {
+  // Add our custom handler for webform
+  $entity_types['webform_submission']->setStorageClass('Drupal\form_tool_handler\FormToolSubmissionStorage');
+}
+
+/**
+ * Implements hook_webform_access_rules().
+ */
+function form_tool_handler_webform_access_rules() {
+
+}
+
+/**
+ * Implements hook_webform_access_rules_alter().
+ */
+function form_tool_handler_webform_access_rules_alter(array &$access_rules) {
+
+}
+
+/**
+ * Implements hook_theme().
+ */
+function form_tool_handler_theme($existing, $type, $theme, $path) {
+  return [
+    'submission_print' => [
+      'variables' => ['submission' => NULL],
+    ],
+  ];
+}

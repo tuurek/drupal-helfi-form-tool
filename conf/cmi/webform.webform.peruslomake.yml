@@ -1,41 +1,32 @@
-uuid: 658dff59-3955-4e47-b854-0176ad12c2a6
+uuid: 3bd89c69-fabb-459b-ba68-a98bc6f7e984
 langcode: fi
-status: open
+status: closed
 dependencies:
   module:
-    - form_tool_contact_info
     - form_tool_webform_parameters
 third_party_settings:
-  form_tool_contact_info:
-    owner: as
-    sector: sa
-    sensitive: '0'
   form_tool_webform_parameters:
-    owner: 'Omistajan nimmi'
-    sector: 'Toimialan nimi'
-    ad_group: 'AD-ryhmä ID'
-    postal_address: "Toimitus\r\nOsoitekatu 2 a 9\r\n00204 toimitusla\r\nSuomi?"
+    owner: sdfgsdfg
+    form_code: sdfg
+    sector: sdfgsdfg
+    ad_group: sdfgsdfg
+    postal_address: ''
     login: '0'
     sensitive: '0'
 weight: 0
 open: null
 close: null
 uid: 1
-template: false
+template: true
 archive: false
-id: testing
-title: Testing
+id: peruslomake
+title: Peruslomake
 description: ''
 category: ''
 elements: |-
-  area:
-    '#type': textarea
-    '#title': area
-    '#description': Kuvaus
-    '#help_title': 'Ohjeen otsikko'
-    '#help': Ohjeteksti
-    '#more_title': 'Lue lisää'
-    '#more': 'Lue lis&auml;&auml; teksti'
+  osoitetiedot:
+    '#type': form_tool_contact_info
+    '#title': Osoitetiedot
 css: ''
 javascript: ''
 settings:
@@ -217,42 +208,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  sahkopostiosoite:
-    id: email
-    handler_id: sahkopostiosoite
-    label: Sähköpostiosoite
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: petri.leinonen@siili.com
-      to_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      subject: _default
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      theme_name: ''
-      parameters: {  }
-      debug: false
+handlers: {  }
 variants: {  }
