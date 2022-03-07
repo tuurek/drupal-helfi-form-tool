@@ -270,4 +270,36 @@ class FormToolContactInfo extends WebformCompositeBase {
     return $element;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public static function processWebformComposite(&$element, FormStateInterface $form_state, &$complete_form): array {
+    // Process element.
+    $element = parent::processWebformComposite($element, $form_state, $complete_form);
+
+    // Load submission & data.
+    $submission = $form_state->getFormObject()->getEntity();
+    $submissionData = $submission->getData();
+
+    // Loop data & make sure it's set properly with #default_values
+    // process only 2 levels,.
+    // @todo check if more dynamic parsing is necessary with address forms.
+    foreach ($submissionData as $key => $value) {
+      if (is_array($value)) {
+        foreach ($value as $key2 => $value2) {
+          if (!is_array($value2)) {
+            if (isset($element[$key2])) {
+              $element[$key2]['#default_value'] = $value2;
+            }
+          }
+        }
+      }
+      else {
+        $element[$key]['#default_value'] = $value;
+      }
+    }
+
+    return $element;
+  }
+
 }

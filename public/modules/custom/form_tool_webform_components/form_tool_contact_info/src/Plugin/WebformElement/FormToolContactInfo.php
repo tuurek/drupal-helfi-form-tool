@@ -310,11 +310,23 @@ class FormToolContactInfo extends WebformCompositeBase {
     $value = $this->getValue($element, $webform_submission, $options);
 
     $lines = [];
-    $lines[] = ($value['first_name'] ? $value['first_name'] : '') .
-      ($value['last_name'] ? ' ' . $value['last_name'] : '') .
-      ($value['sex'] || $value['date_of_birth'] ? ' -' : '') .
-      ($value['sex'] ? ' ' . $value['sex'] : '') .
-      ($value['date_of_birth'] ? ' (' . $value['date_of_birth'] . ')' : '');
+
+    switch ($value["delivery_method"]) {
+      case 'email':
+        $lines[] = $value['email'];
+        break;
+
+      case 'postal':
+        $lines[] = $value['first_name'] . ' ' . $value['last_name'];
+        break;
+
+      default:
+        $lines[] = ($value['first_name'] ? $value['first_name'] : '') .
+          ($value['last_name'] ? ' ' . $value['last_name'] : '');
+        break;
+
+    }
+
     return $lines;
   }
 
