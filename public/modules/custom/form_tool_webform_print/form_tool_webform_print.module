@@ -5,11 +5,11 @@
  * Creates a printable page of the webform.
  */
 
+use Drupal\form_tool_webform_print\FormToolWebformPrintPreRender;
+use Drupal\form_tool_webform_print\FormToolWebformPrintHelper;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\form_tool_webform_print\FormToolWebformPrintPreRender;
-use Drupal\form_tool_webform_print\FormToolWebformPrintHelper;
 
 function form_tool_webform_print_preprocess_webform_container_base_html(&$variables) {
   if ($variables['element']['#type'] == 'webform_section') {
@@ -28,23 +28,6 @@ function form_tool_webform_print_preprocess_webform_container_base_html(&$variab
  */
 function form_tool_webform_print_element_info_alter(&$type) {
   $type['page']['#pre_render'][] = [FormToolWebformPrintPreRender::class, 'page'];
-}
-
-/**
- * Implements hook_block_access().
- */
-function form_tool_webform_print_block_access(Block $block, $operation, AccountInterface $account) {
-  if (!FormToolWebformPrintHelper::isPage()) {
-    return AccessResult::neutral();
-  }
-
-  // Only adjust block view access.
-  if ($operation !== 'view') {
-    return AccessResult::neutral();
-  }
-
-  // Hide all blocks to improve the webform share page's performance.
-  return AccessResult::forbidden();
 }
 
 /**
@@ -81,6 +64,23 @@ function form_tool_webform_print_theme($existing, $type, $theme, $path) {
   ];
 }
 
+
+/**
+ * Implements hook_block_access().
+ */
+function form_tool_webform_print_block_access(Block $block, $operation, AccountInterface $account) {
+  if (!FormToolWebformPrintHelper::isPage()) {
+    return AccessResult::neutral();
+  }
+
+  // Only adjust block view access.
+  if ($operation !== 'view') {
+    return AccessResult::neutral();
+  }
+
+  // Hide all blocks to improve the webform print page's performance.
+  return AccessResult::forbidden();
+}
 /**
  * Implements hook_theme_suggestions_HOOK().
  */
@@ -109,9 +109,8 @@ function form_tool_webform_print_theme_suggestions_page(array $variables) {
 function template_preprocess_webform_submission_form__form_tool_webform_print(&$variables) {
   $webform= \Drupal\webform\Entity\Webform::load($variables['form']['#webform_id']);
   $variables['formsettings'] = $webform->getThirdPartySettings('form_tool_webform_parameters');
-
-  //$variables['title'] = $variables['page']['#title'];
-
+  unset($variables['form']['#submit']);
+  unset($variables['form']['actions']['submit']);
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if ($language == 'sv') {
     $variables["helsinki_logo"] = '

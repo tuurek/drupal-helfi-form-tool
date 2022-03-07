@@ -42,3 +42,27 @@ msgstr "Vahva tunnistautuminen"
 
 msgid "Postal address for paper form delivery"
 msgstr "Lomakkeen paperiversion toimitusosoite"
+
+msgid "I have read and approved"
+msgstr "Olen lukenut ja hyväksynyt"
+
+msgid "the privacy policy"
+msgstr "rekisteriselosteen"
+
+msgid "If left empty, will use the default privacy policy from sector"
+msgstr "Jos tämä jätetään tyhjäksi, käytetään toimialan oletusrekisteriselostetta"
+
+msgid "URL of Privacy Policy (Finnish)"
+msgstr "Rekisteriselosteen verkko-osoite (suomeksi)"
+
+msgid "URL of Privacy Policy (Swedish)"
+msgstr "Rekisteriselosteen verkko-osoite (ruotsiksi)"
+
+msgid "URL of Privacy Policy (English)"
+msgstr "Rekisteriselosteen verkko-osoite (englanniksi)"
+
+msgid "URL of Privacy Policy (Russian)"
+msgstr "Rekisteriselosteen verkko-osoite (venäjäksi)"
+
+msgid "https://asiakirjajulkisuus.hel.fi/"
+msgstr "https://asiakirjajulkisuus.hel.fi/"
