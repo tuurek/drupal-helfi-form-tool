@@ -1,9 +1,13 @@
 uuid: 3baa58b2-e13c-45b3-ab7f-75499341be71
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - paragraphs
+    - toolbar
+    - view_unpublished
 id: read_only
-label: 'Read only'
+label: 'Vain luku'
 weight: 4
 is_admin: null
 permissions:

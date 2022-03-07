@@ -1,19 +1,24 @@
 uuid: bde55c4f-f9ba-4bbe-9f9e-b06c4b7a7620
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - eu_cookie_compliance
+    - helfi_api_base
+    - media
+    - system
 _core:
   default_config_hash: EDyVdaROG6pYzyEct43c01Wq4gpATszrk-qR6gqnQ84
 id: anonymous
-label: 'Anonymous user'
+label: 'Anonyymi käyttäjä'
 weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'access content'
   - 'display eu cookie compliance popup'
+  - 'display eu cookie compliance popup'
+  - 'view media'
   - 'view media'
   - 'view remote entities'
-  - 'view media'
-  - 'display eu cookie compliance popup'
-  - 'access content'
   - 'view remote entities'

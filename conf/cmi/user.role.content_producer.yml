@@ -1,11 +1,31 @@
 uuid: 6298b080-b8b1-4f7f-bd0c-e2fbfdcc496e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - media.type.file
+    - media.type.image
+    - media.type.remote_video
+    - media.type.soundcloud
+    - node.type.landing_page
+    - node.type.page
+    - taxonomy.vocabulary.keywords
+  module:
+    - content_translation
+    - file
+    - helfi_api_base
+    - media
+    - node
+    - paragraphs
+    - scheduler
+    - system
+    - taxonomy
+    - toolbar
+    - view_unpublished
 _core:
   default_config_hash: EVzxFtbOrGVTXWw2GTh1fEzzqruPEqSo84k10-BF6eA
 id: content_producer
-label: 'Content producer'
+label: Sisällöntuottaja
 weight: 3
 is_admin: null
 permissions:
@@ -49,6 +69,8 @@ permissions:
   - 'update media'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view any unpublished landing_page content'
+  - 'view any unpublished page content'
   - 'view landing_page revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
@@ -57,5 +79,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'view any unpublished landing_page content'
-  - 'view any unpublished page content'

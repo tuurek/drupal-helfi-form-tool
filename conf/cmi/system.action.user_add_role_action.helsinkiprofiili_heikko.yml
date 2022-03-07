@@ -1,0 +1,14 @@
+uuid: 75686c5d-4ac4-4218-a30a-2a70c549e238
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.helsinkiprofiili_heikko
+  module:
+    - user
+id: user_add_role_action.helsinkiprofiili_heikko
+label: 'Add the HelsinkiProfiili Heikko role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: helsinkiprofiili_heikko

@@ -1,0 +1,11 @@
+name: Form Tool Handler
+type: module
+description: This module collects all functionality related to form tool&#039;s handling things
+package: Helfi
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - form_tool_webform_parameters
+  - form_tool_webform_print
+  - helfi_atv
+  - helfi_helsinki_profiili

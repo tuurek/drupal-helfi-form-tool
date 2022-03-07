@@ -1,0 +1,12 @@
+uuid: a247add5-9d5e-44df-8f92-1eb1a6a1cc86
+langcode: fi
+status: true
+dependencies:
+  module:
+    - webform
+id: helsinkiprofiili_vahva
+label: 'HelsinkiProfiili Vahva'
+weight: 5
+is_admin: null
+permissions:
+  - 'view own webform submission'

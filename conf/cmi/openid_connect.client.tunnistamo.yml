@@ -13,3 +13,8 @@ settings:
   client_id: placeholder
   client_secret: placeholder
   is_production: 0
+  auto_login: 0
+  environment_url: 'https://tunnistamo.test.hel.ninja'
+  client_scopes: 'openid,profile,email,https://api.hel.fi/auth/helsinkiprofile,https://api.hel.fi/lomaketyokalu'
+  client_roles: helsinkiprofiili_vahva
+  scopes: 'openid,profile,email,https://api.hel.fi/auth/helsinkiprofile,https://api.hel.fi/lomaketyokalu'

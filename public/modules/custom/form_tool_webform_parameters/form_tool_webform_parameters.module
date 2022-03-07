@@ -84,6 +84,15 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#required' => TRUE,
     ];
 
+    $form['third_party_settings']['form_tool_webform_parameters']['form_code'] = [
+      '#type' => 'textfield',
+      '#title' => t('Form short code used to identify submissions.'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'form_code'),
+      '#required' => TRUE,
+      '#size' => 15,
+      '#maxlength' => 20,
+    ];
+
     $form['third_party_settings']['form_tool_webform_parameters']['sector'] = [
       '#type' => 'textfield',
       '#title' => t('The sector that handles the form data'),
@@ -93,7 +102,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
 
     $form['third_party_settings']['form_tool_webform_parameters']['ad_group'] = [
       '#type' => 'textfield',
-      '#title' => t('AD Grouo of the handlers of form data'),
+      '#title' => t('AD Group of the handlers of form data'),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'ad_group'),
       '#required' => FALSE,
     ];

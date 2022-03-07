@@ -1,0 +1,14 @@
+uuid: fc7d1983-7910-4c69-bf3e-f3e4f10c26a9
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.helsinkiprofiili_heikko
+  module:
+    - user
+id: user_remove_role_action.helsinkiprofiili_heikko
+label: 'Remove the HelsinkiProfiili Heikko role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: helsinkiprofiili_heikko
