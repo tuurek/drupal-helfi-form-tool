@@ -56,7 +56,11 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
 
     $privacy_policy_link = _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings);
     $privacy_policy_string = t('I have read and approved').' <a href="'.$privacy_policy_link.'">'.t('the privacy policy').'</a>.';
-    $form['privacy_policy_acceptance'] = array(
+    $form['privacy_policy_wrapper'] = array(
+      '#type' => 'webform_section',
+      '#title' => t('Privacy Policy'),
+    );
+    $form['privacy_policy_wrapper']['privacy_policy_acceptance'] = array(
       '#type' => 'checkbox',
       '#title' => $privacy_policy_string,
       '#required' => TRUE,
