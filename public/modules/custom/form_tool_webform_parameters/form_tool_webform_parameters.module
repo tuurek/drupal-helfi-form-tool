@@ -50,21 +50,23 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
  * @see https://www.drupal.org/node/2217931
  */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (array_key_exists('#webform_id', $form)) {
-    $webform= \Drupal\webform\Entity\Webform::load($form['#webform_id']);
-    $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    if (array_key_exists('#webform_id', $form)) {
+      $webform = \Drupal\webform\Entity\Webform::load($form['#webform_id']);
+      $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
 
-    $privacy_policy_link = _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings);
-    $privacy_policy_string = t('I have read and approved').' <a href="'.$privacy_policy_link.'">'.t('the privacy policy').'</a>.';
-    $form['privacy_policy_wrapper'] = array(
-      '#type' => 'webform_section',
-      '#title' => t('Privacy Policy'),
-    );
-    $form['privacy_policy_wrapper']['privacy_policy_acceptance'] = array(
-      '#type' => 'checkbox',
-      '#title' => $privacy_policy_string,
-      '#required' => TRUE,
-    );
+      $privacy_policy_link = _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings);
+      $privacy_policy_string = t('I have read and approved') . ' <a href="' . $privacy_policy_link . '">' . t('the privacy policy') . '</a>.';
+      $form['privacy_policy_wrapper'] = array(
+        '#type' => 'webform_section',
+        '#title' => t('Privacy Policy'),
+      );
+      $form['privacy_policy_wrapper']['privacy_policy_acceptance'] = array(
+        '#type' => 'checkbox',
+        '#title' => $privacy_policy_string,
+        '#required' => TRUE,
+      );
+    }
   }
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
     $bundle = $form_state->getFormObject()->getEntity();
