@@ -3,19 +3,21 @@ langcode: fi
 status: open
 dependencies:
   module:
+    - form_tool_handler
     - form_tool_webform_parameters
 third_party_settings:
   form_tool_webform_parameters:
     owner: 'Omistajan nimi (TODO)'
     sector: Sektori
     ad_group: AD-ryhmä
-    postal_address: "Postiosoite\r\nOsoiteosoite 13"
+    postal_address: ''
     privacy_policy: ''
     privacy_policy_sv: ''
     privacy_policy_en: ''
     privacy_policy_ru: ''
     login_type: '2'
     sensitive: '1'
+    form_code: TODISTUS
 weight: 0
 open: null
 close: null
@@ -52,7 +54,6 @@ elements: |-
     valitse_toimitustapa:
       '#type': form_tool_contact_info
       '#title': 'Valitse toimitustapa'
-      '#Info__required': true
       '#Toimitustapa: Email__access': false
       '#Toimitustapa: Postitoimitus__access': false
       '#Toimitustapa: Postiennakko__title': Postiennakko
@@ -239,5 +240,30 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  form_tool_webform_handler:
+    id: form_tool_handler
+    handler_id: null
+    label: 'form_tool webform handler'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: null
+    settings:
+      id: form_tool_handler
+      handler_id: null
+      label: 'form_tool webform handler'
+      notes: ''
+      status: true
+      conditions: {  }
+      weight: null
+      settings:
+        id: form_tool_handler
+        handler_id: form_tool_webform_handler
+        label: 'form_tool webform handler'
+        notes: ''
+        status: true
+        conditions: {  }
+        weight: 0
+        settings: {  }
 variants: {  }

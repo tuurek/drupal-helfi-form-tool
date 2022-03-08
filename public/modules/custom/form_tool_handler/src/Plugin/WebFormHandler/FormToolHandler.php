@@ -268,6 +268,16 @@ final class FormToolHandler extends WebformHandlerBase {
 
   }
 
+  public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    $retval = parent::validateForm($form, $form_state, $webform_submission);
+
+    $errors = $form_state->getErrors();
+
+    $d = 'asdf';
+
+
+  }
+
   /**
    * Confirm form callback.
    *
