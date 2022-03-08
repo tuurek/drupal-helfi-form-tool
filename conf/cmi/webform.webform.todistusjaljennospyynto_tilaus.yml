@@ -243,27 +243,11 @@ access:
 handlers:
   form_tool_webform_handler:
     id: form_tool_handler
-    handler_id: null
+    handler_id: form_tool_webform_handler
     label: 'form_tool webform handler'
     notes: ''
     status: true
     conditions: {  }
-    weight: null
-    settings:
-      id: form_tool_handler
-      handler_id: null
-      label: 'form_tool webform handler'
-      notes: ''
-      status: true
-      conditions: {  }
-      weight: null
-      settings:
-        id: form_tool_handler
-        handler_id: form_tool_webform_handler
-        label: 'form_tool webform handler'
-        notes: ''
-        status: true
-        conditions: {  }
-        weight: 0
-        settings: {  }
+    weight: 0
+    settings: {  }
 variants: {  }

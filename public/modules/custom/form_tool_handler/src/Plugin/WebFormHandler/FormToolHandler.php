@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Form submission handler.
  *
  * @WebformHandler(
- *   id = "form_tool_handler",
+ *   id = "form_tool_webform_handler",
  *   label = @Translation("form_tool webform handler"),
  *   category = @Translation("Helfi"),
  *   description = @Translation("Handles all form tools submissions"),
@@ -169,6 +169,13 @@ final class FormToolHandler extends WebformHandlerBase {
       $container->get('database'),
       $container->get('helfi_helsinki_profiili.userdata')
     );
+  }
+
+  /**
+   * @return string
+   */
+  public function getHandlerId(): string {
+    return 'form_tool_webform_handler';
   }
 
   /**
