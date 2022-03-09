@@ -2,19 +2,14 @@
 
 namespace Drupal\form_tool_handler\Plugin\WebformHandler;
 
-use Drupal\Core\Access\AccessResultInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\Plugin\WebformHandlerInterface;
-use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -96,53 +91,6 @@ final class FormToolWebformHandler extends WebformHandlerBase {
   protected string $appEnv;
 
   /**
-   * Constructor.
-   *
-   * @param array $configuration
-   *   Configuration.
-   * @param string $plugin_id
-   *   Plugin id.
-   * @param mixed $plugin_definition
-   *   Plugin definition.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
-   *   Logger factory.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   Config factory.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity type manager.
-   * @param \Drupal\webform\WebformSubmissionConditionsValidatorInterface $conditions_validator
-   *   Conditions validator.
-   * @param \Drupal\helfi_atv\AtvService $atvService
-   *   Atv service.
-   * @param \Drupal\Core\Database\Connection $connection
-   *   Database connection.
-   * @param \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $helsinkiProfiiliUserData
-   *   Helsinki profiili.
-   */
-  public function __construct(
-    array $configuration,
-                                                  $plugin_id,
-                                                  $plugin_definition,
-    LoggerChannelFactoryInterface $logger_factory,
-    ConfigFactoryInterface $config_factory,
-    EntityTypeManagerInterface $entity_type_manager,
-    WebformSubmissionConditionsValidatorInterface $conditions_validator,
-    AtvService $atvService,
-    Connection $connection,
-    HelsinkiProfiiliUserData $helsinkiProfiiliUserData
-  ) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->loggerFactory = $logger_factory->get('custom_webform_handler');
-    $this->configFactory = $config_factory;
-    $this->conditionsValidator = $conditions_validator;
-    $this->entityTypeManager = $entity_type_manager;
-    $this->appEnv = getenv('APP_ENV') ?: 'default';
-    $this->atvService = $atvService;
-    $this->connection = $connection;
-    $this->helsinkiProfiiliUserData = $helsinkiProfiiliUserData;
-  }
-
-  /**
    * Static creator.
    *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
@@ -157,40 +105,35 @@ final class FormToolWebformHandler extends WebformHandlerBase {
    * @return \Drupal\Core\Plugin\ContainerFactoryPluginInterface|WebformHandlerBase|WebformHandlerInterface|static
    *   This plugin object.
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): WebformHandlerBase|WebformHandlerInterface|\Drupal\Core\Plugin\ContainerFactoryPluginInterface|static {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('logger.factory'),
-      $container->get('config.factory'),
-      $container->get('entity_type.manager'),
-      $container->get('webform_submission.conditions_validator'),
-      $container->get('helfi_atv.atv_service'),
-      $container->get('database'),
-      $container->get('helfi_helsinki_profiili.userdata')
-    );
-  }
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): WebformHandlerBase|WebformHandlerInterface|ContainerFactoryPluginInterface|static {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->loggerFactory = $container->get('logger.factory');
+    $instance->configFactory = $container->get('config.factory');
+    $instance->conditionsValidator = $container->get('webform_submission.conditions_validator');
+    $instance->entityTypeManager = $container->get('entity_type.manager');
+    $instance->appEnv = getenv('APP_ENV') ?: 'default';
 
-  /**
-   * @return string
-   */
-  public function getHandlerId(): string {
-    return 'form_tool_webform_handler';
+    /** @var \Drupal\helfi_atv\AtvService atvService */
+    $instance->atvService = $container->get('helfi_atv.atv_service');
+
+    /** @var \Drupal\Core\Database\Connection connection */
+    $instance->connection = $container->get('database');
+
+    /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData helsinkiProfiiliUserData */
+    $instance->helsinkiProfiiliUserData = $container->get('helfi_helsinki_profiili.userdata');
+
+    return $instance;
+
   }
 
   /**
    * {@inheritdoc}
    */
-  public function access(
-    WebformSubmissionInterface $webform_submission,
-                               $operation,
-    AccountInterface $account = NULL
-  ): AccessResultInterface {
-    $retval = parent::access($webform_submission, $operation, $account);
-
-    return $retval;
-  }
+  // Public function access(WebformSubmissionInterface $webform_submission,
+  // $operation, AccountInterface $account = NULL):
+  // AccessResultNeutral|AccessResultInterface {
+  // return parent::access($webform_submission, $operation, $account);
+  // }.
 
   /**
    * {@inheritdoc}
@@ -276,13 +219,13 @@ final class FormToolWebformHandler extends WebformHandlerBase {
 
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     $retval = parent::validateForm($form, $form_state, $webform_submission);
 
     $errors = $form_state->getErrors();
-
-    $d = 'asdf';
-
 
   }
 
@@ -318,7 +261,7 @@ final class FormToolWebformHandler extends WebformHandlerBase {
         'type' => strtoupper($thirdPartySettings['form_code']),
         'status' => 'DRAFT',
         // @todo Not sure about this data hash
-      //   'transaction_id' => md5($webform_submission->getChangedTime()),
+        //   'transaction_id' => md5($webform_submission->getChangedTime()),
         'transaction_id' => $formToolSubmissionId,
         'business_id' => '',
         'tos_function_id' => 'f917d43aab76420bb2ec53f6684da7f7',
