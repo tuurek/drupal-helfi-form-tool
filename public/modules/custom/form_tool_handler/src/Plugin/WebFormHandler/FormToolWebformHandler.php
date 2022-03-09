@@ -13,6 +13,7 @@ use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
+use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -31,7 +32,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_PROCESSED,
  * )
  */
-final class FormToolHandler extends WebformHandlerBase {
+final class FormToolWebformHandler extends WebformHandlerBase {
 
   /**
    * Access to configuration.
@@ -156,7 +157,7 @@ final class FormToolHandler extends WebformHandlerBase {
    * @return \Drupal\Core\Plugin\ContainerFactoryPluginInterface|WebformHandlerBase|WebformHandlerInterface|static
    *   This plugin object.
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): WebformHandlerBase|WebformHandlerInterface|\Drupal\Core\Plugin\ContainerFactoryPluginInterface|static {
     return new static(
       $configuration,
       $plugin_id,
@@ -329,6 +330,7 @@ final class FormToolHandler extends WebformHandlerBase {
       ];
 
       $helsinkiProfiili = $this->helsinkiProfiiliUserData->getUserData();
+      $helsinkiProfiiliData = $this->helsinkiProfiiliUserData->getUserProfileData();
       if (isset($helsinkiProfiili['sub'])) {
         $documentValues['user_id'] = $helsinkiProfiili['sub'];
       }

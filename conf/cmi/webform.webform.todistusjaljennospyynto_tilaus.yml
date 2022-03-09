@@ -3,7 +3,6 @@ langcode: fi
 status: open
 dependencies:
   module:
-    - form_tool_handler
     - form_tool_webform_parameters
 third_party_settings:
   form_tool_webform_parameters:
@@ -240,14 +239,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  form_tool_webform_handler:
-    id: form_tool_handler
-    handler_id: form_tool_webform_handler
-    label: 'form_tool webform handler'
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings: {  }
+handlers: {  }
 variants: {  }
