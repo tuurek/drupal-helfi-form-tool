@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Form submission handler.
  *
  * @WebformHandler(
- *   id = "form_tool_webform_handler",
+ *   id = "form_tool_handler",
  *   label = @Translation("form_tool webform handler"),
  *   category = @Translation("Helfi"),
  *   description = @Translation("Handles all form tools submissions"),
@@ -27,7 +27,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_PROCESSED,
  * )
  */
-final class FormToolWebformHandler extends WebformHandlerBase {
+final class FormToolHandler extends WebformHandlerBase {
 
   /**
    * Access to configuration.
