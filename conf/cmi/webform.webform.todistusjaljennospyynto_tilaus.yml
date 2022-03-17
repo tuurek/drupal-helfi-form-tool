@@ -15,7 +15,7 @@ third_party_settings:
     privacy_policy_sv: ''
     privacy_policy_en: ''
     privacy_policy_ru: ''
-    login_type: '2'
+    login_type: '1'
     sensitive: '1'
     form_code: TODISTUS
 weight: 0
@@ -32,6 +32,22 @@ elements: |-
   tilaaja:
     '#type': webform_section
     '#title': Tilaaja
+    profile_fields:
+      '#type': form_tool_profile_data
+      '#title': 'Profile fields'
+      '#weak':
+        primaryAddress: primaryAddress
+        primaryEmail: primaryEmail
+        primaryPhone: primaryPhone
+      '#description': 'These fields are populated from Helsinki Profile data.'
+      '#title_display': before
+      '#description_display': after
+      '#strong':
+        verifiedFirstName: verifiedFirstName
+        verifiedLastName: verifiedLastName
+        verifiedSsn: verifiedSsn
+        verifiedPermanentAddress: verifiedPermanentAddress
+        verifiedGivenName: 0
   tilattava_todistus:
     '#type': webform_section
     '#title': 'Tilattava todistus'
@@ -62,11 +78,11 @@ elements: |-
 css: ''
 javascript: ''
 settings:
-  ajax: false
+  ajax: true
   ajax_scroll_top: form
-  ajax_progress_type: ''
-  ajax_effect: ''
-  ajax_speed: null
+  ajax_progress_type: fullscreen
+  ajax_effect: none
+  ajax_speed: 1000
   page: true
   page_submit_path: ''
   page_confirm_path: ''

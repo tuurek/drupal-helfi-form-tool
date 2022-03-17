@@ -1,0 +1,6 @@
+form_tool_profile_data.settings_form:
+  title: form_tool_profile_data
+  description: Configure form_tool_profile_data.
+  parent: system.admin_config_system
+  route_name: form_tool_profile_data.settings_form
+  weight: 10

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - system.menu.admin
     - user.role.admin
     - user.role.verkkolomake_hallinnoija
   module:
@@ -518,6 +519,15 @@ display:
           metatags: {  }
           tokenize: false
       path: hallinta/lahetetyt-lomakkeet
+      menu:
+        type: normal
+        title: Lomakenäkymä
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: admin
+        parent: admin_toolbar_tools.help
+        context: '0'
     cache_metadata:
       max-age: 0
       contexts:
