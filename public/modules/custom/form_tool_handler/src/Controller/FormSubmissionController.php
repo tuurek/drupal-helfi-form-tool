@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -46,9 +47,9 @@ class FormSubmissionController extends ControllerBase {
    *   Database connection for fetching data.
    */
   public function __construct(
-    AtvService $helfi_atv,
+    AtvService               $helfi_atv,
     HelsinkiProfiiliUserData $helfi_helsinki_profiili,
-    Connection $connection
+    Connection               $connection
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
@@ -83,7 +84,12 @@ class FormSubmissionController extends ControllerBase {
    */
   public function build(string $id): array {
 
-    $result = $this->connection->query("SELECT submission_uuid FROM {form_tool} WHERE form_tool_id = :form_tool_id", [
+    /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
+    //    $hpud = \Drupal::service('helfi_helsinki_profiili.userdata');
+    //    $d = $hpud->getUserData();
+    //    $dd = $hpud->getUserProfileData();
+
+    $result = $this->connection->query("SELECT submission_uuid,document_uuid FROM {form_tool} WHERE form_tool_id = :form_tool_id", [
       ':form_tool_id' => $id,
     ]);
     $data = $result->fetchObject();
@@ -93,23 +99,34 @@ class FormSubmissionController extends ControllerBase {
     }
 
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
-    $entity = \Drupal::service('entity.repository')->loadEntityByUuid('webform_submission', $data->submission_uuid);
+    $entity = \Drupal::service('entity.repository')
+      ->loadEntityByUuid('webform_submission', $data->submission_uuid);
 
-    $data = $entity->getData();
+    if ($entity) {
+      /** @var \Drupal\helfi_atv\AtvDocument $document */
+      try {
+        $document = $this->helfiAtv->getDocument($data->document_uuid);
 
-    $formElements = $entity->getWebform()->getElementsDecoded();
+        $documentContent = $document->getContent();
+        $entity->setData($documentContent);
 
-    foreach ($formElements as $key => $value) {
-      $formElements[$key]['value'] = $data[$key];
+      } catch (\Exception|GuzzleException $e) {
+        $this->loggerFactory->get('form_tool_handler')->error($e->getMessage());
+      } catch (GuzzleException $e) {
+
+      }
     }
 
-    $formElements['id'] = $id;
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('webform_submission');
+    $pre_render = $view_builder->view($entity);
 
-    // Wanna see content? uncomment this.
-    // kint($formElements);
+    $formTitle = $entity->getWebform()->get('title');
+
     return [
       '#theme' => 'submission_print',
-      '#submission' => $formElements,
+      '#id' => $id,
+      '#submission' => $pre_render,
+      '#form' => $formTitle,
     ];
   }
 
