@@ -317,45 +317,48 @@ final class FormToolHandler extends WebformHandlerBase {
         $this->messenger()
           ->addWarning($msg);
 
-        // if (isset($thirdPartySettings["email_notify"]) && !empty($thirdPartySettings["email_notify"])) {
-        //   $mailManager = \Drupal::service('plugin.manager.mail');
-        //   $module = 'form_tool_handler';
-        //   $key = 'submission_email_notify';
-        //   $to = $thirdPartySettings["email_notify"];
+        // If (isset($thirdPartySettings["email_notify"]) &&
+        // !empty($thirdPartySettings["email_notify"])) {
+        // $mailManager = \Drupal::service('plugin.manager.mail');
+        // $module = 'form_tool_handler';
+        // $key = 'submission_email_notify';
+        // $to = $thirdPartySettings["email_notify"];
         //
-        //   $url = Url::fromRoute(
-        //     'form_tool_handler.view_submission',
-        //     ['id' => $formToolSubmissionId],
-        //     [
-        //       'attributes' => [
-        //         'data-drupal-selector' => 'form-submitted-ok',
-        //       ],
-        //     ]
-        //   );
+        // $url = Url::fromRoute(
+        // 'form_tool_handler.view_submission',
+        // ['id' => $formToolSubmissionId],
+        // [
+        // 'attributes' => [
+        // 'data-drupal-selector' => 'form-submitted-ok',
+        // ],
+        // ]
+        // );
         //
-        //   $params['message'] = $this->t(
-        //     'Form submission (@number) saved,
-        //           see application status from @link',
-        //     [
-        //       '@number' => $formToolSubmissionId,
-        //       '@link' => Link::fromTextAndUrl('here', $url)->toString(),
-        //     ]);
+        // $params['message'] = $this->t(
+        // 'Form submission (@number) saved,
+        // see application status from @link',
+        // [
+        // '@number' => $formToolSubmissionId,
+        // '@link' => Link::fromTextAndUrl('here', $url)->toString(),
+        // ]);
         //
-        //   $params['form_title'] = $webForm->get('title');
-        //   $langcode = \Drupal::currentUser()->getPreferredLangcode();
-        //   $send = TRUE;
+        // $params['form_title'] = $webForm->get('title');
+        // $langcode = \Drupal::currentUser()->getPreferredLangcode();
+        // $send = TRUE;
         //
-        //   $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+        // $result = $mailManager->mail($module, $key, $to, $langcode, $params,
+        // NULL, $send);
         //
-        //   if ($result['result'] !== TRUE) {
-        //     $this->messenger()->addStatus(t('There was a problem sending your message and it was not sent.'), 'error');
-        //   }
-        //   else {
-        //     $this->messenger()->addStatus(t('Your message has been sent.'));
-        //   }
+        // if ($result['result'] !== TRUE) {
+        // $this->messenger()->addStatus(t('There was a problem sending your
+        // message and it was not sent.'), 'error');
         // }
-
-      } catch (\Exception $e) {
+        // else {
+        // $this->messenger()->addStatus(t('Your message has been sent.'));
+        // }
+        // }.
+      }
+      catch (\Exception $e) {
         $this->getLogger('form_tool_handler')->error($e->getMessage());
       }
     }
@@ -383,10 +386,10 @@ final class FormToolHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function postLoad(WebformSubmissionInterface $webform_submission) {
-//    if (!$this->isNewSubmission($webform_submission->uuid())) {
-//      $this->messenger()
-//        ->addWarning('Submitted data, no edits are possible.');
-//    }
+    // If (!$this->isNewSubmission($webform_submission->uuid())) {
+    // $this->messenger()
+    // ->addWarning('Submitted data, no edits are possible.');
+    // }.
   }
 
 }

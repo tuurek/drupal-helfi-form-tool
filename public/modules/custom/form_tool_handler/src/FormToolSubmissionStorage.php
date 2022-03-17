@@ -7,7 +7,6 @@ use Drupal\Core\Entity\EntityHandlerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\webform\WebformSubmissionStorage;
-use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -49,38 +48,40 @@ class FormToolSubmissionStorage extends WebformSubmissionStorage {
     return $instance;
   }
 
-  /**
-   * Save webform submission data from the 'webform_submission_data' table.
-   *
-   * @param array $webform_submissions
-   *   An array of webform submissions.
-   */
-  protected function loadData(array &$webform_submissions) {
-    parent::loadData($webform_submissions);
-
-    /** @var \Drupal\webform\Entity\WebformSubmission $submission */
-//    foreach ($webform_submissions as $submission) {
-//
-//      $result = $this->connection->query("SELECT document_uuid FROM {form_tool} WHERE submission_uuid = :submission_uuid", [
-//        ':submission_uuid' => $submission->uuid(),
-//      ]);
-//      $data = $result->fetchObject();
-//
-//      if ($data !== FALSE) {
-//        /** @var \Drupal\helfi_atv\AtvDocument $document */
-//        try {
-//          $document = $this->atvService->getDocument($data->document_uuid);
-//
-//          $documentContent = $document->getContent();
-//
-//          $submission->setData($documentContent);
-//        }
-//        catch (\Exception | GuzzleException $e) {
-//          $this->loggerFactory->get('form_tool_handler')->error($e->getMessage());
-//        }
-//
-//      }
-//    }
-  }
-
+  // /**
+  // * Save webform submission data from the 'webform_submission_data' table.
+  // *
+  // * @param array $webform_submissions
+  // *   An array of webform submissions.
+  // */
+  // Protected function loadData(array &$webform_submissions) {
+  // parent::loadData($webform_submissions);
+  //
+  // /** @var \Drupal\webform\Entity\WebformSubmission $submission */
+  // // Foreach ($webform_submissions as $submission) {
+  // //
+  // //      $result = $this->connection->query("SELECT document_uuid
+  // FROM {form_tool} WHERE submission_uuid = :submission_uuid", [
+  // //        ':submission_uuid' => $submission->uuid(),
+  // //      ]);
+  // //      $data = $result->fetchObject();
+  // //
+  // //      if ($data !== FALSE) {
+  // //        /** @var \Drupal\helfi_atv\AtvDocument $document */
+  // //        try {
+  // //          $document = $this->atvService->getDocument($data->docume
+  // nt_uuid);
+  // //
+  // //          $documentContent = $document->getContent();
+  // //
+  // //          $submission->setData($documentContent);
+  // //        }
+  // //        catch (\Exception | GuzzleException $e) {
+  // //          $this->loggerFactory->get('form_tool_handler')->error($e->
+  // getMessage());
+  // //        }
+  // //
+  // //      }
+  // //    }
+  // }.
 }

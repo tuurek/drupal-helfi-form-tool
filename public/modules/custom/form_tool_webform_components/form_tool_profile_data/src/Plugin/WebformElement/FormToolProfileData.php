@@ -5,7 +5,6 @@ namespace Drupal\form_tool_profile_data\Plugin\WebformElement;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
 use Drupal\webform\WebformSubmissionInterface;
-use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * Provides a 'form_tool_profile_data' element.
@@ -103,7 +102,7 @@ class FormToolProfileData extends WebformCompositeBase {
     $lines = [];
     foreach ($value as $fieldName => $fieldValue) {
       foreach ($titles as $auth => $fields) {
-        if(isset($fields[$fieldName])){
+        if (isset($fields[$fieldName])) {
           $lines[] = $fields[$fieldName]->render() . ': ' . $fieldValue;
         }
       }
@@ -116,6 +115,7 @@ class FormToolProfileData extends WebformCompositeBase {
    * Return fields from profile.
    *
    * @return array
+   *   Fields for prefilled data.
    */
   public static function getFieldSelections(): array {
     return [

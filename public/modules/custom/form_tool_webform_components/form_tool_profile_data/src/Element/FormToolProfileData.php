@@ -4,6 +4,7 @@ namespace Drupal\form_tool_profile_data\Element;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Element\WebformCompositeBase;
+use Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData as ProfileDataElement;
 
 /**
  * Provides a 'webform_example_composite'.
@@ -38,7 +39,7 @@ class FormToolProfileData extends WebformCompositeBase {
     /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
     $hpud = \Drupal::service('helfi_helsinki_profiili.userdata');
 
-    $options = \Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData::getFieldSelections();
+    $options = ProfileDataElement::getFieldSelections();
 
     $userData = $hpud->getUserData();
     $userProfile = $hpud->getUserProfileData();

@@ -47,9 +47,9 @@ class FormSubmissionController extends ControllerBase {
    *   Database connection for fetching data.
    */
   public function __construct(
-    AtvService               $helfi_atv,
+    AtvService $helfi_atv,
     HelsinkiProfiiliUserData $helfi_helsinki_profiili,
-    Connection               $connection
+    Connection $connection
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
@@ -85,10 +85,9 @@ class FormSubmissionController extends ControllerBase {
   public function build(string $id): array {
 
     /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
-    //    $hpud = \Drupal::service('helfi_helsinki_profiili.userdata');
-    //    $d = $hpud->getUserData();
-    //    $dd = $hpud->getUserProfileData();
-
+    // $hpud = \Drupal::service('helfi_helsinki_profiili.userdata');
+    // $d = $hpud->getUserData();
+    // $dd = $hpud->getUserProfileData();
     $result = $this->connection->query("SELECT submission_uuid,document_uuid FROM {form_tool} WHERE form_tool_id = :form_tool_id", [
       ':form_tool_id' => $id,
     ]);
@@ -110,9 +109,11 @@ class FormSubmissionController extends ControllerBase {
         $documentContent = $document->getContent();
         $entity->setData($documentContent);
 
-      } catch (\Exception|GuzzleException $e) {
+      }
+      catch (\Exception | GuzzleException $e) {
         $this->loggerFactory->get('form_tool_handler')->error($e->getMessage());
-      } catch (GuzzleException $e) {
+      }
+      catch (GuzzleException $e) {
 
       }
     }
