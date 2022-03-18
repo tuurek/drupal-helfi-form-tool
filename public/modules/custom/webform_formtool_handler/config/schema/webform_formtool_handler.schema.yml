@@ -2,9 +2,6 @@ webform.handler.formtool:
   type: mapping
   label: Formtool
   mapping:
-    message:
-      label: Message
-      type: string
     debug:
       type: boolean
       label: 'Enable debugging'

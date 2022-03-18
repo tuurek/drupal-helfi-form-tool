@@ -1,0 +1,7 @@
+webform_formtool_handler.view_submission:
+  path: '/lomake/nayta-tulokset/{id}'
+  defaults:
+    _title: 'Nayta Lomake'
+    _controller: '\Drupal\webform_formtool_handler\Controller\FormToolSubmissionController::build'
+  requirements:
+    _permission: 'view own webform submission'

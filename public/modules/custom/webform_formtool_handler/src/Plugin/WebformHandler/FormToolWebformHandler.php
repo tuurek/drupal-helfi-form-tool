@@ -1,35 +1,33 @@
 <?php
 
-namespace Drupal\form_tool_handler\Plugin\WebformHandler;
+namespace Drupal\webform_formtool_handler\Plugin\WebformHandler;
 
-use Drupal\Core\Link;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
-use Drupal\webform\Plugin\WebformHandlerInterface;
+use Drupal\webform\WebformInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form submission handler.
+ * Webform formtool handler.
  *
  * @WebformHandler(
- *   id = "form_tool_handler",
- *   label = @Translation("form_tool webform handler"),
+ *   id = "formtool_webform_handler",
+ *   label = @Translation("Formtool Webform handler"),
  *   category = @Translation("Helfi"),
- *   description = @Translation("Handles all form tools submissions"),
- *   cardinality =
- *   \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
- *   results =
- *   \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_PROCESSED,
+ *   description = @Translation("Webform handler form formtool."),
+ *   cardinality = \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
+ *   results = \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_IGNORED,
+ *   submission = \Drupal\webform\Plugin\WebformHandlerInterface::SUBMISSION_REQUIRED,
  * )
  */
-final class FormToolHandler extends WebformHandlerBase {
+class FormToolWebformHandler extends WebformHandlerBase {
 
   /**
    * Access to configuration.
@@ -93,21 +91,9 @@ final class FormToolHandler extends WebformHandlerBase {
   protected string $appEnv;
 
   /**
-   * Static creator.
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   *   Container.
-   * @param array $configuration
-   *   Plugin config.
-   * @param string $plugin_id
-   *   Plugin name.
-   * @param mixed $plugin_definition
-   *   Plugin definition.
-   *
-   * @return \Drupal\Core\Plugin\ContainerFactoryPluginInterface|WebformHandlerBase|WebformHandlerInterface|static
-   *   This plugin object.
+   * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): WebformHandlerBase|WebformHandlerInterface|ContainerFactoryPluginInterface|static {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->loggerFactory = $container->get('logger.factory');
     $instance->configFactory = $container->get('config.factory');
@@ -125,21 +111,75 @@ final class FormToolHandler extends WebformHandlerBase {
     $instance->helsinkiProfiiliUserData = $container->get('helfi_helsinki_profiili.userdata');
 
     return $instance;
-
   }
 
   /**
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return [];
+    return [
+      'debug' => FALSE,
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
 
+    // Development.
+    $form['development'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Development settings'),
+    ];
+    $form['development']['debug'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable debugging'),
+      '#description' => $this->t('If checked, every handler method invoked will be displayed onscreen to all users.'),
+      '#return_value' => TRUE,
+      '#default_value' => $this->configuration['debug'],
+    ];
+
+    return $this->setSettingsParents($form);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    parent::submitConfigurationForm($form, $form_state);
+    $this->configuration['debug'] = (bool) $form_state->getValue('debug');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function alterElements(array &$elements, WebformInterface $webform) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function overrideSettings(array &$settings, WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function alterForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
+    if ($value = $form_state->getValue('element')) {
+      $form_state->setErrorByName('element', $this->t('The element must be empty. You entered %value.', ['%value' => $value]));
+    }
   }
 
   /**
@@ -152,7 +192,7 @@ final class FormToolHandler extends WebformHandlerBase {
    *   If submission is new
    */
   protected function isNewSubmission($submission_uuid): bool {
-    $result = $this->connection->query("SELECT document_uuid FROM {form_tool} WHERE submission_uuid = :submission_uuid", [
+    $result = $this->connection->query("SELECT document_uuid FROM {form_tool_map} WHERE submission_uuid = :submission_uuid", [
       ':submission_uuid' => $submission_uuid,
     ]);
     $data = $result->fetchObject();
@@ -215,11 +255,8 @@ final class FormToolHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    $retval = parent::validateForm($form, $form_state, $webform_submission);
-
-    $errors = $form_state->getErrors();
-
+  public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
   }
 
   /**
@@ -275,7 +312,7 @@ final class FormToolHandler extends WebformHandlerBase {
 
         $newDocument = $this->atvService->postDocument($atvDocument);
 
-        $result = $this->connection->insert('form_tool')
+        $result = $this->connection->insert('form_tool_map')
           ->fields([
             'submission_uuid' => $webform_submission->uuid(),
             'document_uuid' => $newDocument->getId(),
@@ -284,7 +321,7 @@ final class FormToolHandler extends WebformHandlerBase {
           ->execute();
 
         $url = Url::fromRoute(
-          'form_tool_handler.view_submission',
+          'webform_formtool_handler.view_submission',
           ['id' => $formToolSubmissionId],
           [
             'attributes' => [
@@ -307,12 +344,12 @@ final class FormToolHandler extends WebformHandlerBase {
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
         // $mailManager = \Drupal::service('plugin.manager.mail');
-        // $module = 'form_tool_handler';
+        // $module = 'webform_formtool_handler';
         // $key = 'submission_email_notify';
         // $to = $thirdPartySettings["email_notify"];
         //
         // $url = Url::fromRoute(
-        // 'form_tool_handler.view_submission',
+        // 'webform_formtool_handler.view_submission',
         // ['id' => $formToolSubmissionId],
         // [
         // 'attributes' => [
@@ -346,7 +383,7 @@ final class FormToolHandler extends WebformHandlerBase {
         // }.
       }
       catch (\Exception $e) {
-        $this->getLogger('form_tool_handler')->error($e->getMessage());
+        $this->getLogger('webform_formtool_handler')->error($e->getMessage());
       }
     }
     else {
@@ -354,6 +391,41 @@ final class FormToolHandler extends WebformHandlerBase {
         ->addWarning('Webform already submitted, data is not saved');
     }
 
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preCreate(array &$values) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postCreate(WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postLoad(WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preDelete(WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postDelete(WebformSubmissionInterface $webform_submission) {
+    $this->debug(__FUNCTION__);
   }
 
   /**
@@ -367,16 +439,83 @@ final class FormToolHandler extends WebformHandlerBase {
     // Save no data locally.
     $webform_submission->setData([]);
 
+    $this->debug(__FUNCTION__);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function postLoad(WebformSubmissionInterface $webform_submission) {
-    // If (!$this->isNewSubmission($webform_submission->uuid())) {
-    // $this->messenger()
-    // ->addWarning('Submitted data, no edits are possible.');
-    // }.
+  public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
+    $this->debug(__FUNCTION__, $update ? 'update' : 'insert');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preprocessConfirmation(array &$variables) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function createHandler() {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function updateHandler() {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteHandler() {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function createElement($key, array $element) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function updateElement($key, array $element, array $original_element) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteElement($key, array $element) {
+    $this->debug(__FUNCTION__);
+  }
+
+  /**
+   * Display the invoked plugin method to end user.
+   *
+   * @param string $method_name
+   *   The invoked method name.
+   * @param string $context1
+   *   Additional parameter passed to the invoked method name.
+   */
+  protected function debug($method_name, $context1 = NULL) {
+    if (!empty($this->configuration['debug'])) {
+      $t_args = [
+        '@id' => $this->getHandlerId(),
+        '@class_name' => get_class($this),
+        '@method_name' => $method_name,
+        '@context1' => $context1,
+      ];
+      $this->messenger()->addWarning($this->t('Invoked @id: @class_name:@method_name @context1', $t_args), TRUE);
+    }
   }
 
 }

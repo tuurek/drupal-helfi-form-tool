@@ -4749,12 +4749,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "24e2eb48c29f3d89a3806a5145b471b7810adfa6"
+                "reference": "baebfb767ee096e93cf2addd2272c8f078170c95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/24e2eb48c29f3d89a3806a5145b471b7810adfa6",
-                "reference": "24e2eb48c29f3d89a3806a5145b471b7810adfa6",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/baebfb767ee096e93cf2addd2272c8f078170c95",
+                "reference": "baebfb767ee096e93cf2addd2272c8f078170c95",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4770,7 +4770,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/hardcode-profile-tunnistamo-rikki",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2022-03-17T09:40:04+00:00"
+            "time": "2022-03-18T09:23:31+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
