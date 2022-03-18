@@ -48,15 +48,27 @@ $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: '000';
 
 $config['openid_connect.client.tunnistamo']['settings']['client_id'] = getenv('TUNNISTAMO_CLIENT_ID');
 $config['openid_connect.client.tunnistamo']['settings']['client_secret'] = getenv('TUNNISTAMO_CLIENT_SECRET');
+$config['openid_connect.client.tunnistamo']['settings']['scopes'] = getenv('TUNNISTAMO_CLIENT_SCOPES');
+$config['openid_connect.client.tunnistamo']['settings']['environment_url'] = getenv('TUNNISTAMO_CLIENT_URL');
+
+
+$config['openid_connect.client.tunnistamoadmin']['settings']['client_id'] = getenv('TUNNISTAMOADMIN_CLIENT_ID');
+$config['openid_connect.client.tunnistamoadmin']['settings']['client_secret'] = getenv('TUNNISTAMOADMIN_CLIENT_SECRET');
+$config['openid_connect.client.tunnistamoadmin']['settings']['scopes'] = getenv('TUNNISTAMO_CLIENTADMIN_SCOPES');
+$config['openid_connect.client.tunnistamoadmin']['settings']['environment_url'] = getenv('TUNNISTAMOADMIN_CLIENT_URL');
+
 
 if(getenv('APP_ENV') == 'production'){
   $config['openid_connect.client.tunnistamo']['settings']['is_production'] = true;
   $config['openid_connect.client.tunnistamo']['settings']['environment_url'] = 'https://api.hel.fi/sso';
+  $config['openid_connect.client.tunnistamoadmin']['settings']['environment_url'] = 'https://api.hel.fi/sso';
+  $config['openid_connect.client.tunnistamoadmin']['settings']['is_production'] = true;
 } else {
   if(getenv('APP_ENV') == 'development') {
     $config['openid_connect.client.tunnistamo']['settings']['environment_url'] = 'https://tunnistamo.test.hel.ninja';
   }
   $config['openid_connect.client.tunnistamo']['settings']['is_production'] = false;
+  $config['openid_connect.client.tunnistamoadmin']['settings']['is_production'] = false;
 }
 
 // Drupal route(s).
