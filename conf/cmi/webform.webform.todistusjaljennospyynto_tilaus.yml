@@ -3,7 +3,6 @@ langcode: fi
 status: open
 dependencies:
   module:
-    - form_tool_handler
     - form_tool_webform_parameters
     - webform_formtool_handler
 third_party_settings:
@@ -258,15 +257,6 @@ access:
     users: {  }
     permissions: {  }
 handlers:
-  form_tool_handler:
-    id: form_tool_handler
-    handler_id: form_tool_handler
-    label: 'form_tool webform handler'
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings: {  }
   formtool_webform_handler:
     id: formtool_webform_handler
     handler_id: formtool_webform_handler
@@ -276,6 +266,5 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      message: 'This is a custom message.'
-      debug: true
+      debug: false
 variants: {  }
