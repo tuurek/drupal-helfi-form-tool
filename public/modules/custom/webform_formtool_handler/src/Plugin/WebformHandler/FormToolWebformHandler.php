@@ -330,16 +330,23 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ]
         );
 
+        $msgString = 'Form submission (@number) saved, see submitted data from @link';
+
+        $t_args = [
+          '@number' => $formToolSubmissionId,
+          '@link' => Link::fromTextAndUrl('here', $url)->toString(),
+        ];
+
         $msg = $this->t(
-          'Form submission (@number) saved,
-                          see submitted data from @link',
-          [
-            '@number' => $formToolSubmissionId,
-            '@link' => Link::fromTextAndUrl('here', $url)->toString(),
-          ]);
+          $msgString,
+          $t_args
+          );
 
         $this->messenger()
           ->addWarning($msg);
+
+        $this->log('warning', $msgString, $t_args);
+
 
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
@@ -383,7 +390,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
         // }.
       }
       catch (\Exception $e) {
-        $this->getLogger('webform_formtool_handler')->error($e->getMessage());
+        $this->log('error',  $e->getMessage());
       }
     }
     else {
@@ -516,6 +523,20 @@ class FormToolWebformHandler extends WebformHandlerBase {
       ];
       $this->messenger()->addWarning($this->t('Invoked @id: @class_name:@method_name @context1', $t_args), TRUE);
     }
+  }
+  /**
+   * Display the invoked plugin method to end user.
+   *
+   * @param string $method_name
+   *   The invoked method name.
+   * @param string $context1
+   *   Additional parameter passed to the invoked method name.
+   */
+  protected function log($level, $msg, $t_args) {
+    $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
+//    if (!empty($this->configuration['debug'])) {
+//      $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
+//    }
   }
 
 }
