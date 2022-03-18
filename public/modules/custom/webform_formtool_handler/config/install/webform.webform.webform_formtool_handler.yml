@@ -1,98 +1,46 @@
-uuid: 44a46ee7-d351-47e5-9cff-5b2538f6c93c
-langcode: fi
+uuid: null
+langcode: en
 status: open
 dependencies:
+  enforced:
+    module:
+      - webform_formtool_handler
   module:
-    - form_tool_handler
-    - form_tool_webform_parameters
     - webform_formtool_handler
-third_party_settings:
-  form_tool_webform_parameters:
-    owner: 'Omistajan nimi (TODO)'
-    sector: Sektori
-    ad_group: AD-ryhmä
-    postal_address: ''
-    privacy_policy: ''
-    privacy_policy_sv: ''
-    privacy_policy_en: ''
-    privacy_policy_ru: ''
-    login_type: '1'
-    sensitive: '1'
-    form_code: TODISTUS
-weight: 0
 open: null
 close: null
-uid: 1
+weight: 0
+uid: null
 template: false
 archive: false
-id: todistusjaljennospyynto_tilaus
-title: 'Todistusjäljennöspyyntö, tilaus'
-description: 'Todistusj&auml;ljenn&ouml;slomakkeen MVP-versio'
-category: ''
-elements: |-
-  tilaaja:
-    '#type': webform_section
-    '#title': Tilaaja
-    profile_fields:
-      '#type': form_tool_profile_data
-      '#title': 'Profile fields'
-      '#weak':
-        primaryAddress: primaryAddress
-        primaryEmail: primaryEmail
-        primaryPhone: primaryPhone
-      '#description': 'These fields are populated from Helsinki Profile data.'
-      '#title_display': before
-      '#description_display': after
-      '#strong':
-        verifiedFirstName: verifiedFirstName
-        verifiedLastName: verifiedLastName
-        verifiedSsn: verifiedSsn
-        verifiedPermanentAddress: verifiedPermanentAddress
-        verifiedGivenName: 0
-  tilattava_todistus:
-    '#type': webform_section
-    '#title': 'Tilattava todistus'
-    valitse_tilattava_todistus:
-      '#type': radios
-      '#title': 'Valitse tilattava todistus'
-      '#options':
-        'Peruskoulun päättötodistus': 'Peruskoulun päättötodistus'
-        'Peruskoulun erotodistus': 'Peruskoulun erotodistus'
-        'Lisäopetuksen 10.lk todistus': 'Lisäopetuksen 10.lk todistus'
-        'Lukion päättötodistus': 'Lukion päättötodistus'
-        'Lukion erotodistus': 'Lukion erotodistus'
-    todistuksen_antanut_helsinkilainen_koulu:
-      '#type': textfield
-      '#title': 'Todistuksen antanut Helsinkiläinen koulu'
-      '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
-  toimitustapa:
-    '#type': webform_section
-    '#title': Toimitustapa
-    valitse_toimitustapa:
-      '#type': form_tool_contact_info
-      '#title': 'Valitse toimitustapa'
-      '#Toimitustapa: Email__access': false
-      '#Toimitustapa: Postitoimitus__access': false
-      '#Toimitustapa: Postiennakko__title': Postiennakko
-      '#Toimitustapa: Nouto__title': Nouto
-      '#Nouto -teksti__title': 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki'
+id: webform_formtool_handler
+title: 'Formtool: Webform Handler'
+description: 'An formtool of a custom Webform handler.'
+category: Formtool
+elements: |
+  value:
+    '#type': textfield
+    '#title': Value
+    '#required': true
+    '#description': 'Enter a value to displayed in a custom message.'
+  
 css: ''
 javascript: ''
 settings:
-  ajax: true
+  ajax: false
   ajax_scroll_top: form
-  ajax_progress_type: fullscreen
-  ajax_effect: none
-  ajax_speed: 1000
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
   page: true
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
+  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
-  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -102,36 +50,31 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
+  form_reset: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
-  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
-  form_attributes: {  }
   form_method: ''
   form_action: ''
+  form_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
-  submission_exception_message: ''
-  submission_locked_message: ''
   submission_log: false
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -140,6 +83,11 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -150,13 +98,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -178,10 +126,10 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: page
-  confirmation_url: ''
+  confirmation_type: message
   confirmation_title: ''
   confirmation_message: ''
+  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -257,25 +205,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  form_tool_handler:
-    id: form_tool_handler
-    handler_id: form_tool_handler
-    label: 'form_tool webform handler'
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings: {  }
-  formtool_webform_handler:
-    id: formtool_webform_handler
-    handler_id: formtool_webform_handler
-    label: 'Formtool Webform handler'
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      message: 'This is a custom message.'
-      debug: true
+handlers: {  }
 variants: {  }

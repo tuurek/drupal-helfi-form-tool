@@ -128,14 +128,6 @@ final class FormToolHandler extends WebformHandlerBase {
 
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  // Public function access(WebformSubmissionInterface $webform_submission,
-  // $operation, AccountInterface $account = NULL):
-  // AccessResultNeutral|AccessResultInterface {
-  // return parent::access($webform_submission, $operation, $account);
-  // }.
 
   /**
    * {@inheritdoc}

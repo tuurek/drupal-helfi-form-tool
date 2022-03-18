@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Provides an formtool of a webform handler.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function webform_formtool_handler_theme() {
+  return [
+    'webform_handler_formtool_summary' => [
+      'variables' => ['settings' => NULL, 'handler' => []],
+    ],
+  ];
+}
