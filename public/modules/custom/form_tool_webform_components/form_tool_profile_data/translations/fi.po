@@ -13,44 +13,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 
-msgid "Selecting a delivery method may prompt further questions"
-msgstr "Toimitustavan valinta voi vaatia lisäkenttien täyttämistä"
+msgid "Primary address"
+msgstr "Ensisijainen osoite"
 
-msgid "Email"
-msgstr "Sähköpostiosoite"
+msgid "Primary email"
+msgstr "Ensisijainen sähköposti"
 
-msgid "Postal Delivery"
-msgstr "Postitoimitus"
+msgid "Primary phone"
+msgstr "Ensisijainen puhelinnumero"
 
-msgid "Cash on Delivery"
-msgstr "Postiennakko"
+msgid "Verified first name"
+msgstr "Varmistettu etunimi"
 
-msgid "Pickup"
-msgstr "Nouto"
+msgid "Verified last name"
+msgstr "Varmistettu sukunimi"
 
-msgid "Delivery"
-msgstr "Toimitustapa"
+msgid "Verified given name"
+msgstr "Varmistettu ristimänimi"
 
-msgid "First Name"
-msgstr "Etunimi"
+msgid "Verified SSN"
+msgstr "Varmistettu henkilötunnus"
 
-msgid "Last Name"
-msgstr "Sukunimi"
+msgid "Verified permanent address"
+msgstr "Varmistettu pysyvä asuinpaikka"
 
-msgid "Street Address"
-msgstr "Katuosoite"
-
-msgid "Zip Code"
-msgstr "Postinumero"
-
-msgid "City"
-msgstr "Kaupunki"
-
-msgid "Phone Number"
-msgstr "Puhelinnumero"
-
-msgid "Cash on delviery price is 9,20 €"
-msgstr "Postiennakon hinta asiakirjan tilaajalle 9,20 €"
-
-msgid "Pick-up from Töysänkatu 2 D, 00510 Helsinki."
-msgstr "Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki."

@@ -34,13 +34,12 @@ elements: |-
     '#title': Tilaaja
     profile_fields:
       '#type': form_tool_profile_data
-      '#title': 'Profile fields'
+      '#title': 'Profiilista ladatut tiedot'
       '#weak':
         primaryAddress: primaryAddress
         primaryEmail: primaryEmail
         primaryPhone: primaryPhone
-      '#description': 'These fields are populated from Helsinki Profile data.'
-      '#title_display': before
+      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
       '#description_display': after
       '#strong':
         verifiedFirstName: verifiedFirstName
