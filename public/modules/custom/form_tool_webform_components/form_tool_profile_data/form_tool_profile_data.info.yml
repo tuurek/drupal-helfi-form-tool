@@ -9,4 +9,4 @@ dependencies:
   - webform
 
 'interface translation project': form_tool_profile_data
-'interface translation server pattern': modules/custom/form_tool_profile_data/translations/%language.po
+'interface translation server pattern': modules/custom/form_tool_webform_components/form_tool_profile_data/translations/%language.po
