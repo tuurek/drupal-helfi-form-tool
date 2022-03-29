@@ -525,15 +525,16 @@ class FormToolWebformHandler extends WebformHandlerBase {
   }
 
   /**
-   * @param $level
-   *   Log Level
-   * @param $msg
-   *   Log message
-   * @param $t_args
-   *   Text arguments to pass to the message
-   * @return void
+   * Logs with an arbitrary level.
+   *
+   * @param mixed $level
+   *   Level of logging.
+   * @param string $msg
+   *   Message.
+   * @param mixed[] $t_args
+   *   Arguments passed to message.
    */
-  protected function log($level, $msg, $t_args) {
+  protected function log($level, $msg, array $t_args) {
     $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
     /* if (!empty($this->configuration['debug'])) {
     $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
