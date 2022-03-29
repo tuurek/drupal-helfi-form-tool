@@ -347,7 +347,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
         $this->log('warning', $msgString, $t_args);
 
-
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
         // $mailManager = \Drupal::service('plugin.manager.mail');
@@ -390,7 +389,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
         // }.
       }
       catch (\Exception $e) {
-        $this->log('error',  $e->getMessage());
+        $this->log('error', $e->getMessage());
       }
     }
     else {
@@ -524,6 +523,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
       $this->messenger()->addWarning($this->t('Invoked @id: @class_name:@method_name @context1', $t_args), TRUE);
     }
   }
+
   /**
    * Display the invoked plugin method to end user.
    *
@@ -534,9 +534,9 @@ class FormToolWebformHandler extends WebformHandlerBase {
    */
   protected function log($level, $msg, $t_args) {
     $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
-//    if (!empty($this->configuration['debug'])) {
-//      $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
-//    }
+    /* if (!empty($this->configuration['debug'])) {
+    $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
+    } */
   }
 
 }

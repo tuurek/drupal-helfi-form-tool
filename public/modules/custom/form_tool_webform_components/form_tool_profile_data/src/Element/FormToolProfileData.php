@@ -59,7 +59,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -71,7 +71,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -83,7 +83,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -95,7 +95,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -105,15 +105,15 @@ class FormToolProfileData extends WebformCompositeBase {
           '#type' => 'textfield',
           '#title' => $options['strong']['verifiedPermanentAddress'],
           '#value' =>
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"] . ', ' .
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"] . ', ' .
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' =>
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"] . ', ' .
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"] . ', ' .
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"] .
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -128,17 +128,17 @@ class FormToolProfileData extends WebformCompositeBase {
           '#type' => 'textfield',
           '#title' => $options['weak']['primaryAddress'],
           '#value' =>
-            $userProfile["myProfile"]["primaryAddress"]["address"] . ', ' .
-            $userProfile["myProfile"]["primaryAddress"]["postalCode"] . ', ' .
-            $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
-            $userProfile["myProfile"]["primaryAddress"]["countryCode"],
+          $userProfile["myProfile"]["primaryAddress"]["address"] . ', ' .
+          $userProfile["myProfile"]["primaryAddress"]["postalCode"] . ', ' .
+          $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
+          $userProfile["myProfile"]["primaryAddress"]["countryCode"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' =>
-            $userProfile["myProfile"]["primaryAddress"]["address"] . ', ' .
-            $userProfile["myProfile"]["primaryAddress"]["postalCode"] . ', ' .
-            $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
-            $userProfile["myProfile"]["primaryAddress"]["countryCode"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          $userProfile["myProfile"]["primaryAddress"]["address"] . ', ' .
+          $userProfile["myProfile"]["primaryAddress"]["postalCode"] . ', ' .
+          $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
+          $userProfile["myProfile"]["primaryAddress"]["countryCode"] .
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -150,7 +150,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["primaryEmail"]["email"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
@@ -161,7 +161,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['weak']['primaryPhone'],
           '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
           '#description' => $userProfile["myProfile"]["primaryPhone"]["phone"] .
-            ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
