@@ -536,9 +536,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
    */
   protected function log($level, $msg, array $t_args) {
     $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
-    /* if (!empty($this->configuration['debug'])) {
-    $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
-    } */
   }
 
 }
