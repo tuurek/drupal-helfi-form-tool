@@ -525,12 +525,13 @@ class FormToolWebformHandler extends WebformHandlerBase {
   }
 
   /**
-   * Display the invoked plugin method to end user.
-   *
-   * @param string $method_name
-   *   The invoked method name.
-   * @param string $context1
-   *   Additional parameter passed to the invoked method name.
+   * @param $level
+   *   Log Level
+   * @param $msg
+   *   Log message
+   * @param $t_args
+   *   Text arguments to pass to the message
+   * @return void
    */
   protected function log($level, $msg, $t_args) {
     $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
