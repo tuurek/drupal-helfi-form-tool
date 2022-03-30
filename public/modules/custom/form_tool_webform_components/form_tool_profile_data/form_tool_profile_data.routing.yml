@@ -1,0 +1,7 @@
+form_tool_profile_data.settings_form:
+  path: '/admin/config/system/form-tool-profile-data'
+  defaults:
+    _title: 'form_tool_profile_data settings'
+    _form: 'Drupal\form_tool_profile_data\Form\SettingsForm'
+  requirements:
+    _permission: 'administer form_tool_profile_data configuration'

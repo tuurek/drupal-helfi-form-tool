@@ -3,9 +3,10 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
 
 /**
- * @param $sector The name of the sector.
+ * @param $formsettings
  *
- * @return string The url to the privacy policy link for the sector.
+ * @return string
+ *  The url to the privacy policy link for the sector.
  */
 function _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -41,14 +42,6 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
   return 'https://asiakirjajulkisuus.hel.fi/';
 }
 
-/**
- * @file
- * Primary module hooks for Hel.fi Form Tool Webform Parameters module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
- */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
     if (array_key_exists('#webform_id', $form)) {
@@ -88,6 +81,14 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#title' => t('Person responsible (Owner)'),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'owner'),
       '#required' => TRUE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['email_notify'] = [
+      '#type' => 'textfield',
+      '#title' => t('Email address where notification is sent.'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'email_notify'),
+      '#description' => t('Add email where notification is sent after submission, leave empty for no notification')
+//      '#required' => TRUE,
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['form_code'] = [

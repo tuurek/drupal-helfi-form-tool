@@ -10,3 +10,6 @@ dependencies:
 version: '6.0.3'
 project: 'webform'
 datestamp: 1620250261
+
+'interface translation project': form_tool_contact_info
+'interface translation server pattern': public/modules/custom/form_tool_webform_components/form_tool_contact_info/translations/%language/%language.po

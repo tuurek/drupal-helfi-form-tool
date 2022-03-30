@@ -2,9 +2,11 @@
 
 namespace Drupal\form_tool_handler\Plugin\WebformHandler;
 
+use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform\Entity\WebformSubmission;
@@ -129,15 +131,6 @@ final class FormToolHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  // Public function access(WebformSubmissionInterface $webform_submission,
-  // $operation, AccountInterface $account = NULL):
-  // AccessResultNeutral|AccessResultInterface {
-  // return parent::access($webform_submission, $operation, $account);
-  // }.
-
-  /**
-   * {@inheritdoc}
-   */
   public function defaultConfiguration() {
     return [];
   }
@@ -239,8 +232,6 @@ final class FormToolHandler extends WebformHandlerBase {
    * @param \Drupal\webform\WebformSubmissionInterface $webform_submission
    *   Form submission object.
    *
-   * @throws \Drupal\helfi_atv\AtvDocumentNotFoundException
-   * @throws \Drupal\helfi_atv\AtvFailedToConnectException
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function confirmForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
@@ -273,7 +264,6 @@ final class FormToolHandler extends WebformHandlerBase {
       ];
 
       $helsinkiProfiili = $this->helsinkiProfiiliUserData->getUserData();
-      $helsinkiProfiiliData = $this->helsinkiProfiiliUserData->getUserProfileData();
       if (isset($helsinkiProfiili['sub'])) {
         $documentValues['user_id'] = $helsinkiProfiili['sub'];
       }
@@ -292,6 +282,68 @@ final class FormToolHandler extends WebformHandlerBase {
             'form_tool_id' => $formToolSubmissionId,
           ])
           ->execute();
+
+        $url = Url::fromRoute(
+          'form_tool_handler.view_submission',
+          ['id' => $formToolSubmissionId],
+          [
+            'attributes' => [
+              'data-drupal-selector' => 'form-submitted-ok',
+            ],
+          ]
+        );
+
+        $msg = $this->t(
+          'Form submission (@number) saved,
+                          see submitted data from @link',
+          [
+            '@number' => $formToolSubmissionId,
+            '@link' => Link::fromTextAndUrl('here', $url)->toString(),
+          ]);
+
+        $this->messenger()
+          ->addWarning($msg);
+
+        // If (isset($thirdPartySettings["email_notify"]) &&
+        // !empty($thirdPartySettings["email_notify"])) {
+        // $mailManager = \Drupal::service('plugin.manager.mail');
+        // $module = 'form_tool_handler';
+        // $key = 'submission_email_notify';
+        // $to = $thirdPartySettings["email_notify"];
+        //
+        // $url = Url::fromRoute(
+        // 'form_tool_handler.view_submission',
+        // ['id' => $formToolSubmissionId],
+        // [
+        // 'attributes' => [
+        // 'data-drupal-selector' => 'form-submitted-ok',
+        // ],
+        // ]
+        // );
+        //
+        // $params['message'] = $this->t(
+        // 'Form submission (@number) saved,
+        // see application status from @link',
+        // [
+        // '@number' => $formToolSubmissionId,
+        // '@link' => Link::fromTextAndUrl('here', $url)->toString(),
+        // ]);
+        //
+        // $params['form_title'] = $webForm->get('title');
+        // $langcode = \Drupal::currentUser()->getPreferredLangcode();
+        // $send = TRUE;
+        //
+        // $result = $mailManager->mail($module, $key, $to, $langcode, $params,
+        // NULL, $send);
+        //
+        // if ($result['result'] !== TRUE) {
+        // $this->messenger()->addStatus(t('There was a problem sending your
+        // message and it was not sent.'), 'error');
+        // }
+        // else {
+        // $this->messenger()->addStatus(t('Your message has been sent.'));
+        // }
+        // }.
       }
       catch (\Exception $e) {
         $this->getLogger('form_tool_handler')->error($e->getMessage());
@@ -321,10 +373,10 @@ final class FormToolHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function postLoad(WebformSubmissionInterface $webform_submission) {
-    if (!$this->isNewSubmission($webform_submission->uuid())) {
-      $this->messenger()
-        ->addWarning('No data is saved after initial submission.');
-    }
+    // If (!$this->isNewSubmission($webform_submission->uuid())) {
+    // $this->messenger()
+    // ->addWarning('Submitted data, no edits are possible.');
+    // }.
   }
 
 }

@@ -23,7 +23,6 @@ display:
             offset_label: Offset
       fields:
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Keskeneräinen
@@ -51,7 +50,6 @@ display:
         webform_submission_bulk_form:
           action_title: Toiminto
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Keskeneräinen
@@ -86,7 +84,6 @@ display:
         webform_submission_bulk_form:
           action_title: Toiminto
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Keskeneräinen
@@ -123,7 +120,6 @@ display:
     display_options:
       fields:
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Keskeneräinen

@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for form_tool_profile_data module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function form_tool_profile_data_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  $d = 'asdf';
+
+//  $form["properties"]["element"]["title"]["#default_value"] = 'asdf';
+}

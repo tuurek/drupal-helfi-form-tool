@@ -3,8 +3,8 @@ langcode: fi
 status: open
 dependencies:
   module:
-    - form_tool_handler
     - form_tool_webform_parameters
+    - webform_formtool_handler
 third_party_settings:
   form_tool_webform_parameters:
     owner: 'Omistajan nimi (TODO)'
@@ -15,7 +15,7 @@ third_party_settings:
     privacy_policy_sv: ''
     privacy_policy_en: ''
     privacy_policy_ru: ''
-    login_type: '2'
+    login_type: '1'
     sensitive: '1'
     form_code: TODISTUS
 weight: 0
@@ -32,6 +32,21 @@ elements: |-
   tilaaja:
     '#type': webform_section
     '#title': Tilaaja
+    profile_fields:
+      '#type': form_tool_profile_data
+      '#title': 'Profiilista ladatut tiedot'
+      '#weak':
+        primaryAddress: primaryAddress
+        primaryEmail: primaryEmail
+        primaryPhone: primaryPhone
+      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+      '#description_display': after
+      '#strong':
+        verifiedFirstName: verifiedFirstName
+        verifiedLastName: verifiedLastName
+        verifiedSsn: verifiedSsn
+        verifiedPermanentAddress: verifiedPermanentAddress
+        verifiedGivenName: 0
   tilattava_todistus:
     '#type': webform_section
     '#title': 'Tilattava todistus'
@@ -62,11 +77,11 @@ elements: |-
 css: ''
 javascript: ''
 settings:
-  ajax: false
+  ajax: true
   ajax_scroll_top: form
-  ajax_progress_type: ''
-  ajax_effect: ''
-  ajax_speed: null
+  ajax_progress_type: fullscreen
+  ajax_effect: none
+  ajax_speed: 1000
   page: true
   page_submit_path: ''
   page_confirm_path: ''
@@ -241,13 +256,14 @@ access:
     users: {  }
     permissions: {  }
 handlers:
-  form_tool_handler:
-    id: form_tool_handler
-    handler_id: form_tool_handler
-    label: 'form_tool webform handler'
+  formtool_webform_handler:
+    id: formtool_webform_handler
+    handler_id: formtool_webform_handler
+    label: 'Formtool Webform handler'
     notes: ''
     status: true
     conditions: {  }
     weight: 0
-    settings: {  }
+    settings:
+      debug: false
 variants: {  }

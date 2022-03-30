@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Provides an formtool of a webform handler.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * @return array
+ *  Theme setup.
+ */
+function webform_formtool_handler_theme(): array {
+  return [
+    'webform_formtool_handler_summary' => [
+      'variables' => ['settings' => NULL, 'handler' => []],
+    ],
+    'submission_print' => [
+      'variables' => [
+        'submission' => NULL,
+        'form' => NULL,
+        'id' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_mail().
+ *
+ * @param $key
+ *  Mailkey.
+ * @param $message
+ *  Message.
+ * @param $params
+ *  Options.
+ */
+function webform_formtool_handler_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'submission_email_notify':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('New submission for @title', array('@title' => $params['form_title']), $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}

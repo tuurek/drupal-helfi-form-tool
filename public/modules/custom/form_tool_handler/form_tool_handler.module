@@ -47,12 +47,33 @@ function form_tool_handler_webform_access_rules_alter(array &$access_rules) {
 }
 
 /**
+ * Implements hook_mail().
+ */
+function form_tool_handler_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'submission_email_notify':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('New submission for @title', array('@title' => $params['form_title']), $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function form_tool_handler_theme($existing, $type, $theme, $path) {
   return [
     'submission_print' => [
-      'variables' => ['submission' => NULL],
+      'variables' => [
+        'submission' => NULL,
+        'form' => NULL,
+        'id' => NULL,
+      ],
     ],
   ];
 }

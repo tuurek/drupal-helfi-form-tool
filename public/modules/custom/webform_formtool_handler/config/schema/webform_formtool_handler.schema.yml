@@ -1,0 +1,7 @@
+webform.handler.formtool:
+  type: mapping
+  label: Formtool
+  mapping:
+    debug:
+      type: boolean
+      label: 'Enable debugging'

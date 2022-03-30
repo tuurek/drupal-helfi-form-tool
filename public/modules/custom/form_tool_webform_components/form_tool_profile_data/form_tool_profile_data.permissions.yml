@@ -1,0 +1,4 @@
+administer form_tool_profile_data configuration:
+  title: 'Administer form_tool_profile_data configuration'
+  description: 'Optional description.'
+  restrict access: true

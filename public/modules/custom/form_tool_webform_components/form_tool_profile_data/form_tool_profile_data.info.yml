@@ -1,0 +1,12 @@
+name: form_tool_profile_data
+type: module
+description: Create &amp; hold fields populated from helsinki profile data
+package: Helfi
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - helfi_helsinki_profiili
+  - webform
+
+'interface translation project': form_tool_profile_data
+'interface translation server pattern': modules/custom/form_tool_webform_components/form_tool_profile_data/translations/%language/%language.po
