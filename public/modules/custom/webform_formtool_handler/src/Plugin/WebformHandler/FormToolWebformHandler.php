@@ -533,7 +533,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
    *   Arguments passed to message.
    */
   protected function log($level, $msg, array $t_args) {
-    $this->getLogger('webform_formtool_handler')->log($level, $msg.', '.json_encode($t_args));
+    $this->getLogger('webform_formtool_handler')->log($level, $msg . ', ' . json_encode($t_args));
   }
 
 }
