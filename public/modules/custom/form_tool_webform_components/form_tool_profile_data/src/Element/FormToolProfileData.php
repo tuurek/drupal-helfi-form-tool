@@ -60,9 +60,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['verifiedFirstName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedLastName']) && $selectedFields['verifiedLastName'] !== 0) {
         $elements['verifiedLastName'] = [
@@ -72,9 +72,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['verifiedLastName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedSsn']) && $selectedFields['verifiedSsn'] !== 0) {
         $elements['verifiedSsn'] = [
@@ -84,9 +84,10 @@ class FormToolProfileData extends WebformCompositeBase {
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['verifiedSsn']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
+
       }
       if (isset($selectedFields['verifiedGivenName']) && $selectedFields['verifiedGivenName'] !== 0) {
         $elements['verifiedGivenName'] = [
@@ -96,9 +97,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['verifiedGivenName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedPermanentAddress']) && $selectedFields['verifiedPermanentAddress'] !== 0) {
         $elements['verifiedPermanentAddress'] = [
@@ -114,9 +115,9 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
     }
 
@@ -139,9 +140,9 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["countryCode"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['primaryEmail']) && $selectedFields['primaryEmail'] !== 0) {
         $elements['primaryEmail'] = [
@@ -151,9 +152,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => $userProfile["myProfile"]["primaryEmail"]["email"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['primaryPhone']) && $selectedFields['primaryPhone'] !== 0) {
         $elements['primaryPhone'] = [
@@ -163,9 +164,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#description' => $userProfile["myProfile"]["primaryPhone"]["phone"] .
           ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#wrapper_attributes' => ['class' => 'form_tool__prefilled_field'],
           '#required' => TRUE,
         ];
+        $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
     }
 
