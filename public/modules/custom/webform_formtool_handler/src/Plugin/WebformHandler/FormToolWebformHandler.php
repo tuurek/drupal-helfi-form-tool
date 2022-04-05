@@ -330,22 +330,20 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ]
         );
 
-        $msgString = 'Form submission (@number) saved, see submitted data from @link';
-
         $t_args = [
           '@number' => $formToolSubmissionId,
           '@link' => Link::fromTextAndUrl('here', $url)->toString(),
         ];
 
         $msg = $this->t(
-          $msgString,
+          'Form submission (@number) saved, see submitted data from @link',
           $t_args
           );
 
         $this->messenger()
           ->addWarning($msg);
 
-        $this->log('warning', $msgString, $t_args);
+        $this->log('warning', 'Form submission (@number) saved, see submitted data from @link', $t_args);
 
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
@@ -535,7 +533,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
    *   Arguments passed to message.
    */
   protected function log($level, $msg, array $t_args) {
-    $this->getLogger('webform_formtool_handler')->log($level, $this->t($msg, $t_args));
+    $this->getLogger('webform_formtool_handler')->log($level, $msg.', '.json_encode($t_args));
   }
 
 }
