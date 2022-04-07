@@ -36,6 +36,7 @@ module:
   filter: 0
   focal_point: 0
   form_tool_contact_info: 0
+  form_tool_handler: 0
   form_tool_profile_data: 0
   form_tool_webform_parameters: 0
   form_tool_webform_print: 0
@@ -114,7 +115,6 @@ module:
   webform_access: 0
   webform_attachment: 0
   webform_example_composite: 0
-  webform_formtool_handler: 0
   webform_node: 0
   webform_rest: 0
   webform_share: 0
