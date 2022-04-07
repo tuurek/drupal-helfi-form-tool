@@ -147,7 +147,7 @@ function form_tool_handler_webform_insert(\Drupal\webform\Entity\Webform $entity
   $handler_configuration = [
     'id' => 'form_tool_handler',
     'label' => 'Form Tool Handler',
-    'handler_id' => 'form_tool_webform_handler',
+    'handler_id' => 'form_tool_handler',
     'status' => TRUE,
     'weight' => 0,
     'settings' => [],
