@@ -3,8 +3,8 @@ langcode: fi
 status: open
 dependencies:
   module:
-    - form_tool_handler
     - form_tool_webform_parameters
+    - webform_formtool_handler
 third_party_settings:
   form_tool_webform_parameters:
     owner: 'Omistajan nimi (TODO)'
@@ -262,13 +262,14 @@ access:
     roles:
       - helsinkiprofiili_vahva
 handlers:
-  form_tool_webform_handler:
-    id: form_tool_handler
-    handler_id: form_tool_webform_handler
-    label: 'form_tool webform handler'
+  formtool_webform_handler:
+    id: formtool_webform_handler
+    handler_id: formtool_webform_handler
+    label: 'Formtool Webform handler'
     notes: ''
     status: true
     conditions: {  }
     weight: 0
-    settings: {  }
+    settings:
+      debug: false
 variants: {  }

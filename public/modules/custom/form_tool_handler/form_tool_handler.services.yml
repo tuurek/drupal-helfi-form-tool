@@ -1,6 +1,0 @@
-services:
-  form_tool_handler.event_subscriber:
-    class: Drupal\form_tool_handler\EventSubscriber\FormToolHandlerSubscriber
-    arguments: ['@messenger']
-    tags:
-      - { name: event_subscriber }
