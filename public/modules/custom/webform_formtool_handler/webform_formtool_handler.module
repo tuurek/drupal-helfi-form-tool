@@ -50,6 +50,20 @@ function webform_formtool_handler_mail($key, &$message, $params) {
   }
 }
 
+///**
+// * Implements hook_entity_access().
+// */
+//function webform_formtool_handler_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+//
+//}
+//
+///**
+// * Implements hook_ENTITY_TYPE_access().
+// */
+//function webform_formtool_handler_webform_submission_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+//
+//
+//}
 
 
 /**
