@@ -15,9 +15,10 @@ third_party_settings:
     privacy_policy_sv: ''
     privacy_policy_en: ''
     privacy_policy_ru: ''
-    login_type: '1'
+    login_type: '2'
     sensitive: '1'
     form_code: TODISTUS
+    email_notify: ''
 weight: 0
 open: null
 close: null
@@ -211,32 +212,33 @@ settings:
 access:
   create:
     roles:
-      - anonymous
-      - authenticated
+      - helsinkiprofiili_vahva
+      - admin
     users: {  }
     permissions: {  }
   view_any:
-    roles: {  }
+    roles:
+      - admin
     users: {  }
     permissions: {  }
   update_any:
-    roles: {  }
+    roles:
+      - admin
     users: {  }
     permissions: {  }
   delete_any:
-    roles: {  }
+    roles:
+      - admin
     users: {  }
     permissions: {  }
   purge_any:
-    roles: {  }
-    users: {  }
-    permissions: {  }
-  view_own:
-    roles: {  }
+    roles:
+      - admin
     users: {  }
     permissions: {  }
   update_own:
-    roles: {  }
+    roles:
+      - helsinkiprofiili_vahva
     users: {  }
     permissions: {  }
   delete_own:
@@ -248,13 +250,17 @@ access:
     users: {  }
     permissions: {  }
   test:
-    roles: {  }
+    roles:
+      - verkkolomake_hallinnoija
     users: {  }
     permissions: {  }
   configuration:
     roles: {  }
     users: {  }
     permissions: {  }
+  view_own:
+    roles:
+      - helsinkiprofiili_vahva
 handlers:
   formtool_webform_handler:
     id: formtool_webform_handler

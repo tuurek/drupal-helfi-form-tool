@@ -1,4 +1,0 @@
-administer form_tool_handler configuration:
-  title: 'Administer form_tool_handler configuration'
-  description: 'Optional description.'
-  restrict access: true

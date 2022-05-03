@@ -176,10 +176,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-    if ($value = $form_state->getValue('element')) {
-      $form_state->setErrorByName('element', $this->t('The element must be empty. You entered %value.', ['%value' => $value]));
-    }
+    $retval = parent::validateForm($form, $form_state, $webform_submission);
+
+    $errors = $form_state->getErrors();
+
   }
 
   /**
@@ -341,9 +341,9 @@ class FormToolWebformHandler extends WebformHandlerBase {
           );
 
         $this->messenger()
-          ->addWarning($msg);
+          ->addStatus($msg);
 
-        $this->log('warning', 'Form submission (@number) saved, see submitted data from @link', $t_args);
+        $this->log('info', 'Form submission (@number) saved, see submitted data from @link', $t_args);
 
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
