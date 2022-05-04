@@ -1,0 +1,189 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Form Tool Share module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+
+
+/* ************************************************************************** */
+// Theme functions.
+/* ************************************************************************** */
+
+use Drupal\form_tool_share\FormToolShareHelper;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_theme().
+ */
+function form_tool_share_theme($existing, $type, $theme, $path) {
+  return [
+    // Using dedicated html and page template ensures the shared webforms
+    // output is as simple as possible.
+    'html__form_tool_share' => [
+      'render element' => 'html',
+    ],
+    'page__form_tool_share' => [
+      'render element' => 'page',
+    ],
+    'form_tool_share_iframe' => [
+      'render element' => 'element',
+    ],
+    'form_tool_share_script' => [
+      'render element' => 'element',
+    ],
+    'form_tool_share_completion' => [
+      'variables' => [
+        'submissionData' => NULL,
+        'submissionId' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function form_tool_share_theme_suggestions_html(array $variables) {
+  return (FormToolShareHelper::isPage()) ? ['html__form_tool_share'] : [];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function form_tool_share_theme_suggestions_page(array $variables) {
+  return (FormToolShareHelper::isPage()) ? ['page__form_tool_share'] : [];
+}
+
+/**
+ * Prepares variables for the webform share page HTML templates.
+ */
+function template_preprocess_html__form_tool_share(&$variables) {
+  // Make sure the variables are preprocessed.
+  // @see template_preprocess_page()
+  if (!isset($variables['page'])) {
+    template_preprocess_html($variables);
+  }
+
+  /** @var \Drupal\webform\WebformInterface $webform */
+  $webform = \Drupal::routeMatch()->getParameter('webform');
+
+  // Add custom page body attributes.
+  $body_attributes = [];
+
+  if ($webform === NULL) {
+    $submissionId = \Drupal::routeMatch()->getParameter('submissionId');
+    $variables['html_attributes']->addClass('completion-page');
+  }
+  else {
+    // Add custom page body attributes.
+    $body_attributes = $webform->getSetting('share_page_body_attributes');
+    if (isset($body_attributes['class'])) {
+      $variables['attributes']['class'] = array_merge($variables['attributes']['class'], $body_attributes['class']);
+      unset($body_attributes['class']);
+    }
+
+    // Prepend page title to the content because all blocks are hidden.
+    // @see form_tool_share_block_access()
+    // @see https://drupal.stackexchange.com/questions/112757/how-can-i-get-the-page-title/112758
+    if ($webform->getSetting('share_title')) {
+      $request = \Drupal::request();
+      $route_match = \Drupal::routeMatch();
+      $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+      $variables['page']['content']['page_title'] = [
+        '#type' => 'page_title',
+        '#title' => $title,
+        // Move page title before the message block (weight: 1000)
+        // @see \Drupal\block\Plugin\DisplayVariant\BlockPageVariant::build
+        '#weight' => -1001,
+      ];
+    }
+  }
+
+  // Add html.form-tool-share-page-html class.
+  $variables['html_attributes']->addClass('form-tool-share-page-html');
+
+  // Add body.form-tool-share-page-body class.
+  // @see form_tool_share.page.css
+  $variables['attributes'] += ['class' => []];
+  $variables['attributes']['class'][] = 'form-tool-share-page-body';
+
+  $variables['attributes'] = $body_attributes + $variables['attributes'];
+
+  foreach ($variables['attributes']['class'] as $index => $class_name) {
+    if (strpos($class_name, 'toolbar-') === 0) {
+      unset($variables['attributes']['class'][$index]);
+    }
+  }
+  $variables['attributes']['class'] = array_values($variables['attributes']['class']);
+
+
+}
+
+/**
+ * Prepares variables for the webform share page templates.
+ */
+function template_preprocess_page__form_tool_share(&$variables) {
+  // Make sure the variables are preprocessed.
+  // @see template_preprocess_page()
+  if (!isset($variables['base_path'])) {
+    template_preprocess_page($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page title templates.
+ */
+function form_tool_share_preprocess_page_title(&$variables) {
+  if (!FormToolShareHelper::isPage()) {
+    return;
+  }
+
+  // Remove shortcut widget from page title.
+  // @see shortcut_preprocess_page_title()
+  if (isset($variables['title_suffix'])) {
+    unset($variables['title_suffix']['add_or_remove_shortcut']);
+  }
+}
+
+/**
+ * Prepares variables for webform share iframe templates.
+ *
+ * Default template: form-tool-share-iframe.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ *     Properties used: #webform, #javascript, #options, and #attributes.
+ */
+function template_preprocess_form_tool_share_iframe(array &$variables) {
+  $element = $variables['element'];
+
+  // Set javascript.
+  $variables['javascript'] = $element['#javascript'];
+
+  // Set iframe-resizer script options.
+  $variables['script'] = $element['#script'];
+  $options = json_encode($element['#options'], JSON_FORCE_OBJECT);
+  $variables['options'] = Markup::create($options);
+}
+
+/**
+ * Prepares variables for webform share script templates.
+ *
+ * Default template: form-tool-share-script.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ *     Properties used: #webform, #javascript, #options, and #attributes.
+ */
+function template_preprocess_form_tool_share_script(array &$variables) {
+  $element = $variables['element'];
+  $variables['script'] = $element['#script'];
+}

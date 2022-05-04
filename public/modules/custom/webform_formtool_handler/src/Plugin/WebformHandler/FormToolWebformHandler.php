@@ -330,6 +330,11 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ]
         );
 
+        $completionUrl = Url::fromRoute(
+          'entity.form_tool_share.completion',
+          ['submissionId' => $formToolSubmissionId]
+        );
+
         $t_args = [
           '@number' => $formToolSubmissionId,
           '@link' => Link::fromTextAndUrl('here', $url)->toString(),
@@ -344,6 +349,8 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ->addStatus($msg);
 
         $this->log('info', 'Form submission (@number) saved, see submitted data from @link', $t_args);
+
+        $form_state->setRedirectUrl($completionUrl);
 
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
@@ -387,7 +394,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
         // }.
       }
       catch (\Exception $e) {
-        $this->log('error', $e->getMessage());
+        $this->log('error', $e->getMessage(), []);
       }
     }
     else {
