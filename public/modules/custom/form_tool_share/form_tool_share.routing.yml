@@ -44,3 +44,13 @@ entity.form_tool_share.completion:
     _controller: '\Drupal\form_tool_share\Controller\FormCompletionController::build'
   requirements:
     _permission: 'access content'
+
+form_tool_share.meta:
+  path: '/formtool/metadata'
+  defaults:
+    _title: 'Metadata'
+    _controller: '\Drupal\form_tool_share\Controller\FormMetaDataController::build'
+  requirements:
+    _permission: 'access content'
+  options:
+    _auth: [ 'token_auth' ]

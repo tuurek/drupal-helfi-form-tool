@@ -50,22 +50,6 @@ function webform_formtool_handler_mail($key, &$message, $params) {
   }
 }
 
-///**
-// * Implements hook_entity_access().
-// */
-//function webform_formtool_handler_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
-//
-//}
-//
-///**
-// * Implements hook_ENTITY_TYPE_access().
-// */
-//function webform_formtool_handler_webform_submission_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
-//
-//
-//}
-
-
 /**
  * Implements hook_entity_presave().
  */
@@ -216,5 +200,7 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
 function webform_formtool_handler_entity_type_alter(array &$entity_types) {
   // Add our custom handler for webform
 //  $entity_types['webform_submission']->setStorageClass('Drupal\form_tool_handler\FormToolSubmissionStorage');
+  $d = 'adsf';
 }
+
 

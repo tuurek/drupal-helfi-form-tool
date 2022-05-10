@@ -74,6 +74,9 @@ if(getenv('APP_ENV') == 'production'){
 // Drupal route(s).
 $routes = (getenv('DRUPAL_ROUTES')) ? explode(',', getenv('DRUPAL_ROUTES')) : [];
 
+$routes[] = 'http://hel-fi-form-tool-app';
+$routes[] = 'http://hel-fi-form-tool-app:8080';
+
 foreach ($routes as $route) {
   $hosts[] = $host = parse_url($route)['host'];
   $trusted_host = str_replace('.', '\.', $host);

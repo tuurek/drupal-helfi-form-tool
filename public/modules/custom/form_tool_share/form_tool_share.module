@@ -187,3 +187,12 @@ function template_preprocess_form_tool_share_script(array &$variables) {
   $element = $variables['element'];
   $variables['script'] = $element['#script'];
 }
+
+/**
+ * Implements hook_webform_submission_access().
+ */
+function form_tool_share_webform_submission_access(\Drupal\webform\WebformSubmissionInterface $webform_submission, $operation, \Drupal\Core\Session\AccountInterface $account) {
+
+  $d = 'adfg';
+
+}

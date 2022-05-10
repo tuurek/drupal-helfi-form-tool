@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
+use Drupal\webform\Entity\WebformSubmission;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -111,10 +112,8 @@ class FormToolSubmissionController extends ControllerBase {
 
       }
       catch (\Exception | GuzzleException $e) {
-        $this->loggerFactory->get('webform_formtool_handler')->error($e->getMessage());
-      }
-      catch (GuzzleException $e) {
-
+        $this->messenger()->addError($e->getMessage());
+        $this->getLogger('webform_formtool_handler')->error($e->getMessage());
       }
     }
 

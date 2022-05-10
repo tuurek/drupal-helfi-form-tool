@@ -1,5 +1,5 @@
-uuid: 44a46ee7-d351-47e5-9cff-5b2538f6c93c
-langcode: fi
+uuid: b4da998f-0b15-41e9-805a-b174f260f490
+langcode: en
 status: open
 dependencies:
   module:
@@ -7,83 +7,52 @@ dependencies:
     - webform_formtool_handler
 third_party_settings:
   form_tool_webform_parameters:
-    owner: 'Omistajan nimi (TODO)'
-    sector: Sektori
-    ad_group: AD-ryhmä
-    postal_address: ''
-    privacy_policy: ''
-    privacy_policy_sv: ''
-    privacy_policy_en: ''
+    owner: 'Meikä itte'
+    email_notify: test@testi.com
+    form_code: TESTI123
+    sector: Liikenne
+    ad_group: helfi.liikenne
+    postal_address: "sadfasdf \r\nasdf"
+    privacy_policy: asdf
+    privacy_policy_sv: fdas
+    privacy_policy_en: asdg
     privacy_policy_ru: ''
     login_type: '2'
     sensitive: '1'
-    form_code: TODISTUS
-    email_notify: ''
-    status: public
 weight: 0
 open: null
 close: null
 uid: 1
 template: false
 archive: false
-id: todistusjaljennospyynto_tilaus
-title: 'Todistusjäljennöspyyntö, tilaus'
-description: 'Todistusj&auml;ljenn&ouml;slomakkeen MVP-versio'
-category: ''
+id: testilomake
+title: Testilomake
+description: fasdfasdf
+category: Formtool
 elements: |-
-  tilaaja:
-    '#type': webform_section
-    '#title': Tilaaja
-    profile_fields:
-      '#type': form_tool_profile_data
-      '#title': 'Profiilista ladatut tiedot'
-      '#weak':
-        primaryAddress: primaryAddress
-        primaryEmail: primaryEmail
-        primaryPhone: primaryPhone
-      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
-      '#description_display': after
-      '#strong':
-        verifiedFirstName: verifiedFirstName
-        verifiedLastName: verifiedLastName
-        verifiedSsn: verifiedSsn
-        verifiedPermanentAddress: verifiedPermanentAddress
-        verifiedGivenName: 0
-  tilattava_todistus:
-    '#type': webform_section
-    '#title': 'Tilattava todistus'
-    valitse_tilattava_todistus:
-      '#type': radios
-      '#title': 'Valitse tilattava todistus'
-      '#options':
-        'Peruskoulun päättötodistus': 'Peruskoulun päättötodistus'
-        'Peruskoulun erotodistus': 'Peruskoulun erotodistus'
-        'Lisäopetuksen 10.lk todistus': 'Lisäopetuksen 10.lk todistus'
-        'Lukion päättötodistus': 'Lukion päättötodistus'
-        'Lukion erotodistus': 'Lukion erotodistus'
-    todistuksen_antanut_helsinkilainen_koulu:
-      '#type': textfield
-      '#title': 'Todistuksen antanut Helsinkiläinen koulu'
-      '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
-  toimitustapa:
-    '#type': webform_section
-    '#title': Toimitustapa
-    valitse_toimitustapa:
-      '#type': form_tool_contact_info
-      '#title': 'Valitse toimitustapa'
-      '#Toimitustapa: Email__access': false
-      '#Toimitustapa: Postitoimitus__access': false
-      '#Toimitustapa: Postiennakko__title': Postiennakko
-      '#Toimitustapa: Nouto__title': Nouto
-      '#Nouto -teksti__title': 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki'
+  profile_fields:
+    '#type': form_tool_profile_data
+    '#title': 'Profile fields'
+    '#strong':
+      verifiedFirstName: verifiedFirstName
+      verifiedLastName: verifiedLastName
+      verifiedGivenName: verifiedGivenName
+      verifiedSsn: verifiedSsn
+      verifiedPermanentAddress: verifiedPermanentAddress
+  delivery:
+    '#type': form_tool_contact_info
+    '#title': Delivery
+  randomkentta:
+    '#type': textfield
+    '#title': Randomkenttä
 css: ''
 javascript: ''
 settings:
-  ajax: true
+  ajax: false
   ajax_scroll_top: form
-  ajax_progress_type: fullscreen
-  ajax_effect: none
-  ajax_speed: 1000
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
   page: true
   page_submit_path: ''
   page_confirm_path: ''
@@ -266,7 +235,7 @@ handlers:
   formtool_webform_handler:
     id: formtool_webform_handler
     handler_id: formtool_webform_handler
-    label: 'Formtool Webform handler'
+    label: 'Form Tool Handler'
     notes: ''
     status: true
     conditions: {  }
