@@ -24,11 +24,13 @@ class AuthToken implements AuthenticationProviderInterface {
    */
   public function authenticate(Request $request): UserSession|AccountInterface|NULL {
     $token = $request->headers->get('X-Auth-Token');
-    // Validate the token.
-    // Return NULL, if validation failed.
-    // return NULL;.
-    // Return a session if the request passes the validation.
-    return new UserSession();
+    $validToken = getenv('FORM_TOOL_TOKEN');
+
+    if ($token === $validToken) {
+      // Return a session if the request passes the validation.
+      return new UserSession();
+    }
+     return NULL;
   }
 
 }
