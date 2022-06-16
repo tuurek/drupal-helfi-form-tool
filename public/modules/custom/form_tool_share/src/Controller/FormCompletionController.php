@@ -14,6 +14,18 @@ class FormCompletionController extends ControllerBase {
    */
   public function build($submissionId): array {
 
+    // mitä pitää hakea tähän?
+//    $submisisonObject = ASDFASASDF::getSubmissionsFor($submissionId);
+
+    // - palvelusivun urli
+    // - ite datan näyttämisen urli
+    // - htmllää templateen
+    // - translator?
+    // - 3rd party wysiwyg
+
+
+
+
     return [
       '#theme' => 'form_tool_share_completion',
       '#submissionId' => $submissionId,
