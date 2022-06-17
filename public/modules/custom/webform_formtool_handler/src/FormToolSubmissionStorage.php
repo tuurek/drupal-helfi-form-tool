@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\form_tool_handler;
+namespace Drupal\webform_formtool_handler;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityHandlerInterface;
