@@ -113,46 +113,48 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
   $acc['configuration']['users'] = [];
   $acc['configuration']['permissions'] = [];
 
-  // and then per login type
-  switch ($thirdPartySettings["login_type"]) {
-    // strong auth
-    case '2':
+  if (isset($thirdPartySettings["login_type"])) {
+    // and then per login type
+    switch ($thirdPartySettings["login_type"]) {
+      // strong auth
+      case '2':
 
-      $acc['create']['roles'] = [
-        'helsinkiprofiili_vahva',
-        'admin',
-      ];
+        $acc['create']['roles'] = [
+          'helsinkiprofiili_vahva',
+          'admin',
+        ];
 
-      $acc['update_own']['roles'] = [
-        'helsinkiprofiili_vahva',
-      ];
+        $acc['update_own']['roles'] = [
+          'helsinkiprofiili_vahva',
+        ];
 
-      $acc['view_own']['roles'] = [
-        'helsinkiprofiili_vahva',
-      ];
+        $acc['view_own']['roles'] = [
+          'helsinkiprofiili_vahva',
+        ];
 
-      break;
-    // weak auth
-    case '1':
-      $acc['create']['roles'] = [
-        'helsinkiprofiili_heikko',
-        'admin',
-      ];
+        break;
+      // weak auth
+      case '1':
+        $acc['create']['roles'] = [
+          'helsinkiprofiili_heikko',
+          'admin',
+        ];
 
-      $acc['update_own']['roles'] = [
-        'helsinkiprofiili_heikko',
-      ];
-      $acc['view_own']['roles'] = [
-        'helsinkiprofiili_heikko',
-      ];
-      break;
+        $acc['update_own']['roles'] = [
+          'helsinkiprofiili_heikko',
+        ];
+        $acc['view_own']['roles'] = [
+          'helsinkiprofiili_heikko',
+        ];
+        break;
 
-    // all other cases.
-    default:
-      $acc['create']['roles'] = [
-        'anonymous',
-      ];
-      break;
+      // all other cases.
+      default:
+        $acc['create']['roles'] = [
+          'anonymous',
+        ];
+        break;
+    }
   }
 
   // set rules

@@ -3,13 +3,11 @@
 namespace Drupal\webform_formtool_handler\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Database\Connection;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
-use Drupal\webform\Entity\WebformSubmission;
-use GuzzleHttp\Exception\GuzzleException;
+use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Returns responses for Form Tool Handler routes.
@@ -31,11 +29,11 @@ class FormToolSubmissionController extends ControllerBase {
   protected HelsinkiProfiiliUserData $helfiHelsinkiProfiili;
 
   /**
-   * Database connection.
+   * Current user.
    *
-   * @var \Drupal\Core\Database\Connection
+   * @var \Drupal\Core\Session\AccountInterface
    */
-  protected Connection $connection;
+  protected AccountInterface $account;
 
   /**
    * The controller constructor.
@@ -44,17 +42,14 @@ class FormToolSubmissionController extends ControllerBase {
    *   The helfi_atv service.
    * @param \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $helfi_helsinki_profiili
    *   The helfi_helsinki_profiili service.
-   * @param \Drupal\Core\Database\Connection $connection
-   *   Database connection for fetching data.
    */
   public function __construct(
     AtvService $helfi_atv,
-    HelsinkiProfiiliUserData $helfi_helsinki_profiili,
-    Connection $connection
+    HelsinkiProfiiliUserData $helfi_helsinki_profiili
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
-    $this->connection = $connection;
+    $this->account = \Drupal::currentUser();
   }
 
   /**
@@ -63,9 +58,7 @@ class FormToolSubmissionController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('helfi_atv.atv_service'),
-      $container->get('helfi_helsinki_profiili.userdata'),
-      $container->get('database')
-
+      $container->get('helfi_helsinki_profiili.userdata')
     );
   }
 
@@ -85,38 +78,9 @@ class FormToolSubmissionController extends ControllerBase {
    */
   public function build(string $id): array {
 
-    /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
-    // $hpud = \Drupal::service('helfi_helsinki_profiili.userdata');
-    // $d = $hpud->getUserData();
-    // $dd = $hpud->getUserProfileData();
-    $result = $this->connection->query("SELECT submission_uuid,document_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
-      ':form_tool_id' => $id,
-    ]);
-    $data = $result->fetchObject();
+    $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($id);
 
-    if ($data == FALSE) {
-      throw new NotFoundHttpException();
-    }
-
-    /** @var \Drupal\webform\Entity\WebformSubmission $entity */
-    $entity = \Drupal::service('entity.repository')
-      ->loadEntityByUuid('webform_submission', $data->submission_uuid);
-
-    if ($entity) {
-      /** @var \Drupal\helfi_atv\AtvDocument $document */
-      try {
-        $document = $this->helfiAtv->getDocument($data->document_uuid);
-
-        $documentContent = $document->getContent();
-        $entity->setData($documentContent);
-
-      }
-      catch (\Exception | GuzzleException $e) {
-        $this->messenger()->addError($e->getMessage());
-        $this->getLogger('webform_formtool_handler')->error($e->getMessage());
-      }
-    }
-
+    // dump($entity);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('webform_submission');
     $pre_render = $view_builder->view($entity);
 

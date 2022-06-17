@@ -41,6 +41,7 @@ function form_tool_share_theme($existing, $type, $theme, $path) {
       'variables' => [
         'submissionData' => NULL,
         'submissionId' => NULL,
+        'message' => NULL
       ],
     ],
   ];

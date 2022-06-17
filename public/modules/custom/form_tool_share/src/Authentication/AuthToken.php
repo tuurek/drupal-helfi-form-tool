@@ -30,7 +30,7 @@ class AuthToken implements AuthenticationProviderInterface {
       // Return a session if the request passes the validation.
       return new UserSession();
     }
-     return NULL;
+    return NULL;
   }
 
 }

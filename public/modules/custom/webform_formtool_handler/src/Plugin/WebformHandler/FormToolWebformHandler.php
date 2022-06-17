@@ -10,9 +10,10 @@ use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
-use Drupal\webform\WebformInterface;
 use Drupal\webform\WebformSubmissionInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Webform formtool handler.
@@ -154,31 +155,12 @@ class FormToolWebformHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  public function alterElements(array &$elements, WebformInterface $webform) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function overrideSettings(array &$settings, WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function alterForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    $retval = parent::validateForm($form, $form_state, $webform_submission);
 
+    parent::validateForm($form, $form_state, $webform_submission);
     $errors = $form_state->getErrors();
+
+    $this->submittedFormData = $webform_submission->getData();
 
   }
 
@@ -250,13 +232,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
     return 'HEL-' . strtoupper($thirdPartySettings['form_code']) . '-' . sprintf('%08d', $submission->id()) . '-' . $appParam;
 
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
   }
 
   /**
@@ -348,7 +323,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
         $this->messenger()
           ->addStatus($msg);
 
-        $this->log('info', 'Form submission (@number) saved, see submitted data from @link', $t_args);
+        $this->log('info', $msg->render(), []);
 
         $form_state->setRedirectUrl($completionUrl);
 
@@ -401,112 +376,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
       $this->messenger()
         ->addWarning('Webform already submitted, data is not saved');
     }
-
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preCreate(array &$values) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postCreate(WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postLoad(WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preDelete(WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postDelete(WebformSubmissionInterface $webform_submission) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preSave(WebformSubmissionInterface $webform_submission) {
-
-    // Get data from form submission
-    // and set it to class private variable.
-    $this->submittedFormData = $webform_submission->getData();
-    // Save no data locally.
-    $webform_submission->setData([]);
-
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
-    $this->debug(__FUNCTION__, $update ? 'update' : 'insert');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preprocessConfirmation(array &$variables) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function createHandler() {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function updateHandler() {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function deleteHandler() {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function createElement($key, array $element) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function updateElement($key, array $element, array $original_element) {
-    $this->debug(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function deleteElement($key, array $element) {
-    $this->debug(__FUNCTION__);
   }
 
   /**
@@ -540,7 +409,64 @@ class FormToolWebformHandler extends WebformHandlerBase {
    *   Arguments passed to message.
    */
   protected function log($level, $msg, array $t_args) {
-    $this->getLogger('webform_formtool_handler')->log($level, $msg . ', ' . json_encode($t_args));
+    $this->getLogger('webform_formtool_handler')->log($level, $msg);
+  }
+
+  /**
+   * Load submission object from database via generated form id.
+   *
+   * @param string $id
+   *   Form submission id.
+   *
+   * @return \Drupal\webform\Entity\WebformSubmission|null
+   *   Loaded object or null if not found.
+   */
+  public static function submissionObjectAndDataFromFormId(string $id): ?WebformSubmission {
+    $result = \Drupal::service('database')->query("SELECT submission_uuid,document_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
+      ':form_tool_id' => $id,
+    ]);
+    $data = $result->fetchObject();
+
+    if ($data == FALSE) {
+      throw new NotFoundHttpException();
+    }
+
+    /** @var \Drupal\helfi_atv\AtvService $atvService */
+    $atvService = \Drupal::service('helfi_atv.atv_service');
+
+    /** @var \Drupal\Core\Messenger\Messenger $messenger */
+    $messenger = \Drupal::messenger();
+
+    /** @var \Drupal\Core\Logger\LoggerChannelInterface $logger */
+    $logger = \Drupal::logger('webform_formtool_handler');
+
+    /** @var \Drupal\webform\Entity\WebformSubmission $entity */
+    $entity = \Drupal::service('entity.repository')
+      ->loadEntityByUuid('webform_submission', $data->submission_uuid);
+
+    /** @var \Drupal\Core\Session\AccountInterface $account */
+    $account = \Drupal::currentUser();
+
+    if ($entity && $entity->access('view', $account)) {
+      /** @var \Drupal\helfi_atv\AtvDocument $document */
+      try {
+
+        $document = $atvService->getDocument($data->document_uuid);
+
+        $documentContent = $document->getContent();
+        $entity->setData($documentContent);
+
+      }
+      catch (\Exception | GuzzleException $e) {
+        $messenger->addError($e->getMessage());
+        $logger->error($e->getMessage());
+      }
+    }
+    else {
+      throw new NotFoundHttpException(t('Form not found')->render());
+    }
+
+    return $entity;
   }
 
 }
