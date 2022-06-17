@@ -200,9 +200,7 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
  * Implements hook_entity_type_alter().
  */
 function webform_formtool_handler_entity_type_alter(array &$entity_types) {
-  // Add our custom handler for webform
-//  $entity_types['webform_submission']->setStorageClass('Drupal\form_tool_handler\FormToolSubmissionStorage');
-  $d = 'adsf';
+  // todo: why is this not used?
+  $entity_types['webform_submission']->setStorageClass('Drupal\webform_formtool_handler\FormToolSubmissionStorage');
 }
-
 

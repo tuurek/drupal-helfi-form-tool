@@ -160,8 +160,19 @@ class FormToolWebformHandler extends WebformHandlerBase {
     parent::validateForm($form, $form_state, $webform_submission);
     $errors = $form_state->getErrors();
 
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(WebformSubmissionInterface $webform_submission) {
     $this->submittedFormData = $webform_submission->getData();
 
+    // Because our submission storage is not used (WHY!?!?!?!?)
+    // we need to empty this manually.
+    $webform_submission->setData([]);
+    // don't save ip address.
+    $webform_submission->remote_addr->value = '';
   }
 
   /**
