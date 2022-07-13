@@ -4,13 +4,16 @@ status: true
 dependencies:
   config:
     - node.type.esitiedot
+    - node.type.webform
   module:
+    - form_tool_profile_data
     - node
     - path
     - scheduler
     - system
     - toolbar
     - webform
+    - webform_node
 id: verkkolomake_hallinnoija
 label: Verkkolomake-hallinnoija
 weight: 4
@@ -20,22 +23,31 @@ permissions:
   - 'access content overview'
   - 'access site in maintenance mode'
   - 'access toolbar'
+  - 'access webform help'
   - 'access webform overview'
   - 'access webform submission user'
+  - 'administer form_tool_profile_data configuration'
   - 'administer webform element access'
   - 'cancel account'
   - 'change own username'
   - 'create esitiedot content'
   - 'create url aliases'
   - 'create webform'
+  - 'create webform content'
   - 'delete own esitiedot content'
   - 'delete own webform'
+  - 'delete own webform content'
   - 'delete own webform submission'
+  - 'delete webform revisions'
   - 'edit own esitiedot content'
   - 'edit own webform'
+  - 'edit own webform content'
+  - 'edit own webform submission'
   - 'revert esitiedot revisions'
   - 'schedule publishing of nodes'
   - 'view esitiedot revisions'
   - 'view own unpublished content'
+  - 'view own webform submission'
   - 'view scheduled content'
   - 'view the administration theme'
+  - 'view webform submissions own node'

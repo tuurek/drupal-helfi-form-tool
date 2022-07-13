@@ -2,6 +2,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
+use Drupal\user\Entity\User;
+use Drupal\webform\Entity\Webform;
 
 /**
  * @param $formsettings
@@ -10,7 +12,7 @@ use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
  *  The url to the privacy policy link for the sector.
  */
 function _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings) {
-  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $language = Drupal::languageManager()->getCurrentLanguage()->getId();
   if ($language == 'fi') {
     if (array_key_exists('privacy_policy', $formsettings)) {
       return $formsettings['privacy_policy'];
@@ -57,9 +59,9 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
 }
 
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+  if (!Drupal::service('router.admin_context')->isAdminRoute()) {
     if (array_key_exists('#webform_id', $form)) {
-      $webform = \Drupal\webform\Entity\Webform::load($form['#webform_id']);
+      $webform = Webform::load($form['#webform_id']);
       $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
 
       $privacy_policy_link = _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings);
@@ -76,6 +78,14 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     }
   }
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
+
+    /** @var \Drupal\webform_formtool_handler\SectorService $sectorService */
+    $sectorService = Drupal::service('webform_formtool_handler.sector_service');
+    $sectorList = $sectorService->getSectorList();
+
+    /** @var \Drupal\webform_formtool_handler\AdGroupService $adGroupService */
+    $adGroupService = Drupal::service('webform_formtool_handler.ad_group_service');
+
     $bundle = $form_state->getFormObject()->getEntity();
     // Because hidden by default.
     $form['third_party_settings']['#access'] = TRUE;
@@ -89,8 +99,20 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     $currentRoles = $currentUser->getRoles();
     $currentId = $currentUser->id();
 
+    $userlist = [];
+    $ids = Drupal::entityQuery('user')
+      ->condition('status', 1)
+      ->condition('roles', 'verkkolomake_hallinnoija')
+      ->execute();
+    $users = User::loadMultiple($ids);
+    foreach($users as $user){
+      $username = $user->get('name')->getString();
+      $mail =  $user->get('mail')->getString();
+      $userlist[$mail] = $username;
+    }
+
     // if form is set to closed, and user is not admin or with admin role, we don't allow editing.
-    if ($formStatus == "closed" && $currentId != "1" && !in_array('admin', $currentRoles)) {
+    if ($formStatus == 'closed' && $currentId != '1' && !in_array('admin', $currentRoles)) {
       $disabled = TRUE;
     } else {
       $disabled = FALSE;
@@ -117,8 +139,9 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['owner'] = [
-      '#type' => 'textfield',
+      '#type' => 'select',
       '#title' => t('Person responsible (Owner)'),
+      '#options' => $userlist,
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'owner'),
       '#required' => TRUE,
     ];
@@ -140,16 +163,38 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#maxlength' => 20,
     ];
 
-    $form['third_party_settings']['form_tool_webform_parameters']['sector'] = [
+
+    $form['third_party_settings']['form_tool_webform_parameters']['tos_function_id'] = [
       '#type' => 'textfield',
+      '#title' => t('TOS function ID.'),
+      '#description' => t('Insert used TOS function id.'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'tos_function_id'),
+      '#required' => TRUE,
+      '#size' => 32,
+      '#maxlength' => 32,
+    ];
+    $form['third_party_settings']['form_tool_webform_parameters']['tos_record_id'] = [
+      '#type' => 'textfield',
+      '#title' => t('TOS record ID.'),
+      '#description' => t('Insert used TOS record id.'),
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'tos_record_id'),
+      '#required' => TRUE,
+      '#size' => 32,
+      '#maxlength' => 32,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['sector'] = [
+      '#type' => 'select',
       '#title' => t('The sector that handles the form data'),
+      '#options' => $sectorList,
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'sector'),
       '#required' => TRUE,
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['ad_group'] = [
-      '#type' => 'textfield',
+      '#type' => 'select',
       '#title' => t('AD Group of the handlers of form data'),
+      '#options' => $adGroupService->getAdGroups(),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'ad_group'),
       '#required' => FALSE,
     ];

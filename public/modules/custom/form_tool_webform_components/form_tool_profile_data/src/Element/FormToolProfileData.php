@@ -5,6 +5,7 @@ namespace Drupal\form_tool_profile_data\Element;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Element\WebformCompositeBase;
 use Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData as ProfileDataElement;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Provides a 'webform_example_composite'.
@@ -41,8 +42,13 @@ class FormToolProfileData extends WebformCompositeBase {
 
     $options = ProfileDataElement::getFieldSelections();
 
-    $userData = $hpud->getUserData();
     $userProfile = $hpud->getUserProfileData();
+
+    if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+      if ($userProfile == NULL || empty($userProfile) || empty($userProfile['myProfile'])) {
+        throw new AccessDeniedHttpException('No profile data available');
+      }
+    }
 
     if (isset($element['#strong'])) {
 

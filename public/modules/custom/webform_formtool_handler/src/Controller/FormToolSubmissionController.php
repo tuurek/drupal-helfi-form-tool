@@ -2,12 +2,19 @@
 
 namespace Drupal\webform_formtool_handler\Controller;
 
+use Drupal;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
+use Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Returns responses for Form Tool Handler routes.
@@ -49,7 +56,7 @@ class FormToolSubmissionController extends ControllerBase {
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
-    $this->account = \Drupal::currentUser();
+    $this->account = Drupal::currentUser();
   }
 
   /**
@@ -78,13 +85,20 @@ class FormToolSubmissionController extends ControllerBase {
    */
   public function build(string $id): array {
 
-    $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($id);
+    try {
+      $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($id);
 
-    // dump($entity);
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('webform_submission');
-    $pre_render = $view_builder->view($entity);
+      $view_builder = Drupal::entityTypeManager()->getViewBuilder('webform_submission');
+      $pre_render = $view_builder->view($entity);
 
-    $formTitle = $entity->getWebform()->get('title');
+      $formTitle = $entity->getWebform()->get('title');
+    }
+    catch(AccessDeniedException $e){
+      throw new AccessDeniedHttpException($e->getMessage());
+    }
+    catch(Exception $e){
+      throw new NotFoundHttpException($e->getMessage());
+    }
 
     return [
       '#theme' => 'submission_print',

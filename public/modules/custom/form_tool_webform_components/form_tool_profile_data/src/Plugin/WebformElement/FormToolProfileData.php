@@ -57,7 +57,7 @@ class FormToolProfileData extends WebformCompositeBase {
     // $form['element']['title']['#default_value'] = 'Profile fields';
     $form['element']['title']['#value'] = 'Profile fields';
 
-    if ($webFormSettings['login_type'] === '0') {
+    if (isset($webFormSettings['login_type']) && $webFormSettings['login_type'] === '0') {
       $form['element']['noauth'] = [
         '#type' => 'checkboxes',
         '#title' => t('Fields available with no auth'),
@@ -65,7 +65,7 @@ class FormToolProfileData extends WebformCompositeBase {
       $form['element']['noauth']['#options'] = $options['noauth'];
     }
 
-    if ($webFormSettings['login_type'] === '1') {
+    if (isset($webFormSettings['login_type']) && $webFormSettings['login_type'] === '1') {
       $form['element']['weak'] = [
         '#type' => 'checkboxes',
         '#title' => t('Fields available with weak auth'),
@@ -73,7 +73,7 @@ class FormToolProfileData extends WebformCompositeBase {
       $form['element']['weak']['#options'] = $options['weak'];
     }
 
-    if ($webFormSettings['login_type'] === '2') {
+    if (isset($webFormSettings['login_type']) && $webFormSettings['login_type'] === '2') {
       $form['element']['strong'] = [
         '#type' => 'checkboxes',
         '#title' => t('Fields available with strong auth'),
