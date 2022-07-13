@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e7deecd2667bf5dbb4c663e028398db",
+    "content-hash": "e39f6ccd2e50ec7453ba11a03de92016",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5001,16 +5001,16 @@
         },
         {
             "name": "drupal/helfi_helsinki_profiili",
-            "version": "dev-hardcode-profile-tunnistamo-rikki",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "baebfb767ee096e93cf2addd2272c8f078170c95"
+                "reference": "7ead50b85b4b50cf1819eef017c508c6cf830df7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/baebfb767ee096e93cf2addd2272c8f078170c95",
-                "reference": "baebfb767ee096e93cf2addd2272c8f078170c95",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/7ead50b85b4b50cf1819eef017c508c6cf830df7",
+                "reference": "7ead50b85b4b50cf1819eef017c508c6cf830df7",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5023,10 +5023,10 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/hardcode-profile-tunnistamo-rikki",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2022-03-18T09:23:31+00:00"
+            "time": "2022-07-13T08:39:34+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
