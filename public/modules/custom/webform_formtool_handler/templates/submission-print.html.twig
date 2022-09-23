@@ -1,6 +1,12 @@
-
-
-<h2>{{ form }} <br />{{ id }}</h2>
+<ol>
+  {% for key, value in _context  %}
+    <li>{{ key }}</li>
+  {% endfor %}
+</ol>
+<div class="container">
+<h2>{{ form }}</h2>
+<div>{{ id }}</div>
 <div>
 {{ submission }}
+</div>
 </div>
