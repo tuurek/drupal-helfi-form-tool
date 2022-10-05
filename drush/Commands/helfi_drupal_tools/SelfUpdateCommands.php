@@ -22,9 +22,9 @@ final class SelfUpdateCommands extends DrushCommands {
   /**
    * The http client.
    *
-   * @var \GuzzleHttp\ClientInterface
+   * @var null|\GuzzleHttp\ClientInterface
    */
-  private $httpClient;
+  private ?ClientInterface $httpClient = NULL;
 
   /**
    * Gets the http client.
@@ -318,6 +318,29 @@ final class SelfUpdateCommands extends DrushCommands {
   }
 
   /**
+   * Updates the dependencies.
+   *
+   * @param array $options
+   *   The options.
+   */
+  private function updateExternalPackages(array $options) : void {
+    if (empty($options['root'])) {
+      throw new \InvalidArgumentException('Missing drupal root.');
+    }
+    $gitRoot = sprintf('%s/..', rtrim($options['root'], '/'));
+
+    // Update druidfi/tools if the package exists.
+    if (is_dir($gitRoot . '/tools')) {
+      $this->processManager()->process([
+        'make',
+        'self-update',
+      ])->run(function (string $type, ?string $output) : void {
+        $this->io()->write($output);
+      });
+    }
+  }
+
+  /**
    * Updates files from platform.
    *
    * @param bool[] $options
@@ -333,6 +356,8 @@ final class SelfUpdateCommands extends DrushCommands {
       'update-dist' => $updateDist,
     ] = $this->parseOptions($options);
 
+    $this->updateExternalPackages($options);
+
     $this
       ->updateFiles($updateDist, [
         '.github/workflows/test.yml.dist' => '.github/workflows/test.yml',
@@ -341,11 +366,13 @@ final class SelfUpdateCommands extends DrushCommands {
         '.gitignore.dist' => '.gitignore',
       ])
       ->updateFiles($updateDist, [
+        'public/sites/default/azure.settings.php',
         'public/sites/default/settings.php',
         'docker/openshift/custom.locations',
         'docker/openshift/Dockerfile',
         'docker/openshift/entrypoints/20-deploy.sh',
         'docker/openshift/crons/drupal.sh',
+        'docker/openshift/crons/content-scheduler.sh',
         'docker/openshift/crons/migrate-status.php',
         'docker/openshift/crons/migrate-tpr.sh',
         'docker/openshift/crons/prestop-hook.sh',

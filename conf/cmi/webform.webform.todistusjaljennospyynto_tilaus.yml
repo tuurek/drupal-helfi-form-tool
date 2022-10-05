@@ -7,9 +7,9 @@ dependencies:
     - webform_formtool_handler
 third_party_settings:
   form_tool_webform_parameters:
-    owner: 'Omistajan nimi (TODO)'
-    sector: Sektori
-    ad_group: AD-ryhmä
+    owner: tilit429@gmail.com
+    sector: sector2
+    ad_group: ad_group_2
     postal_address: ''
     privacy_policy: ''
     privacy_policy_sv: ''
@@ -19,6 +19,9 @@ third_party_settings:
     sensitive: '1'
     form_code: TODISTUS
     email_notify: ''
+    status: public
+    tos_function_id: f917d43aab76420bb2ec53f6684da7f7
+    tos_record_id: 89837a682b5d410e861f8f3688154163
 weight: 0
 open: null
 close: null

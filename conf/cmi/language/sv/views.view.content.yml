@@ -21,7 +21,7 @@ display:
           label: Uppdaterad
         operations:
           label: Funktioner
-      title: Content
+      title: Innehåll
       pager:
         options:
           tags:
@@ -64,9 +64,9 @@ display:
     display_title: Sida
     display_options:
       menu:
-        title: Content
+        title: Innehåll
       tab_options:
-        title: Content
+        title: Innehåll
         description: 'Hitta och hantera innehåll'
-label: Content
+label: Innehåll
 description: 'Hitta och hantera innehåll.'

@@ -1,0 +1,4 @@
+administer form_tool_share configuration:
+  title: 'Administer form_tool_share configuration'
+  description: 'Optional description.'
+  restrict access: true

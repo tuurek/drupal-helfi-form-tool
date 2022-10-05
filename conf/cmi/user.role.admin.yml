@@ -7,15 +7,22 @@ dependencies:
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
+    - node.type.article
+    - node.type.esitiedot
     - node.type.landing_page
     - node.type.page
+    - node.type.webform
     - taxonomy.vocabulary.keywords
   module:
     - block
     - config_translation
+    - content_lock
     - content_translation
     - eu_cookie_compliance
+    - externalauth
     - file
+    - form_tool_profile_data
+    - form_tool_share
     - helfi_api_base
     - locale
     - media
@@ -32,7 +39,8 @@ dependencies:
     - taxonomy
     - toolbar
     - view_unpublished
-    - content_lock
+    - webform
+    - webform_templates
 _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
@@ -53,6 +61,8 @@ permissions:
   - 'administer blocks'
   - 'administer eu cookie compliance categories'
   - 'administer eu cookie compliance popup'
+  - 'administer form_tool_profile_data configuration'
+  - 'administer form_tool_share configuration'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
@@ -61,6 +71,8 @@ permissions:
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
+  - 'administer webform templates'
+  - 'break content lock'
   - 'cancel account'
   - 'change own username'
   - 'create content translations'
@@ -76,6 +88,8 @@ permissions:
   - 'create terms in keywords'
   - 'create url aliases'
   - 'delete all revisions'
+  - 'delete any article content'
+  - 'delete any esitiedot content'
   - 'delete any file media'
   - 'delete any image media'
   - 'delete any landing_page content'
@@ -83,6 +97,8 @@ permissions:
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete any soundcloud media'
+  - 'delete any webform content'
+  - 'delete authmap'
   - 'delete content translations'
   - 'delete landing_page revisions'
   - 'delete media'
@@ -101,6 +117,7 @@ permissions:
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
+  - 'edit any webform content'
   - 'edit own file media'
   - 'edit own image media'
   - 'edit own landing_page content'
@@ -113,6 +130,7 @@ permissions:
   - 'revert all revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
+  - 'revert webform revisions'
   - 'schedule publishing of nodes'
   - 'translate any entity'
   - 'translate configuration'
@@ -134,6 +152,8 @@ permissions:
   - 'view all revisions'
   - 'view any unpublished content'
   - 'view any unpublished content'
+  - 'view any webform submission'
+  - 'view authmap'
   - 'view landing_page revisions'
   - 'view media'
   - 'view own unpublished content'
@@ -143,4 +163,4 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'break content lock'
+  - 'view webform revisions'

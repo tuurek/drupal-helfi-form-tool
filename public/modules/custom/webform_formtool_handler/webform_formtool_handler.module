@@ -50,22 +50,6 @@ function webform_formtool_handler_mail($key, &$message, $params) {
   }
 }
 
-///**
-// * Implements hook_entity_access().
-// */
-//function webform_formtool_handler_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
-//
-//}
-//
-///**
-// * Implements hook_ENTITY_TYPE_access().
-// */
-//function webform_formtool_handler_webform_submission_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
-//
-//
-//}
-
-
 /**
  * Implements hook_entity_presave().
  */
@@ -129,46 +113,48 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
   $acc['configuration']['users'] = [];
   $acc['configuration']['permissions'] = [];
 
-  // and then per login type
-  switch ($thirdPartySettings["login_type"]) {
-    // strong auth
-    case '2':
+  if (isset($thirdPartySettings["login_type"])) {
+    // and then per login type
+    switch ($thirdPartySettings["login_type"]) {
+      // strong auth
+      case '2':
 
-      $acc['create']['roles'] = [
-        'helsinkiprofiili_vahva',
-        'admin',
-      ];
+        $acc['create']['roles'] = [
+          'helsinkiprofiili_vahva',
+          'admin',
+        ];
 
-      $acc['update_own']['roles'] = [
-        'helsinkiprofiili_vahva',
-      ];
+        $acc['update_own']['roles'] = [
+          'helsinkiprofiili_vahva',
+        ];
 
-      $acc['view_own']['roles'] = [
-        'helsinkiprofiili_vahva',
-      ];
+        $acc['view_own']['roles'] = [
+          'helsinkiprofiili_vahva',
+        ];
 
-      break;
-    // weak auth
-    case '1':
-      $acc['create']['roles'] = [
-        'helsinkiprofiili_heikko',
-        'admin',
-      ];
+        break;
+      // weak auth
+      case '1':
+        $acc['create']['roles'] = [
+          'helsinkiprofiili_heikko',
+          'admin',
+        ];
 
-      $acc['update_own']['roles'] = [
-        'helsinkiprofiili_heikko',
-      ];
-      $acc['view_own']['roles'] = [
-        'helsinkiprofiili_heikko',
-      ];
-      break;
+        $acc['update_own']['roles'] = [
+          'helsinkiprofiili_heikko',
+        ];
+        $acc['view_own']['roles'] = [
+          'helsinkiprofiili_heikko',
+        ];
+        break;
 
-    // all other cases.
-    default:
-      $acc['create']['roles'] = [
-        'anonymous',
-      ];
-      break;
+      // all other cases.
+      default:
+        $acc['create']['roles'] = [
+          'anonymous',
+        ];
+        break;
+    }
   }
 
   // set rules
@@ -214,7 +200,7 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
  * Implements hook_entity_type_alter().
  */
 function webform_formtool_handler_entity_type_alter(array &$entity_types) {
-  // Add our custom handler for webform
-//  $entity_types['webform_submission']->setStorageClass('Drupal\form_tool_handler\FormToolSubmissionStorage');
+  // todo: why is this not used?
+  $entity_types['webform_submission']->setStorageClass('Drupal\webform_formtool_handler\FormToolSubmissionStorage');
 }
 

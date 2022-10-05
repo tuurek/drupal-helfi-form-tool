@@ -1,0 +1,12 @@
+services:
+  webform_formtool_handler.sector_service:
+    class: Drupal\webform_formtool_handler\SectorService
+    arguments: [
+        '@http_client'
+      ]
+
+  webform_formtool_handler.ad_group_service:
+    class: Drupal\webform_formtool_handler\AdGroupService
+    arguments: [
+        '@http_client'
+    ]
