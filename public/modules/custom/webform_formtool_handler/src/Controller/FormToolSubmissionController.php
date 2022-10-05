@@ -123,10 +123,17 @@ class FormToolSubmissionController extends ControllerBase {
 
     $formTitle = $entity->getWebform()->get('title');
 
+    $sector = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['sector'];
+    $address = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['postal_address'];
+    $submission_date = $entity->getFields()['created']->getValue()[0]['value'];
+
     return [
       '#theme' => 'submission_print',
       '#id' => $id,
       '#submission' => $pre_render,
+      '#submissionDate' => $submission_date,
+      '#sector' => $sector,
+      '#address' => $address,
       '#form' => $formTitle,
     ];
   }

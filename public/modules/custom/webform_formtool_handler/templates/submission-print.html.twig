@@ -1,12 +1,53 @@
-<ol>
-  {% for key, value in _context  %}
-    <li>{{ key }}</li>
-  {% endfor %}
-</ol>
-<div class="container">
-<h2>{{ form }}</h2>
-<div>{{ id }}</div>
-<div>
-{{ submission }}
-</div>
+<div class="submission-print">
+  <div class="page-type--form-page wrapper no-sidebar no-sidebar-first no-sidebar-second submission-print__top">
+    <header role="banner" class="header submission-print__header">
+      <div class="container">
+        <div class="header-branding submission-print__header-branding" id="header-branding">
+          <div class="submission-print__branding-block">
+            {{ drupal_block('system_branding_block', {use_site_name: 0}) }}
+            <h1 class="site_name">{{ form }}</h1>
+          </div>
+          <div class="submission-print__header-branding-right">
+              <div>
+                <h2 class="submission-print__label">Lomakkeen numero</h2>
+                {{ id }}
+              </div>
+              <div>
+                <h2 class="submission-print__label">Lomake lähetetty</h2>
+                {{ submissionDate|date('d.m.Y H:i:s') }}
+              </div>
+          </div>
+        </div>
+        <div class="submission-print__sector">
+          <h2>{{ form }}</h2>
+
+          <div class="submission-print__sector-name">
+            {{ sector }}
+          </div>
+          <div class="submission-print__sector-address">
+            {{ address|replace({"\n":'<br/>', "\r":''})|raw }}
+          </div>
+        </div>
+      </div>
+    </header>
+
+  </div>
+  <div>
+
+
+    <main role="main" class="layout-main-wrapper">
+      <a id="main-content" tabindex="-1"></a>
+      <div class="container">
+        <div>
+          {{ submission }}
+        </div>
+      </div>
+    </main>
+
+  </div>
+  <footer role="contentinfo" class="footer">
+    <div class="container">
+      sxxx
+    </div>
+  </footer>
 </div>
