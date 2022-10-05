@@ -17,14 +17,10 @@
         "drupal/core-composer-scaffold": "9.3.16",
         "drupal/core-recommended": "9.3.16",
         "drupal/devel": "^4.1",
-<<<<<<< HEAD
         "drupal/devel_kint_extras": "^1.0",
         "drupal/editoria11y": "^1.0",
         "drupal/error_page": "^2.0",
-        "drupal/hdbt": "^1.0",
-=======
         "drupal/hdbt": "^3.0",
->>>>>>> origin/develop
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_ahjo": "^1.0",
         "drupal/helfi_atv": "dev-develop",
@@ -47,11 +43,7 @@
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "drupal/coder": "^8.3",
-<<<<<<< HEAD
         "drupal/core-dev": "9.3.16",
-=======
-        "drupal/core-dev": "^9.3.1",
->>>>>>> origin/develop
         "phpspec/prophecy-phpunit": "^2",
         "phpunit/phpunit": "~9.4.0"
     },
