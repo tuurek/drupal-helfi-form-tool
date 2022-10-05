@@ -53,7 +53,7 @@ display:
         title:
           expose:
             label: Otsikko
-      title: 'Locked content'
+      title: 'Lukitut sisällöt'
       empty:
         area_text_custom:
           content: 'Lukittua sisältöä ei ole.'
@@ -62,5 +62,5 @@ display:
     display_title: Sivu
     display_options:
       menu:
-        title: 'Locked content'
-label: 'Locked content'
+        title: 'Lukitut sisällöt'
+label: 'Lukitut sisällöt'

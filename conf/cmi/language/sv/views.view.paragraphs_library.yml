@@ -20,13 +20,13 @@ display:
             offset_label: Kompensera
       fields:
         label:
-          label: Label
+          label: Etikett
           separator: ', '
         type:
           label: Typ
           separator: ', '
         paragraphs__target_id:
-          label: Paragraphs
+          label: Paragrafer
           separator: ', '
         langcode:
           label: Språk
@@ -42,9 +42,9 @@ display:
       filters:
         label:
           expose:
-            label: Label
+            label: Etikett
           group_info:
-            label: Label
+            label: Etikett
         type:
           expose:
             label: Typ

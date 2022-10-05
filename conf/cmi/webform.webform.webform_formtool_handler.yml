@@ -159,8 +159,6 @@ settings:
   serial_disabled: false
 access:
   create:
-    roles:
-      - anonymous
     users: {  }
     permissions: {  }
   view_any:
