@@ -1,0 +1,56 @@
+# Iframe embed page with and without JavaScript.
+entity.form_tool_share.page:
+  path: '/formtool/{webform}/share'
+  defaults:
+    _controller: '\Drupal\form_tool_share\Controller\FormToolShareController::page'
+    _title_callback: '\Drupal\webform\Controller\WebformEntityController::title'
+  options:
+    parameters:
+      webform:
+        type: 'entity:webform'
+  requirements:
+    _entity_access: 'webform.submission_create'
+    _custom_access: '\Drupal\form_tool_share\Access\FormToolShareAccess::checkAccess'
+
+entity.form_tool_share.page.javascript:
+  path: '/formtool/{webform}/share/{library}/{version}'
+  defaults:
+    _controller: '\Drupal\form_tool_share\Controller\FormToolShareController::page'
+    _title_callback: '\Drupal\webform\Controller\WebformEntityController::title'
+  options:
+    parameters:
+      webform:
+        type: 'entity:webform'
+  requirements:
+    _entity_access: 'webform.submission_create'
+    _custom_access: '\Drupal\form_tool_share\Access\FormToolShareAccess::checkAccess'
+
+entity.form_tool_share.script:
+  path: '/formtool/{webform}/share.js'
+  defaults:
+    _controller: '\Drupal\form_tool_share\Controller\FormToolShareController::script'
+  options:
+    parameters:
+      webform:
+        type: 'entity:webform'
+  requirements:
+    _entity_access: 'webform.submission_page'
+    _custom_access: '\Drupal\form_tool_share\Access\FormToolShareAccess::checkAccess'
+
+entity.form_tool_share.completion:
+  path: '/formtool/completion/{submissionId}'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\form_tool_share\Controller\FormCompletionController::build'
+  requirements:
+    _permission: 'access content'
+
+form_tool_share.meta:
+  path: '/formtool/metadata'
+  defaults:
+    _title: 'Metadata'
+    _controller: '\Drupal\form_tool_share\Controller\FormMetaDataController::build'
+  requirements:
+    _permission: 'access content'
+  options:
+    _auth: [ 'token_auth' ]

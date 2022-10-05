@@ -73,7 +73,7 @@ display:
       menu:
         title: Schemalagd
       tab_options:
-        title: Content
+        title: Innehåll
       display_description: 'Yleiskatsaus koko ajoitetusta sisällöstä.'
     display_title: Sisältö
   user_page:
@@ -81,7 +81,7 @@ display:
       menu:
         title: Schemalagd
       tab_options:
-        title: Content
+        title: Innehåll
       arguments:
         uid:
           exception:

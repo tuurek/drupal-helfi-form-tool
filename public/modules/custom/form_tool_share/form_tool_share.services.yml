@@ -1,0 +1,5 @@
+services:
+  form_tool_share.authentication.auth_token:
+    class: Drupal\form_tool_share\Authentication\AuthToken
+    tags:
+      - { name: authentication_provider, provider_id: 'token_auth', priority: 10 }

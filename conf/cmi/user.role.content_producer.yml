@@ -9,10 +9,11 @@ dependencies:
     - media.type.soundcloud
     - node.type.landing_page
     - node.type.page
+    - node.type.webform
     - taxonomy.vocabulary.keywords
   module:
     - content_translation
-    - file
+    - form_tool_profile_data
     - helfi_api_base
     - media
     - node
@@ -30,13 +31,13 @@ weight: 3
 is_admin: null
 permissions:
   - 'access content overview'
-  - 'access files overview'
   - 'access media overview'
   - 'access remote entities overview'
   - 'access site in maintenance mode'
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user profiles'
+  - 'administer form_tool_profile_data configuration'
   - 'administer nodes'
   - 'cancel account'
   - 'change own username'
@@ -55,6 +56,7 @@ permissions:
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
+  - 'edit any webform content'
   - 'edit own file media'
   - 'edit own image media'
   - 'edit own landing_page content'

@@ -1,0 +1,71 @@
+# Custom module library for general purposes.
+form_tool_share.admin:
+  version: VERSION
+  css:
+    theme:
+      css/form_tool_share.admin.css: {}
+  js:
+    js/form_tool_share.admin.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.announce
+
+form_tool_share.page:
+  version: VERSION
+  css:
+    theme:
+      css/form_tool_share.page.css: {}
+
+# Below is every version of the iFrame Resizer used by the webform share module.
+#
+# Including multiple versions of the iFrame Resizer ensures that any website
+# embedding an iframe with specific iFrame Resizer version will be able to
+# always access the older versions of the webform share page
+# (/webform/{webform}/share/{library}/{version}).
+#
+# When updating the iframe-resizer, please make sure to update
+# the below constants.
+#
+# @see \Drupal\form_tool_share\Element\WebformShareIframe::LIBRARY
+# @see \Drupal\form_tool_share\Element\WebformShareIframe::VERSION
+
+libraries.iframe-resizer.4.2.10:
+  # Inserting the iframe-resizer in the page's <head> provides the best
+  # UX because it allows the iframe to resize as the form is loaded.
+  header: true
+  remote: https://github.com/davidjbradshaw/iframe-resizer
+  version: '4.2.10'
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/mit-license.php
+    gpl-compatible: true
+  js:
+    '//cdn.jsdelivr.net/gh/davidjbradshaw/iframe-resizer@v4.2.10/js/iframeResizer.contentWindow.min.js': { type: external, minified: true }
+
+
+# Third-party library (self hosted).
+jquery-labelauty:
+  remote: https://github.com/fntneves/jquery-labelauty
+  version: 1.1.0
+  license:
+    name: MIT
+    url: https://github.com/fntneves/jquery-labelauty/blob/v1.1.0/LICENSE
+    gpl-compatible: true
+  js:
+    /libraries/jquery-labelauty/source/jquery-labelauty.js: {}
+  css:
+    component:
+      /libraries/jquery-labelauty/source/jquery-labelauty.css: {}
+  dependencies:
+    - core/jquery
+
+# Third-party library (CDN).
+vuejs:
+  remote: https://vuejs.org
+  version: 2.0.5
+  license:
+    name: MIT
+    url: https://github.com/vuejs/vue/blob/dev/LICENSE
+    gpl-compatible: true
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js: {type: external, minified: true}

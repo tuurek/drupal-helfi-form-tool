@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation of an iframe used to share a webform.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the iframe element.
+ * - javascript: Flag to include JavaScript.
+ * - option: JavaScript options.
+ *
+ * @see template_preprocess_form_tool_share_iframe()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'form-tool-share-iframe',
+  ]
+%}
+<iframe{{ attributes.addClass(classes) }}></iframe>
+{% if javascript %}
+<script src="{{ script }}"></script>
+<script>iFrameResize({{ options }}, '.form-tool-share-iframe');</script>
+{% endif %}

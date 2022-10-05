@@ -1,3 +1,4 @@
+label: 'Отправленные формы'
 display:
   default:
     display_title: Основной
@@ -22,8 +23,10 @@ display:
             offset_label: Пропустить
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Черновик
           separator: ', '
         created:
           label: Создано
@@ -41,14 +44,17 @@ display:
         in_draft:
           exception:
             title: Все
+      title: 'Отправленные формы'
   embed_administer:
     display_options:
       fields:
         webform_submission_bulk_form:
           action_title: Действие
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Черновик
           separator: ', '
         sticky:
           label: Прикреплено
@@ -80,8 +86,10 @@ display:
         webform_submission_bulk_form:
           action_title: Действие
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Черновик
           separator: ', '
         sticky:
           label: Прикреплено
@@ -115,8 +123,10 @@ display:
     display_options:
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
+          label: Черновик
           separator: ', '
         sticky:
           label: Прикреплено
