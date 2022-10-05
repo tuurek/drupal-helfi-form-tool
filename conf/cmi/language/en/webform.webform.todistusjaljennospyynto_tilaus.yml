@@ -1,0 +1,22 @@
+title: 'EN Todistusjäljennöspyyntö, tilaus'
+elements: |
+  profile_fields:
+    '#description': 'Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+  valitse_toimitustapa:
+    '#Info__title': ''
+    '#delivery_method__title': ''
+    '#first_name__title': ''
+    '#last_name__title': ''
+    '#street_address__title': ''
+    '#zip_code__title': ''
+    '#city__title': ''
+    '#phone_number__title': ''
+    '#cod__title': ''
+    '#cod_first_name__title': ''
+    '#cod_last_name__title': ''
+    '#cod_street_address__title': ''
+    '#cod_zip_code__title': ''
+    '#cod_city__title': ''
+    '#cod_phone_number__title': ''
+    '#pickup__title': ''
+    '#email__title': ''
