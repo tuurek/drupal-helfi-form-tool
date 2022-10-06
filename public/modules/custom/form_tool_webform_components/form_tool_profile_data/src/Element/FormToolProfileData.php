@@ -40,6 +40,10 @@ class FormToolProfileData extends WebformCompositeBase {
     /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
     $hpud = \Drupal::service('helfi_helsinki_profiili.userdata');
 
+    // if user is not helsinkiproifile user we don't have any user info.
+    $currentUserRoles = \Drupal::currentUser()->getRoles();
+    if(!in_array('helsinkiprofiili', $currentUserRoles)) return [];
+
     $options = ProfileDataElement::getFieldSelections();
 
     $userProfile = $hpud->getUserProfileData();
