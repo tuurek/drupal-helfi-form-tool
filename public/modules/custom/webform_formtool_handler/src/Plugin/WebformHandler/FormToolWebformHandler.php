@@ -176,8 +176,13 @@ class FormToolWebformHandler extends WebformHandlerBase {
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
 
     parent::validateForm($form, $form_state, $webform_submission);
-    $errors = $form_state->getErrors();
+    $values = $form_state->getValues();
 
+    if (isset($values['profile_fields'])) {
+      if (empty($values['profile_fields'])) {
+        $form_state->setErrorByName('profile_fields', 'Profile fields must be set.');
+      }
+    }
   }
 
   /**
@@ -285,9 +290,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
       $webform = Webform::load($form['#webform_id']);
 
-      /** @var \Drupal\webform\WebformTranslationManager $wftm */
-      $wftm = \Drupal::service('webform.translation_manager');
-
       // Get all the system languages.
       $langcodes = \Drupal::languageManager()->getLanguages();
       $langcodesList = array_keys($langcodes);
@@ -324,10 +326,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
         ],
       ];
 
-      $helsinkiProfiili = $this->helsinkiProfiiliUserData->getUserData();
-      if (isset($helsinkiProfiili['sub'])) {
-        $documentValues['user_id'] = $helsinkiProfiili['sub'];
-      }
+//      $helsinkiProfiili = $this->helsinkiProfiiliUserData->getUserData();
+//      if (isset($helsinkiProfiili['sub'])) {
+//        $documentValues['user_id'] = $helsinkiProfiili['sub'];
+//      }
 
       try {
         $atvDocument = $this->atvService->createDocument($documentValues);
@@ -336,7 +338,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
         $newDocument = $this->atvService->postDocument($atvDocument);
 
-        $result = $this->connection->insert('form_tool_map')
+        $this->connection->insert('form_tool_map')
           ->fields([
             'submission_uuid' => $webform_submission->uuid(),
             'document_uuid' => $newDocument->getId(),
@@ -344,38 +346,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ])
           ->execute();
 
-        $url = Url::fromRoute(
-          'webform_formtool_handler.view_submission',
-          ['id' => $formToolSubmissionId],
-          [
-            'attributes' => [
-              'data-drupal-selector' => 'form-submitted-ok',
-            ],
-          ]
-        );
-
-        $completionUrl = Url::fromRoute(
+        $form_state->setRedirect(
           'entity.form_tool_share.completion',
           ['submissionId' => $formToolSubmissionId]
         );
-
-        $t_args = [
-          '@number' => $formToolSubmissionId,
-          '@link' => Link::fromTextAndUrl('here', $url)->toString(),
-        ];
-
-        $msg = $this->t(
-          'Form submission (@number) saved, see submitted data from @link',
-          $t_args
-          );
-
-        $this->messenger()
-          ->addStatus($msg);
-
-        $this->log('info', $msg->render(), []);
-        $this->log('info', $atvDocument->toJson(), []);
-
-        $form_state->setRedirectUrl($completionUrl);
 
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
@@ -420,6 +394,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
       }
       catch (\Exception $e) {
         $this->log('error', $e->getMessage(), []);
+        $form_state->setRedirect('entity.form_tool_share.error');
       }
     }
     else {

@@ -45,6 +45,14 @@ entity.form_tool_share.completion:
   requirements:
     _permission: 'access content'
 
+entity.form_tool_share.error:
+  path: '/formtool/submit-error'
+  defaults:
+    _title: 'Submit error'
+    _controller: '\Drupal\form_tool_share\Controller\FormSubmitErrorController::build'
+  requirements:
+    _permission: 'access content'
+
 form_tool_share.meta:
   path: '/formtool/metadata'
   defaults:

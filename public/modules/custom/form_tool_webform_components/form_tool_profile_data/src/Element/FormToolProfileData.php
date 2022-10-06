@@ -42,7 +42,11 @@ class FormToolProfileData extends WebformCompositeBase {
 
     // if user is not helsinkiproifile user we don't have any user info.
     $currentUserRoles = \Drupal::currentUser()->getRoles();
-    if(!in_array('helsinkiprofiili', $currentUserRoles)) return [];
+    if(
+      !in_array('helsinkiprofiili_vahva', $currentUserRoles) &&
+      !in_array('helsinkiprofiili_heikko', $currentUserRoles)) {
+      return [];
+    }
 
     $options = ProfileDataElement::getFieldSelections();
 
