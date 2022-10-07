@@ -86,6 +86,9 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     /** @var \Drupal\webform_formtool_handler\AdGroupService $adGroupService */
     $adGroupService = Drupal::service('webform_formtool_handler.ad_group_service');
 
+    /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpUserDataService */
+    $hpUserDataService = \Drupal::service('helfi_helsinki_profiili.userdata');
+
     $bundle = $form_state->getFormObject()->getEntity();
     // Because hidden by default.
     $form['third_party_settings']['#access'] = TRUE;
@@ -99,16 +102,24 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     $currentRoles = $currentUser->getRoles();
     $currentId = $currentUser->id();
 
+    $adminRoleIds = $hpUserDataService->getAdminRoles();
+
     $userlist = [];
     $ids = Drupal::entityQuery('user')
       ->condition('status', 1)
-      ->condition('roles', 'verkkolomake_hallinnoija')
+      ->condition('roles', $adminRoleIds)
       ->execute();
     $users = User::loadMultiple($ids);
     foreach($users as $user){
       $username = $user->get('name')->getString();
       $mail =  $user->get('mail')->getString();
       $userlist[$mail] = $username;
+    }
+
+    $adminRoles = \Drupal\user\Entity\Role::loadMultiple($adminRoleIds);
+    $adminRoleSelect = [];
+    foreach ($adminRoles as $id => $role) {
+      $adminRoleSelect[$id] = $role->label();
     }
 
     // if form is set to closed, and user is not admin or with admin role, we don't allow editing.
@@ -143,6 +154,15 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#title' => t('Person responsible (Owner)'),
       '#options' => $userlist,
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'owner'),
+      '#required' => TRUE,
+    ];
+
+    $form['third_party_settings']['form_tool_webform_parameters']['roles'] = [
+      '#type' => 'select',
+      '#title' => t('Roles that can access submission'),
+      '#options' => $adminRoleSelect,
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'roles'),
+      '#multiple' => true,
       '#required' => TRUE,
     ];
 

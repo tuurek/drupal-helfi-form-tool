@@ -5,18 +5,15 @@ namespace Drupal\webform_formtool_handler\Plugin\WebformHandler;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityRepository;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
-use GuzzleHttp\Exception\GuzzleException;
+use Drupal\webform_formtool_handler\Controller\FormToolSubmissionController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -342,13 +339,16 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ->fields([
             'submission_uuid' => $webform_submission->uuid(),
             'document_uuid' => $newDocument->getId(),
+            'user_uuid' => $newDocument->getUserId(),
             'form_tool_id' => $formToolSubmissionId,
+            'admin_owner' => $thirdPartySettings["owner"],
+            'admin_roles' => implode(',', array_keys($thirdPartySettings["roles"]))
           ])
           ->execute();
 
         $form_state->setRedirect(
           'entity.form_tool_share.completion',
-          ['submissionId' => $formToolSubmissionId]
+          ['submission_id' => $formToolSubmissionId]
         );
 
         // If (isset($thirdPartySettings["email_notify"]) &&
@@ -445,8 +445,24 @@ class FormToolWebformHandler extends WebformHandlerBase {
    *
    * @return \Drupal\webform\Entity\WebformSubmission|null
    *   Loaded object or null if not found.
+   *
+   * @throws \Drupal\Core\TempStore\TempStoreException
+   * @throws \Drupal\helfi_atv\AtvDocumentNotFoundException
+   * @throws \Drupal\helfi_atv\AtvFailedToConnectException
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public static function submissionObjectAndDataFromFormId(string $id): ?WebformSubmission {
+
+    /** @var \Drupal\Core\Session\AccountInterface $account */
+    $account = \Drupal::currentUser();
+
+    // check access for user.
+    $access = FormToolSubmissionController::singleSubmissionAccess($account, 'view', $id);
+
+    if ($access !== TRUE) {
+      throw new AccessDeniedException('Access denied');
+    }
+
     $result = \Drupal::service('database')->query("SELECT submission_uuid,document_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
       ':form_tool_id' => $id,
     ]);
@@ -459,41 +475,25 @@ class FormToolWebformHandler extends WebformHandlerBase {
     /** @var \Drupal\helfi_atv\AtvService $atvService */
     $atvService = \Drupal::service('helfi_atv.atv_service');
 
-    /** @var \Drupal\Core\Messenger\Messenger $messenger */
-    $messenger = \Drupal::messenger();
-
-    /** @var \Drupal\Core\Logger\LoggerChannelInterface $logger */
-    $logger = \Drupal::logger('webform_formtool_handler');
-
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
     $entity = \Drupal::service('entity.repository')
       ->loadEntityByUuid('webform_submission', $data->submission_uuid);
 
-    /** @var \Drupal\Core\Session\AccountInterface $account */
-    $account = \Drupal::currentUser();
-
     if (!$entity) {
-      throw new NotFoundHttpException(t('Form submission not found')->render());
+      throw new NotFoundHttpException('Form submission not found');
     }
 
-    if ($entity->access('view', $account)) {
-      try {
+    /** \Drupal\helfi_atv\AtvDocument $document */
+    $documents = $atvService->searchDocuments(
+      [
+        'transaction_id' => $id
+      ]
+    );
 
-        /** \Drupal\helfi_atv\AtvDocument $document */
-        $document = $atvService->getDocument($data->document_uuid);
+    $document = reset($documents);
 
-        $documentContent = $document->getContent();
-        $entity->setData($documentContent);
-
-      }
-      catch (\Exception | GuzzleException $e) {
-        $messenger->addError($e->getMessage());
-        $logger->error($e->getMessage());
-      }
-    }
-    else {
-      throw new AccessDeniedException(t('Access denied')->render());
-    }
+    $documentContent = $document->getContent();
+    $entity->setData($documentContent);
 
     return $entity;
   }

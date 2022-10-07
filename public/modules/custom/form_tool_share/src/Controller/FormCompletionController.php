@@ -38,19 +38,19 @@ class FormCompletionController extends ControllerBase {
   /**
    * Builds the response.
    *
-   * @param string $submissionId
+   * @param string $submission_id
    *   Form / submission id.
    *
    * @return array
    *   Render array.
    */
-  public function build(string $submissionId): array {
+  public function build(string $submission_id): array {
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
-    $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submissionId);
+    $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id);
 
     $url = Url::fromRoute(
       'webform_formtool_handler.view_submission',
-      ['id' => $submissionId],
+      ['submission_id' => $submission_id],
       [
         'attributes' => [
           'data-drupal-selector' => 'form-submitted-ok',
@@ -60,7 +60,7 @@ class FormCompletionController extends ControllerBase {
     );
 
     $t_args = [
-      '@number' => $submissionId,
+      '@number' => $submission_id,
       '@link' => Link::fromTextAndUrl('here', $url)->toString(),
     ];
 
@@ -71,7 +71,7 @@ class FormCompletionController extends ControllerBase {
 
     return [
       '#theme' => 'form_tool_share_completion',
-      '#submissionId' => $submissionId,
+      '#submissionId' => $submission_id,
       '#submissionData' => $entity->getData(),
       '#message' => $msg,
     ];

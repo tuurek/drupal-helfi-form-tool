@@ -204,3 +204,11 @@ function webform_formtool_handler_entity_type_alter(array &$entity_types) {
   $entity_types['webform_submission']->setStorageClass('Drupal\webform_formtool_handler\FormToolSubmissionStorage');
 }
 
+/**
+ * Implements hook_entity_type_build().
+ */
+function webform_formtool_handler_entity_type_build(array &$entity_types) {
+
+  $d='asdf';
+}
+

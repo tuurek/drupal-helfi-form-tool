@@ -3,16 +3,17 @@
 namespace Drupal\webform_formtool_handler\Controller;
 
 use Drupal;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
 use Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -43,6 +44,13 @@ class FormToolSubmissionController extends ControllerBase {
   protected AccountInterface $account;
 
   /**
+   * The request service.
+   *
+   * @var \Drupal\Core\Http\RequestStack
+   */
+  protected RequestStack $request;
+
+  /**
    * The controller constructor.
    *
    * @param \Drupal\helfi_atv\AtvService $helfi_atv
@@ -51,12 +59,14 @@ class FormToolSubmissionController extends ControllerBase {
    *   The helfi_helsinki_profiili service.
    */
   public function __construct(
-    AtvService $helfi_atv,
-    HelsinkiProfiiliUserData $helfi_helsinki_profiili
+    AtvService               $helfi_atv,
+    HelsinkiProfiiliUserData $helfi_helsinki_profiili,
+    RequestStack             $request
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
     $this->account = Drupal::currentUser();
+    $this->request = $request;
   }
 
   /**
@@ -65,7 +75,8 @@ class FormToolSubmissionController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('helfi_atv.atv_service'),
-      $container->get('helfi_helsinki_profiili.userdata')
+      $container->get('helfi_helsinki_profiili.userdata'),
+      $container->get('request_stack'),
     );
   }
 
@@ -83,29 +94,108 @@ class FormToolSubmissionController extends ControllerBase {
    * @return array
    *   Render array for template.
    */
-  public function build(string $id): array {
+  public function build(string $submission_id): array {
 
     try {
-      $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($id);
+      $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id);
 
-      $view_builder = Drupal::entityTypeManager()->getViewBuilder('webform_submission');
+      $view_builder = Drupal::entityTypeManager()
+        ->getViewBuilder('webform_submission');
       $pre_render = $view_builder->view($entity);
 
       $formTitle = $entity->getWebform()->get('title');
-    }
-    catch(AccessDeniedException $e){
+    } catch (AccessDeniedException $e) {
       throw new AccessDeniedHttpException($e->getMessage());
-    }
-    catch(Exception $e){
+    } catch (Exception $e) {
       throw new NotFoundHttpException($e->getMessage());
     }
 
     return [
       '#theme' => 'submission_print',
-      '#id' => $id,
+      '#id' => $submission_id,
       '#submission' => $pre_render,
       '#form' => $formTitle,
     ];
   }
+
+  /**
+   * Checks access for a specific request.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   Run access checks for this account.
+   * @param string $submission_id
+   *   Application number from Avus2 / ATV.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   The access result.
+   */
+  public function accessByApplicationNumber(AccountInterface $account, string $submission_id): AccessResultInterface {
+
+    $uri = $this->request->getCurrentRequest()->getUri();
+
+    $operation = 'view';
+    if (str_ends_with($uri, '/edit')) {
+      $operation = 'edit';
+    }
+
+    // Parameters from the route and/or request as needed.
+    return AccessResult::allowedIf(
+      $account->hasPermission($operation . ' own webform submission') &&
+      self::singleSubmissionAccess(
+        $account,
+        $operation,
+        $submission_id
+      ));
+  }
+
+  /**
+   * Placeholder for proper submission content based access checking.
+   *
+   * Gets webform & submission with data and determines access.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   User account.
+   * @param string $operation
+   *   Operation we check access against.
+   * @param string $submission_id
+   *  Submission id from ATV
+   *
+   * @return bool
+   *   Access status
+   */
+  public static function singleSubmissionAccess(AccountInterface $account, string $operation, string $submission_id): bool {
+
+    $accountMail = $account->getEmail();
+    $accountRoles = $account->getRoles();
+
+    $result = \Drupal::service('database')
+      ->query("SELECT submission_uuid,document_uuid,admin_owner,admin_roles,user_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
+        ':form_tool_id' => $submission_id,
+      ]);
+
+    $data = $result->fetchObject();
+
+    $helProfiiliData = \Drupal::service('helfi_helsinki_profiili.userdata');
+    $userData = $helProfiiliData->getUserData();
+
+    // user can access their own submission
+    if ($data->user_uuid == $userData["sub"]) {
+      return TRUE;
+    }
+    // admin owner user can access this submission
+    if ($data->admin_owner == $accountMail) {
+      return TRUE;
+    }
+
+    // and everybody with admin role can access.
+    foreach ($accountRoles as $role) {
+      if (str_contains($data->admin_roles, $role)) {
+        return TRUE;
+      }
+    }
+    // others, no access.
+    return FALSE;
+  }
+
 
 }

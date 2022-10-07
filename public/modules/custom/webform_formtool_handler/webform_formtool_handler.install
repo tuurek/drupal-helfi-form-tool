@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Database\Database;
+
 /**
  * Implements hook_schema().
  */
@@ -21,12 +23,33 @@ function webform_formtool_handler_schema() {
         'default' => '',
         'description' => 'ATV Document UUID',
       ],
+      'user_uuid' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'User HP UUID',
+      ],
       'form_tool_id' => [
         'type' => 'varchar',
         'length' => 50,
         'not null' => TRUE,
         'default' => '',
         'description' => 'Generated ID',
+      ],
+      'admin_owner' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Admin user for this form',
+      ],
+      'admin_roles' => [
+        'type' => 'varchar',
+        'length' => 244,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Admin user for this form',
       ],
     ],
     'primary key' => ['submission_uuid'],
@@ -38,4 +61,43 @@ function webform_formtool_handler_schema() {
 
   return $schema;
 
+}
+
+/**
+ * Add admin user & role columns
+ */
+function webform_formtool_handler_update_9001(&$sandbox) {
+  $spec1 = [
+    'type' => 'varchar',
+    'length' => 50,
+    'not null' => TRUE,
+    'default' => '',
+    'description' => 'Admin user for this form',
+  ];
+  $spec2 = [
+    'type' => 'varchar',
+    'length' => 244,
+    'not null' => TRUE,
+    'default' => '',
+    'description' => 'Admin user for this form',
+  ];
+  $schema = Database::getConnection()->schema();
+  $schema->addField('form_tool_map', 'admin_owner', $spec1);
+  $schema->addField('form_tool_map', 'admin_roles', $spec2);
+}
+
+
+/**
+ * Add admin user & role columns
+ */
+function webform_formtool_handler_update_9002(&$sandbox) {
+  $spec1 = [
+    'type' => 'varchar',
+    'length' => 50,
+    'not null' => TRUE,
+    'default' => '',
+    'description' => 'User HP UUID',
+  ];
+  $schema = Database::getConnection()->schema();
+  $schema->addField('form_tool_map', 'user_uuid', $spec1);
 }

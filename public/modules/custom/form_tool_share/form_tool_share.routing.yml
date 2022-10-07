@@ -38,12 +38,12 @@ entity.form_tool_share.script:
     _custom_access: '\Drupal\form_tool_share\Access\FormToolShareAccess::checkAccess'
 
 entity.form_tool_share.completion:
-  path: '/formtool/completion/{submissionId}'
+  path: '/formtool/completion/{submission_id}'
   defaults:
     _title: 'Example'
     _controller: '\Drupal\form_tool_share\Controller\FormCompletionController::build'
   requirements:
-    _permission: 'access content'
+    _custom_access: '\Drupal\webform_formtool_handler\Controller\FormToolSubmissionController::accessByApplicationNumber'
 
 entity.form_tool_share.error:
   path: '/formtool/submit-error'
