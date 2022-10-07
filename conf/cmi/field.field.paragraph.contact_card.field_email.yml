@@ -1,0 +1,21 @@
+uuid: 281214d5-0a39-4e7c-8528-ac74bb349730
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_email
+    - paragraphs.paragraphs_type.contact_card
+_core:
+  default_config_hash: _xvHnCphxLiUITT0SlJRNoljxH8hjVmfsORDmo8CTQs
+id: paragraph.contact_card.field_email
+field_name: field_email
+entity_type: paragraph
+bundle: contact_card
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

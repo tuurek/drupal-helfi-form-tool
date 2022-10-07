@@ -1,10 +1,12 @@
 uuid: d3e876eb-5a46-4d09-8a60-5b37815b6d6e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - helfi_api_base
 _core:
   default_config_hash: NIKBt6kw_uPhNI0qtR2DnRf7mSOgAQdx7Q94SKMjXbQ
-name: 'Plain text'
+name: 'Puhdas teksti'
 format: plain_text
 weight: 10
 filters:
@@ -26,4 +28,10 @@ filters:
     provider: filter
     status: true
     weight: 0
+    settings: {  }
+  helfi_link_converter:
+    id: helfi_link_converter
+    provider: helfi_api_base
+    status: true
+    weight: -10
     settings: {  }

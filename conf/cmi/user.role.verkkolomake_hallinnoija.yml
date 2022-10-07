@@ -45,6 +45,7 @@ permissions:
   - 'edit own webform submission'
   - 'revert esitiedot revisions'
   - 'schedule publishing of nodes'
+  - 'view any webform submission'
   - 'view esitiedot revisions'
   - 'view own unpublished content'
   - 'view own webform submission'

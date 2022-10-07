@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.remote_video.field_iframe_title
     - field.field.paragraph.remote_video.field_remote_video
     - paragraphs.paragraphs_type.remote_video
 _core:
@@ -21,4 +22,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_iframe_title: true
