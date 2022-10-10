@@ -12,6 +12,7 @@ use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -108,6 +109,7 @@ class FormToolSubmissionController extends ControllerBase {
       throw new AccessDeniedHttpException($e->getMessage());
     } catch (Exception $e) {
       throw new NotFoundHttpException($e->getMessage());
+    } catch (GuzzleException $e) {
     }
 
     return [

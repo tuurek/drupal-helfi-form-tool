@@ -456,7 +456,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
     /** @var \Drupal\Core\Session\AccountInterface $account */
     $account = \Drupal::currentUser();
 
-    // check access for user.
+    // check access for user before loading anything else
     $access = FormToolSubmissionController::singleSubmissionAccess($account, 'view', $id);
 
     if ($access !== TRUE) {
