@@ -123,7 +123,9 @@
         "post-update-cmd": [
             "@copy-commit-message-script"
         ],
-        "phpcs": "vendor/bin/phpcs public/modules/custom --standard=Drupal",
-        "phpcbf": "vendor/bin/phpcbf public/modules/custom --standard=Drupal"
+        "phpcs": "vendor/bin/phpcs public/modules/custom --standard=Drupal --ignore=*.js,*.css --extensions=php,module,install",
+        "phpcs-modules": "vendor/bin/phpcs public/modules/contrib/helfi_atv --standard=Drupal --ignore=*.js,*.css --extensions=php,module,install",
+        "phpcbf": "vendor/bin/phpcbf public/modules/custom --standard=Drupal --ignore=*.js,*.css --extensions=php,module,install",
+        "phpcbf-modules": "vendor/bin/phpcbf public/modules/contrib/helfi_atv --standard=Drupal --ignore=*.js,*.css --extensions=php,module,install"
     }
 }
