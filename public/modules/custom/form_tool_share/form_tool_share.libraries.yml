@@ -40,7 +40,7 @@ libraries.iframe-resizer.4.2.10:
     url: http://opensource.org/licenses/mit-license.php
     gpl-compatible: true
   js:
-    '//cdn.jsdelivr.net/gh/davidjbradshaw/iframe-resizer@v4.2.10/js/iframeResizer.contentWindow.min.js': { type: external, minified: true }
+    js/iframeResizer.contentWindow.min.js: { type: file, minified: true }
 
 
 # Third-party library (self hosted).

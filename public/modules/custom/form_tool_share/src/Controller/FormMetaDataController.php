@@ -20,7 +20,7 @@ class FormMetaDataController extends ControllerBase {
 
     $webforms = Webform::loadMultiple();
 
-    foreach ($webforms as $key => $webform) {
+    foreach ($webforms as $webform) {
       $handlers = $webform->getHandlers();
       $status = $webform->get('status');
       if ($handlers->has('formtool_webform_handler')) {
