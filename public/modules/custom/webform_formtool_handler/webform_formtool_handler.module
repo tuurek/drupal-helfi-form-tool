@@ -5,11 +5,11 @@
  * Provides an formtool of a webform handler.
  */
 
+use Drupal\Component\Plugin\Exception\PluginException;
+use Drupal\webform\Entity\Webform;
+
 /**
  * Implements hook_theme().
- *
- * @return array
- *  Theme setup.
  */
 function webform_formtool_handler_theme(): array {
   return [
@@ -28,23 +28,16 @@ function webform_formtool_handler_theme(): array {
 
 /**
  * Implements hook_mail().
- *
- * @param $key
- *  Mailkey.
- * @param $message
- *  Message.
- * @param $params
- *  Options.
  */
 function webform_formtool_handler_mail($key, &$message, $params) {
-  $options = array(
+  $options = [
     'langcode' => $message['langcode'],
-  );
+  ];
 
   switch ($key) {
     case 'submission_email_notify':
       $message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['subject'] = t('New submission for @title', array('@title' => $params['form_title']), $options);
+      $message['subject'] = t('New submission for @title', ['@title' => $params['form_title']], $options);
       $message['body'][] = $params['message'];
       break;
   }
@@ -53,18 +46,17 @@ function webform_formtool_handler_mail($key, &$message, $params) {
 /**
  * Implements hook_entity_presave().
  */
-function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform $entity) {
+function webform_formtool_handler_webform_presave(Webform $entity) {
 
   // Make sure we have correct permissions set to webforms.
-  // Let's just override anything set in the UI
-
-  // Load settings
+  // Let's just override anything set in the UI.
+  // Load settings.
   $thirdPartySettings = $entity->getThirdPartySettings('form_tool_webform_parameters');
 
   // let's default permissions to none.
   $acc = [];
 
-  // create basic permissions to all forms
+  // Create basic permissions to all forms.
   $acc['create']['users'] = [];
   $acc['create']['permissions'] = [];
 
@@ -114,9 +106,9 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
   $acc['configuration']['permissions'] = [];
 
   if (isset($thirdPartySettings["login_type"])) {
-    // and then per login type
+    // And then per login type.
     switch ($thirdPartySettings["login_type"]) {
-      // strong auth
+      // Strong auth.
       case '2':
 
         $acc['create']['roles'] = [
@@ -133,7 +125,8 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
         ];
 
         break;
-      // weak auth
+
+      // Weak auth.
       case '1':
         $acc['create']['roles'] = [
           'helsinkiprofiili_heikko',
@@ -148,7 +141,7 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
         ];
         break;
 
-      // all other cases.
+      // All other cases.
       default:
         $acc['create']['roles'] = [
           'anonymous',
@@ -157,20 +150,19 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
     }
   }
 
-  // set rules
+  // Set rules.
   $entity->setAccessRules($acc);
 }
-
 
 /**
  * Implements hook_entity_insert().
  */
-function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform $entity) {
+function webform_formtool_handler_webform_insert(Webform $entity) {
 
   /** @var \Drupal\webform\Plugin\WebformHandlerManagerInterface $handler_manager */
   $handler_manager = \Drupal::service('plugin.manager.webform.handler');
 
-  // Create webform handler config
+  // Create webform handler config.
   $handler_configuration = [
     'id' => 'formtool_webform_handler',
     'label' => 'Form Tool Handler',
@@ -190,7 +182,8 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
     // Add webform handler which triggers Webform::save().
     $entity->addWebformHandler($handler);
 
-  } catch (\Drupal\Component\Plugin\Exception\PluginException $e) {
+  }
+  catch (PluginException $e) {
     \Drupal::messenger()
       ->addError('Failed adding from tool handler automatically to a webform');
   }
@@ -200,7 +193,7 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
  * Implements hook_entity_type_alter().
  */
 function webform_formtool_handler_entity_type_alter(array &$entity_types) {
-  // todo: why is this not used?
+  // @todo why is this not used?
   $entity_types['webform_submission']->setStorageClass('Drupal\webform_formtool_handler\FormToolSubmissionStorage');
 }
 
@@ -208,7 +201,6 @@ function webform_formtool_handler_entity_type_alter(array &$entity_types) {
  * Implements hook_entity_type_build().
  */
 function webform_formtool_handler_entity_type_build(array &$entity_types) {
-
-  $d='asdf';
+  // @todo for some reason this hook does not invoke at all, so probabley this is not used.
+  $entity_types['webform_submission']->setHandlerClass('access', 'Drupal\webform_formtool_handler\FormToolWsAccessHandler');
 }
-

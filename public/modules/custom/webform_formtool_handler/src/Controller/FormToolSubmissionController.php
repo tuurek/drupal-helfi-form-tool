@@ -2,7 +2,6 @@
 
 namespace Drupal\webform_formtool_handler\Controller;
 
-use Drupal;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
@@ -11,7 +10,6 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
-use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
@@ -58,15 +56,17 @@ class FormToolSubmissionController extends ControllerBase {
    *   The helfi_atv service.
    * @param \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $helfi_helsinki_profiili
    *   The helfi_helsinki_profiili service.
+   * @param \Drupal\Core\Http\RequestStack $request
+   *   Request stack.
    */
   public function __construct(
-    AtvService               $helfi_atv,
+    AtvService $helfi_atv,
     HelsinkiProfiiliUserData $helfi_helsinki_profiili,
-    RequestStack             $request
+    RequestStack $request
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
-    $this->account = Drupal::currentUser();
+    $this->account = \Drupal::currentUser();
     $this->request = $request;
   }
 
@@ -89,8 +89,8 @@ class FormToolSubmissionController extends ControllerBase {
    * Not that in this we should only parse form data itself, and add other
    * webform data only if needed.
    *
-   * @param string $id
-   *   ID of the submission. Human readable format.
+   * @param string $submission_id
+   *   Submission id.
    *
    * @return array
    *   Render array for template.
@@ -100,16 +100,20 @@ class FormToolSubmissionController extends ControllerBase {
     try {
       $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id);
 
-      $view_builder = Drupal::entityTypeManager()
+      $view_builder = \Drupal::entityTypeManager()
         ->getViewBuilder('webform_submission');
       $pre_render = $view_builder->view($entity);
 
       $formTitle = $entity->getWebform()->get('title');
-    } catch (AccessDeniedException $e) {
+    }
+    catch (AccessDeniedException $e) {
       throw new AccessDeniedHttpException($e->getMessage());
-    } catch (Exception $e) {
+    }
+    catch (\Exception $e) {
       throw new NotFoundHttpException($e->getMessage());
-    } catch (GuzzleException $e) {
+    }
+    catch (GuzzleException $e) {
+      throw new NotFoundHttpException('General error.');
     }
 
     return [
@@ -142,7 +146,9 @@ class FormToolSubmissionController extends ControllerBase {
 
     // Parameters from the route and/or request as needed.
     return AccessResult::allowedIf(
-      $account->hasPermission($operation . ' own webform submission') &&
+    // Not sure if this haspermission is required when we check this
+    // manually in method.
+    // $account->hasPermission($operation . ' own webform submission') &&.
       self::singleSubmissionAccess(
         $account,
         $operation,
@@ -151,16 +157,14 @@ class FormToolSubmissionController extends ControllerBase {
   }
 
   /**
-   * Placeholder for proper submission content based access checking.
-   *
-   * Gets webform & submission with data and determines access.
+   * Check access to single submission via saved details to local DB.
    *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   User account.
    * @param string $operation
    *   Operation we check access against.
    * @param string $submission_id
-   *  Submission id from ATV
+   *   Submission id from ATV.
    *
    * @return bool
    *   Access status
@@ -177,27 +181,32 @@ class FormToolSubmissionController extends ControllerBase {
 
     $data = $result->fetchObject();
 
-    $helProfiiliData = \Drupal::service('helfi_helsinki_profiili.userdata');
-    $userData = $helProfiiliData->getUserData();
-
-    // user can access their own submission
-    if ($data->user_uuid == $userData["sub"]) {
-      return TRUE;
-    }
-    // admin owner user can access this submission
+    // Admin owner user can access this submission.
     if ($data->admin_owner == $accountMail) {
       return TRUE;
     }
 
-    // and everybody with admin role can access.
+    // And everybody with admin role can access.
     foreach ($accountRoles as $role) {
       if (str_contains($data->admin_roles, $role)) {
         return TRUE;
       }
     }
+
+    $helProfiiliData = \Drupal::service('helfi_helsinki_profiili.userdata');
+    $userData = $helProfiiliData->getUserData();
+
+    if (!$userData) {
+      return FALSE;
+    }
+
+    // User can access their own submission.
+    if ($data->user_uuid == $userData["sub"]) {
+      return TRUE;
+    }
+
     // others, no access.
     return FALSE;
   }
-
 
 }

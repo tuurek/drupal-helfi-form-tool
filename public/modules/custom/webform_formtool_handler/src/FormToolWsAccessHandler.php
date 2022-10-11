@@ -1,15 +1,15 @@
 <?php
 
+namespace Drupal\webform_formtool_handler;
 
+use Drupal\webform\WebformSubmissionAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\webform\Access\WebformAccessResult;
 
 /**
- * Override access control from
+ * Override access control from.
  */
-class FormToolWsAccessHandler extends \Drupal\webform\WebformSubmissionAccessControlHandler {
-
+class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
 
   /**
    * {@inheritdoc}

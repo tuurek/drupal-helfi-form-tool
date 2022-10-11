@@ -5,7 +5,7 @@ namespace Drupal\webform_formtool_handler;
 use GuzzleHttp\ClientInterface;
 
 /**
- * AdGroupService service.
+ * Service for accessing different AD groups for access control.
  */
 class AdGroupService {
 
@@ -20,7 +20,7 @@ class AdGroupService {
    * Constructs a SectorService object.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
-   *  Http client. Guzzle.
+   *   Http client. Guzzle.
    */
   public function __construct(ClientInterface $http_client,) {
     $this->httpClient = $http_client;
@@ -32,6 +32,7 @@ class AdGroupService {
    * Hopefully this will get some support from ATV / Helsinki profiili.
    *
    * @return string[]
+   *   Array containing ad groups.
    */
   public function getAdGroups(): array {
     return [
@@ -41,4 +42,5 @@ class AdGroupService {
       'ad_group_4' => 'AD group 4',
     ];
   }
+
 }

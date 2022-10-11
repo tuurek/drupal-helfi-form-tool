@@ -3162,26 +3162,26 @@
         },
         {
             "name": "drupal/crop",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/crop.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/crop-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "b5a84c6b85b9582e686ccf421295611d9dd52055"
+                "url": "https://ftp.drupal.org/files/projects/crop-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "8e109cf60077f4c605c4d1f895cb3dc28613a23a"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9.3 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1645187494",
+                    "version": "8.x-2.3",
+                    "datestamp": "1665437894",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3190,7 +3190,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -3508,27 +3508,27 @@
         },
         {
             "name": "drupal/diff",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/diff.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "7106ca30b7b10343fbf79a0c42fc7981b109095f"
+                "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "b7558b0f431d5945289829946e0beba61bf7ae18"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9",
+                "drupal/core": "^9.3 || ^10",
                 "mkalkbrenner/php-htmldiff-advanced": "~0.0.8"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1578322688",
+                    "version": "8.x-1.1",
+                    "datestamp": "1665437355",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3537,7 +3537,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -4988,12 +4988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "4d418de161db2215e530f82e4d9d72134dd45eca"
+                "reference": "f2bdf3257dbeb53b14c4e24af5aedb13e85e6789"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/4d418de161db2215e530f82e4d9d72134dd45eca",
-                "reference": "4d418de161db2215e530f82e4d9d72134dd45eca",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/f2bdf3257dbeb53b14c4e24af5aedb13e85e6789",
+                "reference": "f2bdf3257dbeb53b14c4e24af5aedb13e85e6789",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5010,7 +5010,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2022-10-10T09:34:42+00:00"
+            "time": "2022-10-11T07:16:09+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -5111,12 +5111,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "19e5054b0dd32daf2a27ebfaed21bba34f5efea0"
+                "reference": "65b36b46e7fcd5fbeafab590814622174e87e8f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/19e5054b0dd32daf2a27ebfaed21bba34f5efea0",
-                "reference": "19e5054b0dd32daf2a27ebfaed21bba34f5efea0",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/65b36b46e7fcd5fbeafab590814622174e87e8f1",
+                "reference": "65b36b46e7fcd5fbeafab590814622174e87e8f1",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5132,7 +5132,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2022-10-07T12:41:47+00:00"
+            "time": "2022-10-11T07:22:01+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
@@ -5203,16 +5203,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.13.2",
+            "version": "2.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "076c60488c676245e935533484e7f2587e705aea"
+                "reference": "0ddc4179083cdec8f111a141443e1c8c226bda99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/076c60488c676245e935533484e7f2587e705aea",
-                "reference": "076c60488c676245e935533484e7f2587e705aea",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/0ddc4179083cdec8f111a141443e1c8c226bda99",
+                "reference": "0ddc4179083cdec8f111a141443e1c8c226bda99",
                 "shasum": ""
             },
             "require": {
@@ -5285,7 +5285,7 @@
                     "drupal/core": {
                         "[#UHF-181] Hide untranslated menu links": "https://www.drupal.org/files/issues/2021-03-05/3091246-allow-menu-tree-manipulators-alter-12-1.patch",
                         "[#UHF-920] Token for base URL (https://www.drupal.org/project/drupal/issues/1088112).": "https://www.drupal.org/files/issues/2020-10-06/1088112-63.patch",
-                        "[#UHF-3812] Ajax exposed filters not working for multiple instances of the same Views block placed on one page (https://www.drupal.org/project/drupal/issues/3163299).": "https://www.drupal.org/files/issues/2022-01-03/3163299-49.patch",
+                        "[#UHF-3812] Ajax exposed filters not working for multiple instances of the same Views block placed on one page (https://www.drupal.org/project/drupal/issues/3163299). Re-rolled for hel.fi": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/83eb65d99327bf9c9c67ca4f7c1220ae3d8e2eae/patches/drupal-3163299-ajax-exposed-filters-views-block-on-same-page.patch",
                         "[#UHF-3087] Non-published menu links as parent (https://www.drupal.org/project/drupal/issues/2807629)": "https://www.drupal.org/files/issues/2021-07-09/2807629-45.patch",
                         "[#UHF-4325] Strip whitespaces from twig debug comments": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/f7c0e380e2deb9a1b46bdf779fb27a945b466575/patches/drupal_core_strip_debug_mode_whitespaces_9.3.x.patch"
                     },
@@ -5322,10 +5322,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.13.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.13.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-10-06T13:46:06+00:00"
+            "time": "2022-10-10T08:42:30+00:00"
         },
         {
             "name": "drupal/helfi_tpr",
@@ -10126,13 +10126,13 @@
             "version": "7.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tuutti/des-connector.git",
-                "reference": "cf8b047734ecb2aed3d8fe9a7629af30e303896c"
+                "url": "https://github.com/nodespark/des-connector.git",
+                "reference": "4b1dcd340055a137b4c84f21fa9614a3c2f3e64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuutti/des-connector/zipball/cf8b047734ecb2aed3d8fe9a7629af30e303896c",
-                "reference": "cf8b047734ecb2aed3d8fe9a7629af30e303896c",
+                "url": "https://api.github.com/repos/nodespark/des-connector/zipball/4b1dcd340055a137b4c84f21fa9614a3c2f3e64d",
+                "reference": "4b1dcd340055a137b4c84f21fa9614a3c2f3e64d",
                 "shasum": ""
             },
             "require": {
@@ -10148,11 +10148,7 @@
                     "nodespark\\DESConnector\\": "src/DESConnector/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "nodespark\\DESConnector\\Test\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-2.1"
             ],
@@ -10173,9 +10169,10 @@
             "description": "An abstraction library for Elasticsearch Connector module for Drupal.",
             "homepage": "https://github.com/nodespark/des-connector",
             "support": {
+                "issues": "https://github.com/nodespark/des-connector/issues",
                 "source": "https://github.com/nodespark/des-connector"
             },
-            "time": "2021-05-12T13:05:02+00:00"
+            "time": "2022-07-13T13:24:24+00:00"
         },
         {
             "name": "nyholm/dsn",
@@ -11010,12 +11007,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "1fe34e6b33f09ec4eac3293b61791485663161d4"
+                "reference": "5fc25a4966b48ae9a631e345b167c867250a43c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/1fe34e6b33f09ec4eac3293b61791485663161d4",
-                "reference": "1fe34e6b33f09ec4eac3293b61791485663161d4",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/5fc25a4966b48ae9a631e345b167c867250a43c7",
+                "reference": "5fc25a4966b48ae9a631e345b167c867250a43c7",
                 "shasum": ""
             },
             "require": {
@@ -11072,7 +11069,7 @@
                 "issues": "https://github.com/ruflin/Elastica/issues",
                 "source": "https://github.com/ruflin/Elastica/tree/master"
             },
-            "time": "2022-10-10T07:29:08+00:00"
+            "time": "2022-10-11T06:53:58+00:00"
         },
         {
             "name": "stack/builder",
@@ -17872,5 +17869,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Install file.
+ */
+
 use Drupal\Core\Database\Database;
 
 /**
@@ -64,7 +69,7 @@ function webform_formtool_handler_schema() {
 }
 
 /**
- * Add admin user & role columns
+ * Add admin user & role columns.
  */
 function webform_formtool_handler_update_9001(&$sandbox) {
   $spec1 = [
@@ -86,9 +91,8 @@ function webform_formtool_handler_update_9001(&$sandbox) {
   $schema->addField('form_tool_map', 'admin_roles', $spec2);
 }
 
-
 /**
- * Add admin user & role columns
+ * Add admin user & role columns.
  */
 function webform_formtool_handler_update_9002(&$sandbox) {
   $spec1 = [

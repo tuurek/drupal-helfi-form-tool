@@ -1,24 +1,34 @@
 <?php
 
+/**
+ * @file
+ * Module file.
+ */
+
+use Drupal\user\Entity\Role;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
 use Drupal\user\Entity\User;
 use Drupal\webform\Entity\Webform;
 
 /**
- * @param $formsettings
+ * Privacy policy things?
+ *
+ * @todo This should be sorted so that no hardcoded links are used. Also is there no other way of doing this?
+ *
+ * @param array $formsettings
+ *   Settings array.
  *
  * @return string
- *  The url to the privacy policy link for the sector.
+ *   The url to the privacy policy link for the sector.
  */
-function _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings) {
+function _form_tool_webform_parameters_get_default_privacy_policy_link(array $formsettings) {
   $language = Drupal::languageManager()->getCurrentLanguage()->getId();
   if ($language == 'fi') {
     if (array_key_exists('privacy_policy', $formsettings)) {
       return $formsettings['privacy_policy'];
     }
     else {
-      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+      // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
       return 'https://asiakirjajulkisuus.hel.fi/';
     }
   }
@@ -28,7 +38,7 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
         return $formsettings['privacy_policy_sv'];
       }
       else {
-        // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+        // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
         return 'https://asiakirjajulkisuus.hel.fi/';
       }
     }
@@ -38,7 +48,7 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
           return $formsettings['privacy_policy_en'];
         }
         else {
-          // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+          // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
           return 'https://asiakirjajulkisuus.hel.fi/';
         }
       }
@@ -48,7 +58,7 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
             return $formsettings['privacy_policy_ru'];
           }
           else {
-            // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+            // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
             return 'https://asiakirjajulkisuus.hel.fi/';
           }
         }
@@ -58,6 +68,9 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
   return 'https://asiakirjajulkisuus.hel.fi/';
 }
 
+/**
+ * Implememts hook_form_alter()
+ */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (!Drupal::service('router.admin_context')->isAdminRoute()) {
     if (array_key_exists('#webform_id', $form)) {
@@ -110,22 +123,24 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       ->condition('roles', $adminRoleIds)
       ->execute();
     $users = User::loadMultiple($ids);
-    foreach($users as $user){
+    foreach ($users as $user) {
       $username = $user->get('name')->getString();
-      $mail =  $user->get('mail')->getString();
+      $mail = $user->get('mail')->getString();
       $userlist[$mail] = $username;
     }
 
-    $adminRoles = \Drupal\user\Entity\Role::loadMultiple($adminRoleIds);
+    $adminRoles = Role::loadMultiple($adminRoleIds);
     $adminRoleSelect = [];
     foreach ($adminRoles as $id => $role) {
       $adminRoleSelect[$id] = $role->label();
     }
 
-    // if form is set to closed, and user is not admin or with admin role, we don't allow editing.
+    // If form is set to closed, and user is not admin or with admin role,
+    // we don't allow editing.
     if ($formStatus == 'closed' && $currentId != '1' && !in_array('admin', $currentRoles)) {
       $disabled = TRUE;
-    } else {
+    }
+    else {
       $disabled = FALSE;
     }
 
@@ -162,7 +177,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#title' => t('Roles that can access submission'),
       '#options' => $adminRoleSelect,
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'roles'),
-      '#multiple' => true,
+      '#multiple' => TRUE,
       '#required' => TRUE,
     ];
 
@@ -170,8 +185,8 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#type' => 'textfield',
       '#title' => t('Email address where notification is sent.'),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'email_notify'),
-      '#description' => t('Add email where notification is sent after submission, leave empty for no notification')
-      //      '#required' => TRUE,
+      '#description' => t('Add email where notification is sent after submission, leave empty for no notification'),
+      // '#required' => TRUE,
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['form_code'] = [
@@ -182,7 +197,6 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#size' => 15,
       '#maxlength' => 20,
     ];
-
 
     $form['third_party_settings']['form_tool_webform_parameters']['tos_function_id'] = [
       '#type' => 'textfield',

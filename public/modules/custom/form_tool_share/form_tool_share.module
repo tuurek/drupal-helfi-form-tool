@@ -9,12 +9,12 @@
  * @see https://www.drupal.org/node/2217931
  */
 
-
-
 /* ************************************************************************** */
 // Theme functions.
 /* ************************************************************************** */
 
+use Drupal\Core\Session\AccountInterface;
+use Drupal\webform\WebformSubmissionInterface;
 use Drupal\form_tool_share\FormToolShareHelper;
 use Drupal\Core\Render\Markup;
 
@@ -41,7 +41,7 @@ function form_tool_share_theme($existing, $type, $theme, $path) {
       'variables' => [
         'submissionData' => NULL,
         'submissionId' => NULL,
-        'message' => NULL
+        'message' => NULL,
       ],
     ],
   ];
@@ -123,7 +123,6 @@ function template_preprocess_html__form_tool_share(&$variables) {
   }
   $variables['attributes']['class'] = array_values($variables['attributes']['class']);
 
-
 }
 
 /**
@@ -192,7 +191,7 @@ function template_preprocess_form_tool_share_script(array &$variables) {
 /**
  * Implements hook_webform_submission_access().
  */
-function form_tool_share_webform_submission_access(\Drupal\webform\WebformSubmissionInterface $webform_submission, $operation, \Drupal\Core\Session\AccountInterface $account) {
+function form_tool_share_webform_submission_access(WebformSubmissionInterface $webform_submission, $operation, AccountInterface $account) {
 
   $d = 'adfg';
 
