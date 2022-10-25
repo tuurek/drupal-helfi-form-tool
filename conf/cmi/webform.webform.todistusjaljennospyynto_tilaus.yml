@@ -127,7 +127,7 @@ settings:
   share: false
   share_node: false
   share_theme_name: ''
-  share_title: true
+  share_title: false
   share_page_body_attributes: {  }
   submission_label: ''
   submission_exception_message: ''

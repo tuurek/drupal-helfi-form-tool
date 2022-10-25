@@ -29,6 +29,7 @@ services:
       DRUPAL_VARNISH_HOST: "${COMPOSE_PROJECT_NAME}-varnish"
       DRUPAL_VARNISH_PORT: 6081
       REDIS_HOST: redis
+      PROJECT_NAME: "${PROJECT_NAME}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
       - "${DRUPAL_HOSTNAME}:host-gateway"
@@ -44,12 +45,12 @@ services:
       - "traefik.docker.network=stonehenge-network"
   redis:
     container_name: "${COMPOSE_PROJECT_NAME}-redis"
-    image: redis:6-alpine
+    image: redis:7-alpine
     networks:
       - internal
   db:
     container_name: "${COMPOSE_PROJECT_NAME}-db"
-    image: druidfi/mariadb:10.6-drupal
+    image: druidfi/mariadb:10.7-drupal
     volumes:
       - db_data:/var/lib/mysql
     ports:

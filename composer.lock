@@ -4897,12 +4897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "e52b8ed70f1e05b85428b0f5cd3c656eded49028"
+                "reference": "b6bcdc1fe248454d1f87684ccedfd8e904d35d83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/e52b8ed70f1e05b85428b0f5cd3c656eded49028",
-                "reference": "e52b8ed70f1e05b85428b0f5cd3c656eded49028",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/b6bcdc1fe248454d1f87684ccedfd8e904d35d83",
+                "reference": "b6bcdc1fe248454d1f87684ccedfd8e904d35d83",
                 "shasum": ""
             },
             "require": {
@@ -4922,7 +4922,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2022-10-13T10:23:09+00:00"
+            "time": "2022-10-21T08:03:44+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -5023,15 +5023,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "5893ce35f525117929c7f7c7be34b56a50d45081"
+                "reference": "7d007bae1c51b97d2114bd465688e6c66756e45b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/5893ce35f525117929c7f7c7be34b56a50d45081",
-                "reference": "5893ce35f525117929c7f7c7be34b56a50d45081",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/7d007bae1c51b97d2114bd465688e6c66756e45b",
+                "reference": "7d007bae1c51b97d2114bd465688e6c66756e45b",
                 "shasum": ""
             },
             "type": "drupal-module",
+            "extra": {
+                "composer-exit-on-patch-failure": true,
+                "enable-patching": true,
+                "patches": {
+                    "drupal/core": {
+                        "Add ability to delete all from tempstore": "https://www.drupal.org/files/issues/2020-10-23/get_delete_all_temp-2475719-31.patch"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\HelfiHelsinkiProfiili\\": "src/"
@@ -5044,7 +5053,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2022-10-13T08:52:40+00:00"
+            "time": "2022-10-25T04:33:22+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
