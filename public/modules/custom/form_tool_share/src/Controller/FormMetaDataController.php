@@ -12,7 +12,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class FormMetaDataController extends ControllerBase {
 
   /**
-   * Builds the response.
+   * Load shareable webforms from database and return them in json struct.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   Response json.
    */
   public function build(): JsonResponse {
 

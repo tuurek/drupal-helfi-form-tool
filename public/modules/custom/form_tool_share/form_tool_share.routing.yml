@@ -59,6 +59,6 @@ form_tool_share.meta:
     _title: 'Metadata'
     _controller: '\Drupal\form_tool_share\Controller\FormMetaDataController::build'
   requirements:
-    _permission: 'access content'
+    _form_metadata_access_check: 'TRUE'
   options:
     _auth: [ 'token_auth' ]

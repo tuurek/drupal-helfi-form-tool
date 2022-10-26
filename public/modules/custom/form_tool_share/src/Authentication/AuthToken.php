@@ -28,7 +28,12 @@ class AuthToken implements AuthenticationProviderInterface {
 
     if ($token === $validToken) {
       // Return a session if the request passes the validation.
-      return new UserSession();
+
+      // set valid token as username
+      $us = new UserSession();
+      $us->name = $validToken;
+
+      return $us;
     }
     return NULL;
   }
