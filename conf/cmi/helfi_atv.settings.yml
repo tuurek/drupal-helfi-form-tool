@@ -1,4 +1,14 @@
 roles:
   hp_user_roles:
-    - helsinkiprofiili
-  admin_user_roles: {  }
+    - helsinkiprofiili_vahva
+    - helsinkiprofiili_heikko
+  admin_user_roles:
+    - verkkolomake_kasittelija
+    - verkkolomake_kasittelija_todistus
+    - verkkolomake_hallinnoija
+    - verkkolomake_admin
+admin_user_roles:
+  - verkkolomake_kasittelija
+  - verkkolomake_kasittelija_todistus
+  - verkkolomake_hallinnoija
+  - verkkolomake_admin

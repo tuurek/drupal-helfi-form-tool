@@ -1,0 +1,14 @@
+uuid: abfac450-d3ff-41c3-bb01-7775c9088972
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_kasittelija
+  module:
+    - user
+id: user_remove_role_action.verkkolomake_kasittelija
+label: 'Poista rooli Verkkolomake-käsittelijä valituilta käyttäjiltä'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: verkkolomake_kasittelija

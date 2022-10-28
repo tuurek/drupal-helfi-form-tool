@@ -5,7 +5,9 @@ roles:
   hp_user_role_strong: helsinkiprofiili_vahva
   hp_user_role_weak: helsinkiprofiili_heikko
   admin_user_roles:
+    - verkkolomake_kasittelija
     - verkkolomake_hallinnoija
+    - verkkolomake_admin
 clients:
   hp_user_client: tunnistamo
   hp_admin_client: tunnistamoadmin

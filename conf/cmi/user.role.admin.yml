@@ -8,7 +8,6 @@ dependencies:
     - media.type.remote_video
     - media.type.soundcloud
     - node.type.article
-    - node.type.esitiedot
     - node.type.landing_page
     - node.type.page
     - node.type.webform
@@ -45,7 +44,7 @@ _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
 label: Ylläpitäjä
-weight: 2
+weight: -1
 is_admin: null
 permissions:
   - 'access administration pages'
@@ -89,7 +88,6 @@ permissions:
   - 'create url aliases'
   - 'delete all revisions'
   - 'delete any article content'
-  - 'delete any esitiedot content'
   - 'delete any file media'
   - 'delete any image media'
   - 'delete any landing_page content'

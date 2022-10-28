@@ -19,11 +19,11 @@ third_party_settings:
     sensitive: '1'
     form_code: TODISTUS
     email_notify: ''
-    status: public
+    status: wip
     tos_function_id: f917d43aab76420bb2ec53f6684da7f7
     tos_record_id: 89837a682b5d410e861f8f3688154163
     roles:
-      verkkolomake_hallinnoija: verkkolomake_hallinnoija
+      verkkolomake_kasittelija_todistus: verkkolomake_kasittelija_todistus
 weight: 0
 open: null
 close: null

@@ -3,10 +3,12 @@ langcode: fi
 status: true
 dependencies:
   module:
+    - form_tool_share
     - webform
 id: helsinkiprofiili_vahva
 label: 'HelsinkiProfiili Vahva'
-weight: 5
+weight: -6
 is_admin: null
 permissions:
+  - 'access form data page'
   - 'view own webform submission'

@@ -1,12 +1,12 @@
-uuid: 9343b3c4-5d96-4fc4-a606-f38d45f5ddee
+uuid: e242e83d-b7eb-449c-a75e-1a193ae22dbf
 langcode: fi
 status: true
 dependencies:
   module:
     - form_tool_share
-id: helsinkiprofiili_heikko
-label: 'HelsinkiProfiili Heikko'
-weight: -7
+id: verkkolomake_kasittelija
+label: Verkkolomake-käsittelijä
+weight: -4
 is_admin: null
 permissions:
   - 'access form data page'

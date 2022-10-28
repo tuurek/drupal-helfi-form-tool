@@ -1,5 +1,6 @@
 settings:
   default_form_open_message: 'Tätä lomaketta ei ole vielä avattu lähetyksille.'
+  default_form_close_message: 'Sorry&hellip; This form is closed to new submissions.'
   default_submit_button_label: Lähetä
   default_reset_button_label: Palauta
   default_delete_button_label: Poista
@@ -10,6 +11,7 @@ settings:
   default_wizard_toggle_hide_label: 'Piilota kaikki'
   default_preview_next_button_label: Esikatselu
   default_preview_label: Esikatselu
+  default_preview_message: 'Please review your submission. Your submission is not complete until you press the &quot;Submit&quot; button!'
   default_draft_button_label: 'Tallenna keskeneräinen'
   default_draft_saved_message: 'Tiedot tallennettu. Voit palata tähän lomakkeeseen myöhemmin ja palauttaa nykyiset tiedot.'
   default_confirmation_message: 'Lisätty uusi lähetys lomakkeelle [webform:title].'
@@ -23,3 +25,5 @@ settings:
 element:
   default_more_title: Lisää
   default_section_title_tag: h2
+test:
+  names: "first_name:\r\n  - 'John'\r\n  - 'Paul'\r\n  - 'Ringo'\r\n  - 'George'\r\nlast_name:\r\n  - 'Lennon'\r\n  - 'McCartney'\r\n  - 'Starr'\r\n  - 'Harrison'\r\naddress:\r\n  - '10 Main Street'\r\n  - '11 Brook Alley Road. APT 1'\r\nzip:\r\n  - '11111'\r\n  - '12345'\r\n  - '12345-6789'\r\npostal_code:\r\n  - '11111'\r\n  - '12345'\r\n  - '12345-6789'\r\nphone:\r\n  - '123-456-7890'\r\n  - '098-765-4321'\r\nfax:\r\n  - '123-456-7890'\r\n  - '098-765-4321'\r\ncity:\r\n  - 'Springfield'\r\n  - 'Pleasantville'\r\n  - 'Hill Valley'\r\nurl:\r\n  - 'http://example.com'\r\n  - 'http://test.com'\r\ndefault:\r\n  - 'Loremipsum'\r\n  - 'Oratione'\r\n  - 'Dixisset'\r\n"

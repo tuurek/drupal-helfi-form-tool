@@ -1,0 +1,14 @@
+uuid: a5e45ef9-c5d6-4ac1-81c3-f4dc39137b13
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_kasittelija
+  module:
+    - user
+id: user_add_role_action.verkkolomake_kasittelija
+label: 'Add the Verkkolomake-käsittelijä role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: verkkolomake_kasittelija

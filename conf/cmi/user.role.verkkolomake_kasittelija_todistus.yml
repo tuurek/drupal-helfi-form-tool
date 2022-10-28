@@ -1,0 +1,9 @@
+uuid: bf006efd-2267-41b8-a66b-9a8f1fc9c1f8
+langcode: fi
+status: true
+dependencies: {  }
+id: verkkolomake_kasittelija_todistus
+label: Verkkolomake-käsittelijä-TODISTUS
+weight: 1
+is_admin: null
+permissions: {  }
