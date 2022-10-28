@@ -4897,12 +4897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "b6bcdc1fe248454d1f87684ccedfd8e904d35d83"
+                "reference": "17eb5f2a4761a117d39469bf2e14d126fd1ee734"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/b6bcdc1fe248454d1f87684ccedfd8e904d35d83",
-                "reference": "b6bcdc1fe248454d1f87684ccedfd8e904d35d83",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/17eb5f2a4761a117d39469bf2e14d126fd1ee734",
+                "reference": "17eb5f2a4761a117d39469bf2e14d126fd1ee734",
                 "shasum": ""
             },
             "require": {
@@ -4922,7 +4922,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2022-10-21T08:03:44+00:00"
+            "time": "2022-10-28T12:26:57+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4962,12 +4962,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "4e7e2bafd139b430dfe59d987f5caaeeff2c2bbc"
+                "reference": "1b3b712199e5deac408f51849e4f9b185b823816"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/4e7e2bafd139b430dfe59d987f5caaeeff2c2bbc",
-                "reference": "4e7e2bafd139b430dfe59d987f5caaeeff2c2bbc",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/1b3b712199e5deac408f51849e4f9b185b823816",
+                "reference": "1b3b712199e5deac408f51849e4f9b185b823816",
                 "shasum": ""
             },
             "default-branch": true,
@@ -4980,7 +4980,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2022-05-25T07:04:38+00:00"
+            "time": "2022-10-28T07:06:17+00:00"
         },
         {
             "name": "drupal/helfi_hauki",
@@ -5023,12 +5023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "b0bb119ffa49baf34574720ee4322e5a0b3e6567"
+                "reference": "98a0b6aac50dd80d16611a6a997333751f057e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/b0bb119ffa49baf34574720ee4322e5a0b3e6567",
-                "reference": "b0bb119ffa49baf34574720ee4322e5a0b3e6567",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/98a0b6aac50dd80d16611a6a997333751f057e13",
+                "reference": "98a0b6aac50dd80d16611a6a997333751f057e13",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5053,7 +5053,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2022-10-25T09:08:36+00:00"
+            "time": "2022-10-28T12:24:43+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
@@ -5124,16 +5124,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.13.6",
+            "version": "2.13.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "c8496487f8595dec1921d1e87b65650873fb7755"
+                "reference": "8701f0fb6403de7d36aabd1455522be00486f1a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/c8496487f8595dec1921d1e87b65650873fb7755",
-                "reference": "c8496487f8595dec1921d1e87b65650873fb7755",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/8701f0fb6403de7d36aabd1455522be00486f1a1",
+                "reference": "8701f0fb6403de7d36aabd1455522be00486f1a1",
                 "shasum": ""
             },
             "require": {
@@ -5243,32 +5243,35 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.13.6",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.13.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-10-19T07:23:46+00:00"
+            "time": "2022-10-28T12:02:48+00:00"
         },
         {
             "name": "drupal/helfi_tpr",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                "reference": "da4349755942c53939b31e3fe0bca04f408ce851"
+                "reference": "5ed2a62fb51909446690421c0a89bcee38576b63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/da4349755942c53939b31e3fe0bca04f408ce851",
-                "reference": "da4349755942c53939b31e3fe0bca04f408ce851",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/5ed2a62fb51909446690421c0a89bcee38576b63",
+                "reference": "5ed2a62fb51909446690421c0a89bcee38576b63",
                 "shasum": ""
             },
             "require": {
                 "drupal/address": "~1.0",
-                "drupal/helfi_api_base": "^2.0 || dev-main",
+                "drupal/helfi_api_base": "*",
                 "drupal/readonly_field_widget": "^1.0",
                 "drupal/twig_tweak": "^2.0 || ^3.0",
                 "drupal/views_infinite_scroll": "^2.0",
                 "php": "^8.0"
+            },
+            "conflict": {
+                "drupal/helfi_api_base": "<2.0"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
@@ -5281,26 +5284,27 @@
             ],
             "description": "TPR integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.1.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.1.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/issues"
             },
-            "time": "2022-09-02T12:21:35+00:00"
+            "time": "2022-10-27T05:58:29+00:00"
         },
         {
             "name": "drupal/helfi_tunnistamo",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "3210bb0ed5c6bcef282234e000702545a50e271b"
+                "reference": "74003bcd79dc5c3fadae46b16720147342cf66d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/3210bb0ed5c6bcef282234e000702545a50e271b",
-                "reference": "3210bb0ed5c6bcef282234e000702545a50e271b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/74003bcd79dc5c3fadae46b16720147342cf66d5",
+                "reference": "74003bcd79dc5c3fadae46b16720147342cf66d5",
                 "shasum": ""
             },
             "require": {
+                "drupal/helfi_api_base": "*",
                 "drupal/openid_connect": "^3.0"
             },
             "require-dev": {
@@ -5313,10 +5317,10 @@
             ],
             "description": "Tunnistamo integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/2.2.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/2.2.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2022-10-18T06:24:47+00:00"
+            "time": "2022-10-27T07:49:55+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -8289,16 +8293,16 @@
         },
         {
             "name": "ezimuel/ringphp",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezimuel/ringphp.git",
-                "reference": "92b8161404ab1ad84059ebed41d9f757e897ce74"
+                "reference": "8d00384f9e5c04713ef8448adf47824265791b50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezimuel/ringphp/zipball/92b8161404ab1ad84059ebed41d9f757e897ce74",
-                "reference": "92b8161404ab1ad84059ebed41d9f757e897ce74",
+                "url": "https://api.github.com/repos/ezimuel/ringphp/zipball/8d00384f9e5c04713ef8448adf47824265791b50",
+                "reference": "8d00384f9e5c04713ef8448adf47824265791b50",
                 "shasum": ""
             },
             "require": {
@@ -8340,9 +8344,9 @@
             ],
             "description": "Fork of guzzle/RingPHP (abandoned) to be used with elasticsearch-php",
             "support": {
-                "source": "https://github.com/ezimuel/ringphp/tree/1.2.0"
+                "source": "https://github.com/ezimuel/ringphp/tree/1.2.1"
             },
-            "time": "2021-11-16T11:51:30+00:00"
+            "time": "2022-10-25T12:54:22+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -15694,16 +15698,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.17",
+            "version": "9.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "aa94dc41e8661fe90c7316849907cba3007b10d8"
+                "reference": "12fddc491826940cf9b7e88ad9664cf51f0f6d0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/aa94dc41e8661fe90c7316849907cba3007b10d8",
-                "reference": "aa94dc41e8661fe90c7316849907cba3007b10d8",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/12fddc491826940cf9b7e88ad9664cf51f0f6d0a",
+                "reference": "12fddc491826940cf9b7e88ad9664cf51f0f6d0a",
                 "shasum": ""
             },
             "require": {
@@ -15759,7 +15763,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.17"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.18"
             },
             "funding": [
                 {
@@ -15767,7 +15771,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-30T12:24:04+00:00"
+            "time": "2022-10-27T13:35:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
