@@ -18,7 +18,7 @@ class FormMetadataAccessCheck implements AccessInterface {
    * When should we apply this check.
    *
    * @return string
-   *
+   *   Check id.
    */
   public function appliesTo() {
     return '_form_metadata_access_check';
@@ -35,7 +35,7 @@ class FormMetadataAccessCheck implements AccessInterface {
    *   User account. Should be anonymous.
    *
    * @return \Drupal\Core\Access\AccessResult|\Drupal\Core\Access\AccessResultAllowed
-   *  Allowed or not.
+   *   Allowed or not.
    */
   public function access(Route $route, Request $request, AccountInterface $account): AccessResult|AccessResultAllowed {
     $userName = $account->getAccountName();

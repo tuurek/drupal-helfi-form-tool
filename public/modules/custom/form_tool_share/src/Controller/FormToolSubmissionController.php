@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\webform_formtool_handler\Controller;
+namespace Drupal\form_tool_share\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
@@ -98,7 +98,7 @@ class FormToolSubmissionController extends ControllerBase {
   public function build(string $submission_id): array {
 
     try {
-      $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id);
+      $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id, 'view');
 
       $view_builder = \Drupal::entityTypeManager()
         ->getViewBuilder('webform_submission');
@@ -127,6 +127,9 @@ class FormToolSubmissionController extends ControllerBase {
   /**
    * Checks access for a specific request.
    *
+   * We can check access without loading ATV document when we save user uuid
+   * and other things to local db.
+   *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
    * @param string $submission_id
@@ -144,36 +147,6 @@ class FormToolSubmissionController extends ControllerBase {
       $operation = 'edit';
     }
 
-    // Parameters from the route and/or request as needed.
-    return AccessResult::allowedIf(
-    // Not sure if this haspermission is required when we check this
-    // manually in method.
-    // $account->hasPermission($operation . ' own webform submission') &&.
-      self::singleSubmissionAccess(
-        $account,
-        $operation,
-        $submission_id
-      ));
-  }
-
-  /**
-   * Check access to single submission via saved details to local DB.
-   *
-   * @param \Drupal\Core\Session\AccountInterface $account
-   *   User account.
-   * @param string $operation
-   *   Operation we check access against.
-   * @param string $submission_id
-   *   Submission id from ATV.
-   *
-   * @return bool
-   *   Access status
-   */
-  public static function singleSubmissionAccess(AccountInterface $account, string $operation, string $submission_id): bool {
-
-    $accountMail = $account->getEmail();
-    $accountRoles = $account->getRoles();
-
     $result = \Drupal::service('database')
       ->query("SELECT submission_uuid,document_uuid,admin_owner,admin_roles,user_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
         ':form_tool_id' => $submission_id,
@@ -181,32 +154,12 @@ class FormToolSubmissionController extends ControllerBase {
 
     $data = $result->fetchObject();
 
-    // Admin owner user can access this submission.
-    if ($data->admin_owner == $accountMail) {
-      return TRUE;
-    }
+    /** @var \Drupal\webform\Entity\WebformSubmission $entity */
+    $submissionObject = \Drupal::service('entity.repository')
+      ->loadEntityByUuid('webform_submission', $data->submission_uuid);
 
-    // And everybody with admin role can access.
-    foreach ($accountRoles as $role) {
-      if (str_contains($data->admin_roles, $role)) {
-        return TRUE;
-      }
-    }
-
-    $helProfiiliData = \Drupal::service('helfi_helsinki_profiili.userdata');
-    $userData = $helProfiiliData->getUserData();
-
-    if (!$userData) {
-      return FALSE;
-    }
-
-    // User can access their own submission.
-    if ($data->user_uuid == $userData["sub"]) {
-      return TRUE;
-    }
-
-    // others, no access.
-    return FALSE;
+    // Parameters from the route and/or request as needed.
+    return AccessResult::allowedIf($submissionObject->access($operation, $account));
   }
 
 }

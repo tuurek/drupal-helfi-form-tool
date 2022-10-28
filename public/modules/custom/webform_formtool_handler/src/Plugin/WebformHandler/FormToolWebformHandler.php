@@ -7,11 +7,11 @@ use Drupal\Core\Entity\EntityRepository;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
+use Drupal\helfi_helsinki_profiili\TokenExpiredException;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
-use Drupal\webform_formtool_handler\Controller\FormToolSubmissionController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -271,6 +271,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
    *   Form submission object.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
+   * @throws \Drupal\helfi_helsinki_profiili\TokenExpiredException
    */
   public function confirmForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     parent::confirmForm($form, $form_state, $webform_submission);
@@ -384,6 +385,9 @@ class FormToolWebformHandler extends WebformHandlerBase {
         // }
         // }.
       }
+      catch (TokenExpiredException $e) {
+        throw $e;
+      }
       catch (\Exception $e) {
         $this->log('error', $e->getMessage(), []);
         $form_state->setRedirect('entity.form_tool_share.error');
@@ -434,26 +438,20 @@ class FormToolWebformHandler extends WebformHandlerBase {
    *
    * @param string $id
    *   Form submission id.
+   * @param string $operation
+   *   Operation for access control.
    *
    * @return \Drupal\webform\Entity\WebformSubmission|null
    *   Loaded object or null if not found.
    *
-   * @throws \Drupal\Core\TempStore\TempStoreException
    * @throws \Drupal\helfi_atv\AtvDocumentNotFoundException
    * @throws \Drupal\helfi_atv\AtvFailedToConnectException
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public static function submissionObjectAndDataFromFormId(string $id): ?WebformSubmission {
+  public static function submissionObjectAndDataFromFormId(string $id, string $operation = 'view'): ?WebformSubmission {
 
     /** @var \Drupal\Core\Session\AccountInterface $account */
     $account = \Drupal::currentUser();
-
-    // Check access for user before loading anything else.
-    $access = FormToolSubmissionController::singleSubmissionAccess($account, 'view', $id);
-
-    if ($access !== TRUE) {
-      throw new AccessDeniedException('Access denied');
-    }
 
     $result = \Drupal::service('database')->query("SELECT submission_uuid,document_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
       ':form_tool_id' => $id,
@@ -462,7 +460,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
     if ($data == FALSE) {
       // All submissions should be stored locally for these access checks.
-      throw new NotFoundHttpException();
+      throw new NotFoundHttpException('Form submission not found');
     }
 
     /** @var \Drupal\helfi_atv\AtvService $atvService */
@@ -472,10 +470,17 @@ class FormToolWebformHandler extends WebformHandlerBase {
     $entity = \Drupal::service('entity.repository')
       ->loadEntityByUuid('webform_submission', $data->submission_uuid);
 
+    // If no entity from db, throw error.
     if (!$entity) {
       throw new NotFoundHttpException('Form submission not found');
     }
 
+    // Also if no access, throw error.
+    if (!$entity->access($operation, $account)) {
+      throw new AccessDeniedException('Access denied');
+    }
+
+    // Just when access control is sorted, load data from ATV.
     /** @var \Drupal\helfi_atv\AtvDocument $document */
     $documents = $atvService->searchDocuments(
       [

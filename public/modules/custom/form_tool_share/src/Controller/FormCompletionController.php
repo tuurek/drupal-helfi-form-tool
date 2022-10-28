@@ -46,10 +46,10 @@ class FormCompletionController extends ControllerBase {
    */
   public function build(string $submission_id): array {
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
-    $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id);
+    $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id, 'view');
 
     $url = Url::fromRoute(
-      'webform_formtool_handler.view_submission',
+      'form_tool_share.view_submission',
       ['submission_id' => $submission_id],
       [
         'attributes' => [
