@@ -2,9 +2,13 @@
   margin-top: $spacing-double;
   padding-top: $spacing-triple;
   border-top: 1px rgba(0, 0, 0, 0.6) solid;
+  padding-left: var(--spacing-layout-s);
+  padding-right: var(--spacing-layout-s);
   @include breakpoint($breakpoint-m) {
     display: flex;
     justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
   }
   input {
     width: 100%;
