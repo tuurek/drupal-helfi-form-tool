@@ -2,7 +2,7 @@
   --border-width: 2px;
   --input-height: 56px;
   --menu-item-height: 53px;
-  --icon-size: var(--spacing-m);
+  --icon-size: var(--spacing-layout-xs);
   --helper-color-default: var(--color-black-60);
   --helper-color-invalid: var(--color-error);
   --icon-color-invalid: var(--color-error);
@@ -43,14 +43,14 @@
     font-size: var(--fontsize-body-l);
     min-height: var(--menu-item-height);
     outline: none;
-    padding: calc(var(--spacing-s) - var(--border-width) * 2) var(--spacing-s);
+    padding: calc(var(--spacing-layout-2-xs) - var(--border-width) * 2) var(--spacing-layout-2-xs);
     width: 100%;
     height: var(--input-height);
   }
   i.hds-icon {
     position: absolute;
-    right: calc(var(--spacing-s) - var(--border-width) * 2);
-    top: calc(var(--spacing-s) - var(--border-width) * 2);
+    right: calc(var(--spacing-layout-2-xs) - var(--border-width) * 2);
+    top: calc(var(--spacing-layout-2-xs) - var(--border-width) * 2);
     pointer-events: none;
   }
 

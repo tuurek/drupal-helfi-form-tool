@@ -3,7 +3,7 @@
   --outline-width: 3px;
   --input-height: 56px;
   --textarea-height: 149px;
-  --icon-size: var(--spacing-m);
+  --icon-size: var(--spacing-layout-xs);
   --helper-color-default: var(--color-black-60);
   --helper-color-invalid: var(--color-error);
   --icon-color-invalid: var(--color-error);
@@ -35,19 +35,19 @@
     font-size: 1.125em;
     height: var(--input-height);
     line-height: normal;
-    padding: 0 var(--spacing-s);
+    padding: 0 var(--spacing-layout-2-xs);
     width: 100%;
   }
   table {
     border-collapse: collapse;
     border-spacing: 0px;
-    margin-bottom: var(--spacing-m);
+    margin-bottom: var(--spacing-layout-xs);
 
     td {
       border-top: 2px var(--color-black-20) solid;
       border-bottom: 2px var(--color-black-20) solid;
-      padding-top: var(--spacing-m);
-      padding-left: var(--spacing-m);
+      padding-top: var(--spacing-layout-xs);
+      padding-left: var(--spacing-layout-xs);
       @media (max-width: 768px) {
         border: 2px var(--color-black-20) solid;
       }
@@ -55,8 +55,8 @@
     td.webform-multiple-table--operations {
       border-top: 2px var(--color-black-20) solid;
       border-bottom: 2px var(--color-black-20) solid;
-      padding-top: var(--spacing-m);
-      padding-left: var(--spacing-m);
+      padding-top: var(--spacing-layout-xs);
+      padding-left: var(--spacing-layout-xs);
       @media (max-width: 768px) {
         border: 2px var(--color-black-20) solid;
         background: white;
@@ -68,7 +68,7 @@
     }
     td:last-child {
       border-right: 2px var(--color-black-20) solid;
-      padding-right: var(--spacing-m);
+      padding-right: var(--spacing-layout-xs);
     }
   }
 }

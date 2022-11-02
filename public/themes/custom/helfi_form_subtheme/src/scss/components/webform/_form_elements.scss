@@ -45,7 +45,7 @@
 
   &__helper-text {
     white-space: normal;
-    margin-top: $spacing-half;
+    margin-top: var(--spacing-2-xs);
   }
 }
 .webform-section-flex-wrapper {
@@ -56,13 +56,13 @@
   padding-left: var(--spacing-layout-s);
   padding-right: var(--spacing-layout-s);
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint(var(--breakpoint-m)) {
     flex-flow: row nowrap;
     padding: 0;
   }
 
   > .webform-section-wrapper {
-    @media (max-width: $breakpoint-m) {
+    @media (max-width: var(--breakpoint-m)) {
       padding-left: 0;
     }
   }
@@ -74,12 +74,12 @@
     margin-bottom: var(--spacing-layout-xs);
     width: 100%;
     hyphens: none;
-    padding-right: $spacing-triple;
+    padding-right: var(--spacing-layout-m);
     font-size: 24px;
     flex-shrink: 0;
     margin-top: 0;
 
-    @include breakpoint($breakpoint-m) {
+    @include breakpoint(var(--breakpoint-m)) {
       width: 30%;
       max-width: 350px;
     }
@@ -88,7 +88,7 @@
   > .webform-section-wrapper {
     font-size: $base-font-size;
     width: 100%;
-    padding-left: $spacing-triple;
+    padding-left: var(--spacing-layout-m);
     p:first-child {
       margin-top: 0;
     }
@@ -100,7 +100,7 @@
   legend, label {
     font-size: $base-font-size;
     font-weight: bold;
-    margin-bottom: $spacing-half;
+    margin-bottom: var(--spacing-2-xs);
     display: block;
     padding-right: var(--spacing-layout-s);
   }
