@@ -28,7 +28,7 @@ class FormToolShareAccess {
       && $webform->getSetting('share_node', TRUE);
     $template = $webform->isTemplate();
 
-    \Drupal::logger('formtool_share')->error('Webform share status: share=@share, share_node=@share_node, template=@template',[
+    \Drupal::logger('formtool_share')->error('Webform share status: share=@share, share_node=@share_node, template=@template', [
       '@share' => $share,
       '@share_node' => $share_node,
       '@template' => $template,
@@ -38,8 +38,6 @@ class FormToolShareAccess {
       ->addCacheTags(['config:webform.settings'])
       ->addCacheableDependency($webform);
   }
-
-
 
   /**
    * Check whether the webform node can be shared.
