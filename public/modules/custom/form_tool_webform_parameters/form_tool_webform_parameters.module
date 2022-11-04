@@ -1,24 +1,35 @@
 <?php
 
+/**
+ * @file
+ * Module file.
+ */
+
+use Drupal\user\Entity\Role;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
 use Drupal\user\Entity\User;
 use Drupal\webform\Entity\Webform;
 
 /**
- * @param $formsettings
+ * Privacy policy things?
+ *
+ * @param array $formsettings
+ *   Settings array.
  *
  * @return string
- *  The url to the privacy policy link for the sector.
+ *   The url to the privacy policy link for the sector.
+ *
+ * @todo This should be sorted so that no hardcoded links are used. Also is
+ *   there no other way of doing this?
  */
-function _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings) {
+function _form_tool_webform_parameters_get_default_privacy_policy_link(array $formsettings) {
   $language = Drupal::languageManager()->getCurrentLanguage()->getId();
   if ($language == 'fi') {
     if (array_key_exists('privacy_policy', $formsettings)) {
       return $formsettings['privacy_policy'];
     }
     else {
-      // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+      // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
       return 'https://asiakirjajulkisuus.hel.fi/';
     }
   }
@@ -28,7 +39,7 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
         return $formsettings['privacy_policy_sv'];
       }
       else {
-        // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+        // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
         return 'https://asiakirjajulkisuus.hel.fi/';
       }
     }
@@ -38,7 +49,7 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
           return $formsettings['privacy_policy_en'];
         }
         else {
-          // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+          // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
           return 'https://asiakirjajulkisuus.hel.fi/';
         }
       }
@@ -48,7 +59,7 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
             return $formsettings['privacy_policy_ru'];
           }
           else {
-            // TODO Figure out default links for $formsettings['sectors'] when sectors get defined
+            // @todo Figure out default links for $formsettings['sectors'] when sectors get defined
             return 'https://asiakirjajulkisuus.hel.fi/';
           }
         }
@@ -58,6 +69,9 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link($formsett
   return 'https://asiakirjajulkisuus.hel.fi/';
 }
 
+/**
+ * Implememts hook_form_alter()
+ */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (!Drupal::service('router.admin_context')->isAdminRoute()) {
     if (array_key_exists('#webform_id', $form)) {
@@ -79,6 +93,9 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
   }
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
 
+    $bundle = $form_state->getFormObject()->getEntity();
+    $formStatus = $bundle->getThirdPartySetting('form_tool_webform_parameters', 'status');
+
     /** @var \Drupal\webform_formtool_handler\SectorService $sectorService */
     $sectorService = Drupal::service('webform_formtool_handler.sector_service');
     $sectorList = $sectorService->getSectorList();
@@ -86,35 +103,53 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     /** @var \Drupal\webform_formtool_handler\AdGroupService $adGroupService */
     $adGroupService = Drupal::service('webform_formtool_handler.ad_group_service');
 
-    $bundle = $form_state->getFormObject()->getEntity();
+    /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpUserDataService */
+    $hpUserDataService = \Drupal::service('helfi_helsinki_profiili.userdata');
+
     // Because hidden by default.
     $form['third_party_settings']['#access'] = TRUE;
     $form['third_party_settings']['#tree'] = TRUE;
 
     $form['third_party_settings']['#title'] = t('Form Pre-Information');
 
-    $formStatus = $bundle->getThirdPartySetting('form_tool_webform_parameters', 'status');
-
     $currentUser = Drupal::currentUser();
     $currentRoles = $currentUser->getRoles();
     $currentId = $currentUser->id();
 
+    $allRoles = Role::loadMultiple();
+
+    $adminRoleSelect = [];
+    foreach ($allRoles as $id => $role) {
+      if (str_contains($id, 'verkkolomake_kasittelija')) {
+        $adminRoleSelect[$id] = $role->label();
+      }
+    }
+
     $userlist = [];
     $ids = Drupal::entityQuery('user')
       ->condition('status', 1)
-      ->condition('roles', 'verkkolomake_hallinnoija')
+      ->condition('roles', [
+        'verkkolomake_kasittelija',
+        'verkkolomake_hallinnoija',
+        'verkkolomake_admin',
+      ], 'IN')
       ->execute();
     $users = User::loadMultiple($ids);
-    foreach($users as $user){
+    foreach ($users as $user) {
       $username = $user->get('name')->getString();
-      $mail =  $user->get('mail')->getString();
+      $mail = $user->get('mail')->getString();
       $userlist[$mail] = $username;
     }
 
-    // if form is set to closed, and user is not admin or with admin role, we don't allow editing.
-    if ($formStatus == 'closed' && $currentId != '1' && !in_array('admin', $currentRoles)) {
+    // If form is set to closed, and user is not admin or with admin role,
+    // we don't allow editing.
+    if (
+      ($formStatus == 'public' || $formStatus == 'closed') &&
+      ($currentId != '1' && !in_array('admin', $currentRoles))
+    ) {
       $disabled = TRUE;
-    } else {
+    }
+    else {
       $disabled = FALSE;
     }
 
@@ -130,12 +165,14 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#type' => 'radios',
       '#title' => t('Is form published'),
       '#options' => [
+        'wip' => t('Work in progress'),
         'public' => t('Published'),
-        'wip' => t('Closed / WIP'),
+        'closed' => t('Closed'),
       ],
       '#required' => TRUE,
       '#default_value' => $formStatus ?? 'closed',
-      '#description' => t('If form is published, then no editing is allowed and form results are submitted to ATV.'),
+      '#description' => t('If form is published, then no editing is allowed and form results are submitted to ATV. Work in progress form opens up for testing & developing but not for general public.'),
+      '#disabled' => ($currentId == '1' || in_array('admin', $currentRoles)) ? FALSE : $disabled,
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['owner'] = [
@@ -146,12 +183,21 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#required' => TRUE,
     ];
 
+    $form['third_party_settings']['form_tool_webform_parameters']['roles'] = [
+      '#type' => 'select',
+      '#title' => t('Roles that can access submission'),
+      '#options' => $adminRoleSelect,
+      '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'roles'),
+      '#description' => t('Note that for this webform, specific role is created for controlling handler access to specific form types.'),
+      '#multiple' => TRUE,
+    ];
+
     $form['third_party_settings']['form_tool_webform_parameters']['email_notify'] = [
       '#type' => 'textfield',
       '#title' => t('Email address where notification is sent.'),
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'email_notify'),
-      '#description' => t('Add email where notification is sent after submission, leave empty for no notification')
-      //      '#required' => TRUE,
+      '#description' => t('Add email where notification is sent after submission, leave empty for no notification'),
+      // '#required' => TRUE,
     ];
 
     $form['third_party_settings']['form_tool_webform_parameters']['form_code'] = [
@@ -161,8 +207,8 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#required' => TRUE,
       '#size' => 15,
       '#maxlength' => 20,
+      '#description' => t('Short code must be unique between all forms.'),
     ];
-
 
     $form['third_party_settings']['form_tool_webform_parameters']['tos_function_id'] = [
       '#type' => 'textfield',
@@ -262,5 +308,10 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       '#required' => TRUE,
       '#default_value' => $bundle->getThirdPartySetting('form_tool_webform_parameters', 'sensitive'),
     ];
+
+    if ($currentId == '1' || in_array('admin', $currentRoles)) {
+      $form["actions"]["submit"]['#disabled'] = FALSE;
+
+    }
   }
 }

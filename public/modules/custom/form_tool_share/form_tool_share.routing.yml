@@ -38,10 +38,18 @@ entity.form_tool_share.script:
     _custom_access: '\Drupal\form_tool_share\Access\FormToolShareAccess::checkAccess'
 
 entity.form_tool_share.completion:
-  path: '/formtool/completion/{submissionId}'
+  path: '/formtool/completion/{submission_id}'
   defaults:
     _title: 'Example'
     _controller: '\Drupal\form_tool_share\Controller\FormCompletionController::build'
+  requirements:
+    _custom_access: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::accessByApplicationNumber'
+
+entity.form_tool_share.error:
+  path: '/formtool/submit-error'
+  defaults:
+    _title: 'Submit error'
+    _controller: '\Drupal\form_tool_share\Controller\FormSubmitErrorController::build'
   requirements:
     _permission: 'access content'
 
@@ -51,6 +59,14 @@ form_tool_share.meta:
     _title: 'Metadata'
     _controller: '\Drupal\form_tool_share\Controller\FormMetaDataController::build'
   requirements:
-    _permission: 'access content'
+    _form_metadata_access_check: 'TRUE'
   options:
     _auth: [ 'token_auth' ]
+
+form_tool_share.view_submission:
+  path: '/lomake/{submission_id}'
+  defaults:
+    _title: 'Lomakkeen tiedot'
+    _controller: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::build'
+  requirements:
+    _custom_access: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::accessByApplicationNumber'

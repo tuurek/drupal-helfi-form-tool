@@ -3,3 +3,8 @@ services:
     class: Drupal\form_tool_share\Authentication\AuthToken
     tags:
       - { name: authentication_provider, provider_id: 'token_auth', priority: 10 }
+  form_tool_share.form_metadata_access_check:
+    class: Drupal\form_tool_share\Access\FormMetadataAccessCheck
+    arguments: [ '@current_user' ]
+    tags:
+      - { name: access_check, applies_to: _form_metadata_access_check }

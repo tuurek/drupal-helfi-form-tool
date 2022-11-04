@@ -5,11 +5,15 @@
  * Provides an formtool of a webform handler.
  */
 
+use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Plugin\Exception\PluginException;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\user\Entity\Role;
+use Drupal\webform\Entity\Webform;
+
 /**
  * Implements hook_theme().
- *
- * @return array
- *  Theme setup.
  */
 function webform_formtool_handler_theme(): array {
   return [
@@ -28,23 +32,16 @@ function webform_formtool_handler_theme(): array {
 
 /**
  * Implements hook_mail().
- *
- * @param $key
- *  Mailkey.
- * @param $message
- *  Message.
- * @param $params
- *  Options.
  */
 function webform_formtool_handler_mail($key, &$message, $params) {
-  $options = array(
+  $options = [
     'langcode' => $message['langcode'],
-  );
+  ];
 
   switch ($key) {
     case 'submission_email_notify':
       $message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['subject'] = t('New submission for @title', array('@title' => $params['form_title']), $options);
+      $message['subject'] = t('New submission for @title', ['@title' => $params['form_title']], $options);
       $message['body'][] = $params['message'];
       break;
   }
@@ -53,18 +50,95 @@ function webform_formtool_handler_mail($key, &$message, $params) {
 /**
  * Implements hook_entity_presave().
  */
-function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform $entity) {
+function webform_formtool_handler_webform_presave(Webform $entity) {
 
-  // Make sure we have correct permissions set to webforms.
-  // Let's just override anything set in the UI
-
-  // Load settings
+  // Load settings.
   $thirdPartySettings = $entity->getThirdPartySettings('form_tool_webform_parameters');
 
+  // Make sure we have correct permissions set to webforms.
+  // Let's just override anything set in the UI.
+  $acc = webform_formtool_handler_get_access_data($thirdPartySettings);
+  $entity->setAccessRules($acc);
+
+  // If this webform does not have Role created, create one.
+  $roleName = 'Verkkolomake-käsittelijä-' . $thirdPartySettings["form_code"];
+  $roleMachineName = strtolower(str_replace(['-', 'ä', 'ö'], ['_', 'a', 'o'], $roleName));
+  $existingRole = Role::load($roleMachineName);
+  if (!$existingRole) {
+    $newRole = Role::create([
+      'id' => $roleMachineName,
+      'label' => $roleName,
+    ]);
+    $newRole->save();
+
+    // Update config in database.
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('helfi_atv.settings');
+    $allRoles = $config->get('roles');
+    $adminRoles = $allRoles['admin_user_roles'];
+
+    // Add this new role to roles.
+    $adminRoles[] = $roleMachineName;
+    $allRoles['admin_user_roles'] = $adminRoles;
+
+    $config->set('roles', $allRoles);
+    $config->save();
+
+  }
+  // If this role has not yet been added to 3rd party settings, do it now.
+  if (!in_array($roleMachineName, $thirdPartySettings['roles'])) {
+    $thirdPartySettings['roles'][] = $roleMachineName;
+    $entity->setThirdPartySetting('form_tool_webform_parameters', 'roles', $thirdPartySettings['roles']);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete().
+ */
+function webform_formtool_handler_webform_predelete(EntityInterface $entity) {
+  // Load settings.
+  $thirdPartySettings = $entity->getThirdPartySettings('form_tool_webform_parameters');
+  $roleName = 'Verkkolomake-käsittelijä-' . $thirdPartySettings["form_code"];
+  $roleMachineName = strtolower(str_replace(['-', 'ä', 'ö'], ['_', 'a', 'o'], $roleName));
+  $roleToDelete = Role::load($roleMachineName);
+
+  if ($roleToDelete) {
+    try {
+      $roleToDelete->delete();
+    }
+    catch (EntityStorageException $e) {
+    }
+  }
+
+  // Update config in database.
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('helfi_atv.settings');
+  $allRoles = $config->get('roles');
+  $adminRoles = $allRoles['admin_user_roles'];
+
+  // Add this new role to roles.
+  $adminRoles = array_values(array_diff($adminRoles, [$roleMachineName]));
+  $allRoles['admin_user_roles'] = $adminRoles;
+
+  // Set & save.
+  $config->set('roles', $allRoles);
+  $config->save();
+}
+
+/**
+ * Method to set access rules for newly created webform.
+ *
+ * @param mixed $thirdPartySettings
+ *   Webform settings.
+ *
+ * @return array
+ *   Access settings for webform.
+ */
+function webform_formtool_handler_get_access_data(mixed $thirdPartySettings): array {
   // let's default permissions to none.
   $acc = [];
 
-  // create basic permissions to all forms
+  // Create basic permissions to all forms.
   $acc['create']['users'] = [];
   $acc['create']['permissions'] = [];
 
@@ -114,9 +188,9 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
   $acc['configuration']['permissions'] = [];
 
   if (isset($thirdPartySettings["login_type"])) {
-    // and then per login type
+    // And then per login type.
     switch ($thirdPartySettings["login_type"]) {
-      // strong auth
+      // Strong auth.
       case '2':
 
         $acc['create']['roles'] = [
@@ -133,7 +207,8 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
         ];
 
         break;
-      // weak auth
+
+      // Weak auth.
       case '1':
         $acc['create']['roles'] = [
           'helsinkiprofiili_heikko',
@@ -148,7 +223,7 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
         ];
         break;
 
-      // all other cases.
+      // All other cases.
       default:
         $acc['create']['roles'] = [
           'anonymous',
@@ -156,21 +231,18 @@ function webform_formtool_handler_webform_presave(\Drupal\webform\Entity\Webform
         break;
     }
   }
-
-  // set rules
-  $entity->setAccessRules($acc);
+  return $acc;
 }
-
 
 /**
  * Implements hook_entity_insert().
  */
-function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform $entity) {
+function webform_formtool_handler_webform_insert(Webform $entity) {
 
   /** @var \Drupal\webform\Plugin\WebformHandlerManagerInterface $handler_manager */
   $handler_manager = \Drupal::service('plugin.manager.webform.handler');
 
-  // Create webform handler config
+  // Create webform handler config.
   $handler_configuration = [
     'id' => 'formtool_webform_handler',
     'label' => 'Form Tool Handler',
@@ -190,7 +262,8 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
     // Add webform handler which triggers Webform::save().
     $entity->addWebformHandler($handler);
 
-  } catch (\Drupal\Component\Plugin\Exception\PluginException $e) {
+  }
+  catch (PluginException $e) {
     \Drupal::messenger()
       ->addError('Failed adding from tool handler automatically to a webform');
   }
@@ -200,7 +273,55 @@ function webform_formtool_handler_webform_insert(\Drupal\webform\Entity\Webform 
  * Implements hook_entity_type_alter().
  */
 function webform_formtool_handler_entity_type_alter(array &$entity_types) {
-  // todo: why is this not used?
+  // @todo why is this not used?
   $entity_types['webform_submission']->setStorageClass('Drupal\webform_formtool_handler\FormToolSubmissionStorage');
+  $entity_types['webform_submission']->setHandlerClass('access', 'Drupal\webform_formtool_handler\FormToolWsAccessHandler');
 }
 
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function webform_formtool_handler_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  switch ($form_id) {
+
+    case 'webform_edit_form':
+    case 'webform_settings_access_form':
+    case 'webform_handlers_form':
+    case 'webform_settings_confirmation_form':
+    case 'webform_settings_submissions_form':
+    case 'webform_settings_form_form':
+    case 'webform_settings_form':
+
+      $bundle = $form_state->getFormObject()->getEntity();
+      $formStatus = $bundle->getThirdPartySetting('form_tool_webform_parameters', 'status');
+
+      $currentUser = Drupal::currentUser();
+      $currentRoles = $currentUser->getRoles();
+      $currentId = $currentUser->id();
+
+      if (
+      ($formStatus == 'public' || $formStatus == 'closed') &&
+      ($currentId != '1' && !in_array('admin', $currentRoles))
+      ) {
+        $form['#disabled'] = TRUE;
+
+        \Drupal::messenger()
+          ->addWarning(t('Form is published so no further editing is possible. If you need to edit this, you need to create new form with the changes you want.'));
+
+        if ($form_id == 'webform_handlers_form') {
+          $form['handlers']['#access'] = FALSE;
+          \Drupal::messenger()
+            ->addWarning(t('Handlers form has been removed due to no access.'));
+        }
+        if ($form_id == 'webform_edit_form') {
+          $form['webform_ui_elements']['#access'] = FALSE;
+          \Drupal::messenger()
+            ->addWarning(t('Elements form has been removed due to no access.'));
+        }
+      }
+
+      break;
+
+  }
+}

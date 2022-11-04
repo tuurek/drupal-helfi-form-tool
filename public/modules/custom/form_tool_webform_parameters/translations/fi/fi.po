@@ -69,3 +69,48 @@ msgstr "Rekisteriselosteen verkko-osoite (venäjäksi)"
 
 msgid "https://asiakirjajulkisuus.hel.fi/"
 msgstr "https://asiakirjajulkisuus.hel.fi/"
+
+msgid "Is form published"
+msgstr "Onko lomake julkaistu"
+
+msgid "Work in progress"
+msgstr "Kesken"
+
+msgid "If form is published, then no editing is allowed and form results are submitted to ATV. Work in progress form opens up for testing & developing but not for general public."
+msgstr "Jos lomake on julkaistu, ei muokkausta sallita ja lomakkeen lähetys sallitaan. Suljettuun lomakkeeseen ei päästetä ja kesken oleva näkyy vain ylläpidolle."
+
+msgid "Roles that can access submission"
+msgstr "Käyttäjäroolit joilla on pääsy lähetettyyn lomakedataan"
+
+msgid "Email address where notification is sent."
+msgstr "Sähköpostiosoite johon ilmoitus uudesta hakemuksesta lähetetään"
+
+msgid "Add email where notification is sent after submission, leave empty for no notification."
+msgstr "Sähköpostiosoite johon ilmoitus uudesta lähetyksestä toimitetaan."
+
+msgid "Form short code used to identify submissions."
+msgstr "Lomakkeen tunnus."
+
+msgid "Short code must be unique between all forms."
+msgstr "Lomakkeen tunnuksen tulee olla yksilöivä."
+
+msgid "TOS function ID."
+msgstr "TOS funktio ID."
+
+msgid "Insert used TOS function id."
+msgstr "Syötä TOS funktion tunnus."
+
+msgid "TOS record ID."
+msgstr "TOS rivin ID."
+
+msgid "Insert used TOS record id."
+msgstr "Syötä TOS rivin tunnus."
+
+msgid "The sector that handles the form data."
+msgstr "Toimiala joka käsittelee lomakkeet."
+
+msgid "AD Group of the handlers of form data."
+msgstr "AD ryhmä lomakekäsittelijöille."
+
+msgid "Form is published so no further editing is possible. If you need to edit this, you need to create new form with the changes you want."
+msgstr "Lomake on julkaustu -tilassa joten muokkaus on estetty. Jos haluat muokata tätä lomaketta sinun pitää kopioida lomake uudelle pohjalle ja tehdä muokkaukset siihen."

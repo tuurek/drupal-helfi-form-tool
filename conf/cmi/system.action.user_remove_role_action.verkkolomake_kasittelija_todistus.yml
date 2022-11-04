@@ -1,0 +1,14 @@
+uuid: 516f1395-406d-47de-884f-c46a354fa6c2
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_kasittelija_todistus
+  module:
+    - user
+id: user_remove_role_action.verkkolomake_kasittelija_todistus
+label: 'Poista rooli Verkkolomake-käsittelijä-TODISTUS valituilta käyttäjiltä'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: verkkolomake_kasittelija_todistus

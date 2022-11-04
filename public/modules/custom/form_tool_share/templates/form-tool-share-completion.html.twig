@@ -1,7 +1,12 @@
-
-<div style="padding: 4em;">
-Tässä kiitossivu
+{% if submissionId %}
+    <div style="padding: 4em;">
+        Tässä kiitossivu
+        <div>
+            {{ message }}
+        </div>
+    </div>
+{% else %}
     <div>
         {{ message }}
-    </div>
-</div>
+    </div
+{% endif %}

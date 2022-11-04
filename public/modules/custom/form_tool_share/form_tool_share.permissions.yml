@@ -2,3 +2,7 @@ administer form_tool_share configuration:
   title: 'Administer form_tool_share configuration'
   description: 'Optional description.'
   restrict access: true
+access form data page:
+  title: 'Access to form data page'
+  description: 'Allow access to custom form page'
+  restrict access: true

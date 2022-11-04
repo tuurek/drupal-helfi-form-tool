@@ -1,0 +1,14 @@
+uuid: 9721e56c-e743-4d8d-a007-da26042706df
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_kasittelija_todistus
+  module:
+    - user
+id: user_add_role_action.verkkolomake_kasittelija_todistus
+label: 'Add the Verkkolomake-käsittelijä-TODISTUS role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: verkkolomake_kasittelija_todistus

@@ -5,7 +5,7 @@ namespace Drupal\webform_formtool_handler;
 use GuzzleHttp\ClientInterface;
 
 /**
- * SectorService service.
+ * Create sector lists for forms.
  */
 class SectorService {
 
@@ -20,7 +20,7 @@ class SectorService {
    * Constructs a SectorService object.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
-   *  Http client. Guzzle.
+   *   Http client. Guzzle.
    */
   public function __construct(ClientInterface $http_client,) {
     $this->httpClient = $http_client;
@@ -32,6 +32,7 @@ class SectorService {
    * Hopefully this will get downloaded from some external service.
    *
    * @return string[]
+   *   Array containing sector names
    */
   public function getSectorList(): array {
     return [

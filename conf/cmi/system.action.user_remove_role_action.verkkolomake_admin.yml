@@ -1,0 +1,14 @@
+uuid: bbf70613-b29d-4ca7-8d7d-2fdf0d4573e7
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_admin
+  module:
+    - user
+id: user_remove_role_action.verkkolomake_admin
+label: 'Poista rooli Verkkolomake-admin valituilta käyttäjiltä'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: verkkolomake_admin

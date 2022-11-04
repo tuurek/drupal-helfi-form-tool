@@ -7,8 +7,8 @@ dependencies:
     - webform_formtool_handler
 third_party_settings:
   form_tool_webform_parameters:
-    owner: tilit429@gmail.com
-    sector: sector2
+    owner: verkkolomakehallinnoija@hel.fi
+    sector: KYMP
     ad_group: ad_group_2
     postal_address: ''
     privacy_policy: ''
@@ -19,9 +19,11 @@ third_party_settings:
     sensitive: '1'
     form_code: TODISTUS
     email_notify: ''
-    status: public
+    status: wip
     tos_function_id: f917d43aab76420bb2ec53f6684da7f7
     tos_record_id: 89837a682b5d410e861f8f3688154163
+    roles:
+      verkkolomake_kasittelija_todistus: verkkolomake_kasittelija_todistus
 weight: 0
 open: null
 close: null
@@ -125,7 +127,7 @@ settings:
   share: false
   share_node: false
   share_theme_name: ''
-  share_title: true
+  share_title: false
   share_page_body_attributes: {  }
   submission_label: ''
   submission_exception_message: ''

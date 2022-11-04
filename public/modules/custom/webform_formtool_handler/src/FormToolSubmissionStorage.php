@@ -72,4 +72,5 @@ class FormToolSubmissionStorage extends WebformSubmissionStorage {
   public function loadData(array &$webform_submissions) {
     // Do nothing, we do not want to use any normal data.
   }
+
 }

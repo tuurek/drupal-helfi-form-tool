@@ -27,13 +27,12 @@ _core:
   default_config_hash: EVzxFtbOrGVTXWw2GTh1fEzzqruPEqSo84k10-BF6eA
 id: content_producer
 label: Sisällöntuottaja
-weight: 3
+weight: -5
 is_admin: null
 permissions:
   - 'access content overview'
   - 'access media overview'
   - 'access remote entities overview'
-  - 'access site in maintenance mode'
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user profiles'

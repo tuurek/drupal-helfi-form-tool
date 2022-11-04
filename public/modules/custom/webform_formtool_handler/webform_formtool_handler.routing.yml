@@ -1,7 +1,0 @@
-webform_formtool_handler.view_submission:
-  path: '/showForm/{id}'
-  defaults:
-    _title: 'Lomakkeen tiedot'
-    _controller: '\Drupal\webform_formtool_handler\Controller\FormToolSubmissionController::build'
-  requirements:
-    _permission: 'view own webform submission'
