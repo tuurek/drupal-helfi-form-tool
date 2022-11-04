@@ -22,6 +22,9 @@ function webform_formtool_handler_theme(): array {
     ],
     'submission_print' => [
       'variables' => [
+        'submissionDate' => NULL,
+        'address' => NULL,
+        'sector' => NULL,
         'submission' => NULL,
         'form' => NULL,
         'id' => NULL,

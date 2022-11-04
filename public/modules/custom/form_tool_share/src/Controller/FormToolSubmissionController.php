@@ -116,10 +116,17 @@ class FormToolSubmissionController extends ControllerBase {
       throw new NotFoundHttpException('General error.');
     }
 
+    $sector = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['sector'];
+    $address = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['postal_address'];
+    $submission_date = $entity->getFields()['created']->getValue()[0]['value'];
+
     return [
       '#theme' => 'submission_print',
       '#id' => $submission_id,
       '#submission' => $pre_render,
+      '#submissionDate' => $submission_date,
+      '#sector' => $sector,
+      '#address' => $address,
       '#form' => $formTitle,
     ];
   }
