@@ -31,7 +31,7 @@
   content: '';
 }
 .form-item {
-  margin-bottom: var(--spacing-layout-xs);
+  margin-bottom: var(--spacing-layout-2-xs);
   position: relative;
 }
 
@@ -42,27 +42,44 @@
 .hds-text-input {
   max-width: fit-content;
   width: 100%;
+
+  &__helper-text {
+    white-space: normal;
+    margin-top: var(--spacing-2-xs);
+  }
 }
 .webform-section-flex-wrapper {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
   justify-content: left;
-  @include breakpoint($breakpoint-m) {
+  padding-left: var(--spacing-layout-s);
+  padding-right: var(--spacing-layout-s);
+
+  @include breakpoint(var(--breakpoint-m)) {
     flex-flow: row nowrap;
+    padding: 0;
   }
+
+  > .webform-section-wrapper {
+    @media (max-width: var(--breakpoint-m)) {
+      padding-left: 0;
+    }
+  }
+
   > h2.webform-section-title {
     color: var(--hdbt-color-black);
     display: block;
     font-weight: 500;
-    margin-bottom: $spacing-quarter;
+    margin-bottom: var(--spacing-layout-xs);
     width: 100%;
     hyphens: none;
-    padding-right: $spacing-triple;
+    padding-right: var(--spacing-layout-m);
     font-size: 24px;
     flex-shrink: 0;
     margin-top: 0;
-    @include breakpoint($breakpoint-m) {
+
+    @include breakpoint(var(--breakpoint-m)) {
       width: 30%;
       max-width: 350px;
     }
@@ -71,7 +88,7 @@
   > .webform-section-wrapper {
     font-size: $base-font-size;
     width: 100%;
-    padding-left: $spacing-triple;
+    padding-left: var(--spacing-layout-m);
     p:first-child {
       margin-top: 0;
     }
@@ -83,7 +100,7 @@
   legend, label {
     font-size: $base-font-size;
     font-weight: bold;
-    margin-bottom: $spacing;
+    margin-bottom: var(--spacing-2-xs);
     display: block;
     padding-right: var(--spacing-layout-s);
   }
@@ -97,10 +114,15 @@
   .js-form-type-textarea .hds-text-input__input-wrapper {
     display: block;
   }
+
+  fieldset {
+    min-inline-size: auto;
+  }
 }
 
 .hds-text-input .hds-text-input__input {
   width: auto;
+  max-width: 100%;
 }
 form .hds-text-input__input-wrapper {
   input, textarea,  {
@@ -139,7 +161,21 @@ form .hds-checkbox {
   }
 }
 
+form .hds-radio-button .hds-radio-button__input:checked + .hds-radio-button__label:after {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+}
+
+form .hds-checkbox .hds-checkbox__input:checked {
+  background-color: var(--color-black);
+}
+
 fieldset.webform-composite-hidden-title {
   margin-top: -1em;
   margin-bottom: var(--spacing-layout-xs);
+}
+
+#edit-profile-fields--wrapper--description {
+  border-top: 1px solid lightgrey;
+  padding-top: var(--spacing-layout-2-xs);
 }

@@ -2,7 +2,7 @@ $item_spacing: $spacing-triple / 2;
 .node--form-page .list-of-links {
   margin-left: 0;
   width: 100%;
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint(var(--breakpoint-m)) {
     margin-top: 0;
   }
   margin-top: 0;
@@ -12,21 +12,21 @@ $item_spacing: $spacing-triple / 2;
   .list-of-links {
     &__title {
       margin: 0;
-      border-top: 2px solid $color-black-20;
+      border-top: 2px solid var(--color-black-20);
       margin-bottom: $item_spacing * 4;
     }
     &__container {
 
-      @include breakpoint($breakpoint-s) {
+      @include breakpoint(var(--breakpoint-s)) {
         width: calc(100% - #{$item_spacing * 4});
-        @include breakpoint($breakpoint-m) {
+        @include breakpoint(var(--breakpoint-m)) {
           width: 100%;
         }
       }
 
     }
     &__content {
-      @include breakpoint($breakpoint-m) {
+      @include breakpoint(var(--breakpoint-m)) {
         margin: 0 $item_spacing 0 0;
         display: grid;
         grid-template-columns: auto auto auto;
@@ -35,7 +35,7 @@ $item_spacing: $spacing-triple / 2;
       height: auto;
     }
     &__item {
-      border-left: 4px solid $color-copper;
+      border-left: 4px solid var(--color-copper);
       margin-right: -4px;
       align-self: stretch;
       padding-left: $item_spacing;
@@ -47,7 +47,7 @@ $item_spacing: $spacing-triple / 2;
 }.list-of-links--without-image .list-of-links__item {
   .list-of-links__item__desc {
     font-size: $base-font-size;
-    color: $color-black-90;
+    color: var(--color-black-90);
   }
   .list-of-links__item__title {
     font-size: $base-font-size * 1.5;

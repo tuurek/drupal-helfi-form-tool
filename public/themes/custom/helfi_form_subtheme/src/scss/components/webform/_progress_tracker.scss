@@ -1,11 +1,11 @@
 .webform-progress {
   .webform-progress-tracker-mobile {
     display: block;
-    @include breakpoint($breakpoint-m) {
+    @include breakpoint(var(--breakpoint-m)) {
       display: none;
     }
-    padding-bottom: $spacing;
-    margin-bottom: $spacing;
+    padding-bottom: var(--spacing-layout-2-xs);
+    margin-bottom: var(--spacing-layout-2-xs);
     border-bottom: 1px rgba(0, 0, 0, 0.6) solid;
     .webform-progress-tracker-mobile-wrapper {
       display: flex;
@@ -18,18 +18,18 @@
         width: var(--spacing-layout-l);
         height: var(--spacing-layout-l);
         font-size: $base-font-size * 1.5;
-        margin-bottom: $spacing;
+        margin-bottom: var(--spacing-layout-2-xs);
         font-weight: 500;
         letter-spacing: -2px;
       }
       .progress-info {
-        padding-left: $spacing;
+        padding-left: var(--spacing-layout-2-xs);
       }
     }
   }
   .webform-progress-tracker {
     display: none;
-    @include breakpoint($breakpoint-m) {
+    @include breakpoint(var(--breakpoint-m)) {
       display: flex;
     }
     .progress-step .progress-text {
@@ -69,7 +69,7 @@
         width: var(--spacing-layout-s);
         height: var(--spacing-layout-s);
         font-size: $base-font-size;
-        margin-bottom: $spacing;
+        margin-bottom: var(--spacing-layout-2-xs);
         font-weight: bold;
       }
       &.is-active {
