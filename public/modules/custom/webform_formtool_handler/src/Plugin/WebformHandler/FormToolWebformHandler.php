@@ -335,7 +335,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
             'user_uuid' => $newDocument->getUserId(),
             'form_tool_id' => $formToolSubmissionId,
             'admin_owner' => $thirdPartySettings["owner"],
-            'admin_roles' => implode(',', array_keys($thirdPartySettings["roles"])),
+            'admin_roles' => implode(',', $thirdPartySettings["roles"]),
           ])
           ->execute();
 

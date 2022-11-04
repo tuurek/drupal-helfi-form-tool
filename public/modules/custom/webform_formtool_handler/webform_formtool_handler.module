@@ -74,12 +74,14 @@ function webform_formtool_handler_webform_presave(Webform $entity) {
     // Update config in database.
     $config_factory = \Drupal::configFactory();
     $config = $config_factory->getEditable('helfi_atv.settings');
-    $adminRoles = $config->get('admin_user_roles');
+    $allRoles = $config->get('roles');
+    $adminRoles = $allRoles['admin_user_roles'];
 
     // Add this new role to roles.
     $adminRoles[] = $roleMachineName;
+    $allRoles['admin_user_roles'] = $adminRoles;
 
-    $config->set('admin_user_roles', $adminRoles);
+    $config->set('roles', $allRoles);
     $config->save();
 
   }
@@ -111,13 +113,15 @@ function webform_formtool_handler_webform_predelete(EntityInterface $entity) {
   // Update config in database.
   $config_factory = \Drupal::configFactory();
   $config = $config_factory->getEditable('helfi_atv.settings');
-  $adminRoles = $config->get('admin_user_roles');
+  $allRoles = $config->get('roles');
+  $adminRoles = $allRoles['admin_user_roles'];
 
   // Add this new role to roles.
-  $adminRoles = array_diff($adminRoles, [$roleMachineName]);
+  $adminRoles = array_values(array_diff($adminRoles, [$roleMachineName]));
+  $allRoles['admin_user_roles'] = $adminRoles;
 
   // Set & save.
-  $config->set('admin_user_roles', $adminRoles);
+  $config->set('roles', $allRoles);
   $config->save();
 }
 
