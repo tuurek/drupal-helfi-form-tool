@@ -10,4 +10,3 @@ tags: sub-theme
 # Defines libraries group in which we can add css/js.
 libraries:
   - form_tool_admin/global-styling
-  - form_tool_admin/global-scripting
