@@ -1,0 +1,21 @@
+uuid: 650f0264-b3a9-4238-9974-1640fd0a3969
+langcode: en
+status: true
+dependencies:
+  theme:
+    - helfi_form_subtheme
+id: helfi_form_subtheme_footertopnavigationsecond
+theme: helfi_form_subtheme
+region: footer_top
+weight: 2
+provider: null
+plugin: 'menu_block_current_language:footer-top-navigation-2'
+settings:
+  id: 'menu_block_current_language:footer-top-navigation-2'
+  label: Connect
+  label_display: visible
+  provider: helfi_navigation
+  level: 1
+  expand_all_items: false
+  depth: 1
+visibility: {  }
