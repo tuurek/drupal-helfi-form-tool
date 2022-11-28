@@ -1,46 +1,24 @@
-label: 'Ajastettu sisältö'
-description: 'Etsi ja ylläpidä ajastettua sisältöä.'
 display:
   default:
     display_options:
-      exposed_form:
-        options:
-          submit_button: Filtrera
-          reset_button_label: Återställ
-          exposed_sorts_label: 'Sortera efter'
-          sort_asc_label: Stigande
-          sort_desc_label: Fallande
-      pager:
-        options:
-          tags:
-            previous: '‹ föregående'
-            next: 'nästa ›'
-            first: '« första'
-            last: 'sista »'
       fields:
         node_bulk_form:
           action_title: Åtgärd
         title:
           label: Titel
-          separator: ', '
         type:
           label: Innehållstyp
-          separator: ', '
         name:
           label: Författare
-          separator: ', '
         status:
           label: Status
           settings:
             format_custom_true: Publicerad
             format_custom_false: 'Ej publicerad'
-          separator: ', '
         publish_on:
           label: 'Publicera den'
-          separator: ', '
         unpublish_on:
           label: 'Avpublicera den'
-          separator: ', '
         operations:
           label: Funktioner
       filters:
@@ -63,19 +41,13 @@ display:
         langcode:
           expose:
             label: Språk
-      title: 'Ajastettu sisältö'
-      empty:
-        area_text_custom:
-          content: 'Ei vielä ajastettua sisältöä.'
-    display_title: Huvud
+    display_title: Förvald
   overview:
     display_options:
       menu:
         title: Schemalagd
       tab_options:
         title: Innehåll
-      display_description: 'Yleiskatsaus koko ajoitetusta sisällöstä.'
-    display_title: Sisältö
   user_page:
     display_options:
       menu:
@@ -86,7 +58,3 @@ display:
         uid:
           exception:
             title: Alla
-      empty:
-        area_text_custom:
-          content: '{{ arguments.uid }} käyttäjä ei ole ajastanut sisältöä.'
-    display_title: Käyttäjäprofiili
