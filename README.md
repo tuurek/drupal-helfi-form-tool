@@ -1,4 +1,4 @@
-# Your Drupal 9 project
+# Hel.fi Form tool
 
 Description of your project.
 
@@ -6,7 +6,7 @@ Description of your project.
 
 Env | Branch | Drush alias | URL
 --- | ------ | ----------- | ---
-development | * | - | http://yoursite.docker.sh/
+development | * | - | https://hel-fi-form-tool.docker.so/
 production | main | @main | TBD
 
 ## Requirements
@@ -19,24 +19,38 @@ You need to have these applications installed to operate on all environments:
 
 ## Create and start the environment
 
-For the first time (new project):
+Start up the environment:
 
-``
+```bash
+$ make up
+```
+
+Install the site from scratch or using existing configuration:
+
+```bash
 $ make new
-``
+```
 
-And following times to create and start the environment:
+Or sync the database from testing environment:
 
-``
+```bash
 $ make fresh
-``
+```
 
-NOTE: Change these according of the state of your project.
+To show all available commands:
+
+```bash
+$ make help
+```
 
 ## Login to Drupal container
 
 This will log you inside the app container:
 
-``
+```bash
 $ make shell
 ```
+
+## Documentation
+
+See [documentatation](https://github.com/City-of-Helsinki/drupal-helfi-platform/tree/main/documentation).
