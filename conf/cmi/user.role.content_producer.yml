@@ -3,21 +3,27 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.full_html
     - media.type.file
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
+    - node.type.announcement
     - node.type.landing_page
     - node.type.page
     - node.type.webform
     - taxonomy.vocabulary.keywords
   module:
     - content_translation
+    - file
+    - filter
     - form_tool_profile_data
     - helfi_api_base
     - media
     - node
     - paragraphs
+    - paragraphs_library
+    - path
     - scheduler
     - system
     - taxonomy
@@ -26,11 +32,12 @@ dependencies:
 _core:
   default_config_hash: EVzxFtbOrGVTXWw2GTh1fEzzqruPEqSo84k10-BF6eA
 id: content_producer
-label: Sisällöntuottaja
+label: 'Content producer'
 weight: -5
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access files overview'
   - 'access media overview'
   - 'access remote entities overview'
   - 'access taxonomy overview'
@@ -38,38 +45,60 @@ permissions:
   - 'access user profiles'
   - 'administer form_tool_profile_data configuration'
   - 'administer nodes'
+  - 'administer paragraphs library'
   - 'cancel account'
   - 'change own username'
+  - 'create announcement content'
   - 'create file media'
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
   - 'create page content'
+  - 'create paragraph library item'
   - 'create remote_video media'
   - 'create soundcloud media'
   - 'create terms in keywords'
+  - 'create url aliases'
   - 'delete media'
+  - 'delete own announcement content'
   - 'delete own file media'
   - 'delete own image media'
   - 'delete own landing_page content'
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
+  - 'edit any announcement content'
+  - 'edit any file media'
+  - 'edit any image media'
+  - 'edit any landing_page content'
+  - 'edit any page content'
+  - 'edit any remote_video media'
+  - 'edit any soundcloud media'
   - 'edit any webform content'
+  - 'edit own announcement content'
   - 'edit own file media'
   - 'edit own image media'
   - 'edit own landing_page content'
   - 'edit own page content'
   - 'edit own remote_video media'
   - 'edit own soundcloud media'
+  - 'edit paragraph library item'
   - 'edit terms in keywords'
+  - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
   - 'schedule publishing of nodes'
+  - 'set announcement published on date'
+  - 'set landing_page published on date'
+  - 'set page published on date'
   - 'translate editable entities'
   - 'update media'
+  - 'use text format full_html'
+  - 'use text format minimal'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view announcement revisions'
+  - 'view any unpublished content'
   - 'view any unpublished landing_page content'
   - 'view any unpublished page content'
   - 'view landing_page revisions'

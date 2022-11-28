@@ -1,4 +1,3 @@
-uuid: 2d375037-9763-4a76-81c0-7e7bcf5bf469
 langcode: en
 status: true
 dependencies:
@@ -9,22 +8,13 @@ dependencies:
     - media.type.remote_video
     - media.type.soundcloud
     - node.type.announcement
-    - node.type.article
     - node.type.landing_page
     - node.type.page
-    - node.type.webform
     - taxonomy.vocabulary.keywords
   module:
-    - block
-    - config_translation
-    - content_lock
     - content_translation
-    - eu_cookie_compliance
-    - externalauth
     - file
     - filter
-    - form_tool_profile_data
-    - form_tool_share
     - helfi_api_base
     - locale
     - media
@@ -34,55 +24,30 @@ dependencies:
     - paragraphs
     - paragraphs_library
     - path
-    - pathauto
     - redirect
-    - role_delegation
     - scheduler
-    - simple_sitemap
     - system
     - taxonomy
     - toolbar
     - view_unpublished
-    - views_bulk_edit
-    - webform
-    - webform_templates
-_core:
-  default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
-id: admin
-label: Administrator
-weight: -1
+id: editor
+label: Editor
+weight: 4
 is_admin: null
 permissions:
   - 'access administration pages'
-  - 'access content'
   - 'access content overview'
   - 'access files overview'
   - 'access media overview'
   - 'access remote entities overview'
-  - 'access site in maintenance mode'
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user profiles'
-  - 'administer blocks'
-  - 'administer eu cookie compliance categories'
-  - 'administer eu cookie compliance popup'
-  - 'administer form_tool_profile_data configuration'
-  - 'administer form_tool_share configuration'
-  - 'administer hotjar settings'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
-  - 'administer pathauto'
   - 'administer redirects'
-  - 'administer sitemap settings'
   - 'administer url aliases'
-  - 'administer users'
-  - 'administer webform templates'
-  - 'assign admin role'
-  - 'assign content_producer role'
-  - 'assign editor role'
-  - 'assign read_only role'
-  - 'break content lock'
   - 'cancel account'
   - 'change own username'
   - 'create announcement content'
@@ -98,10 +63,8 @@ permissions:
   - 'create soundcloud media'
   - 'create terms in keywords'
   - 'create url aliases'
-  - 'delete all revisions'
   - 'delete announcement revisions'
   - 'delete any announcement content'
-  - 'delete any article content'
   - 'delete any file media'
   - 'delete any image media'
   - 'delete any landing_page content'
@@ -109,8 +72,6 @@ permissions:
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete any soundcloud media'
-  - 'delete any webform content'
-  - 'delete authmap'
   - 'delete content translations'
   - 'delete landing_page revisions'
   - 'delete media'
@@ -131,7 +92,6 @@ permissions:
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
-  - 'edit any webform content'
   - 'edit own announcement content'
   - 'edit own file media'
   - 'edit own image media'
@@ -142,21 +102,17 @@ permissions:
   - 'edit paragraph library item'
   - 'edit remote entities'
   - 'edit terms in keywords'
-  - 'revert all revisions'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
-  - 'revert webform revisions'
   - 'schedule publishing of nodes'
   - 'set announcement published on date'
   - 'set landing_page published on date'
   - 'set page published on date'
   - 'translate announcement node'
   - 'translate any entity'
-  - 'translate configuration'
   - 'translate editable entities'
   - 'translate file media'
-  - 'translate hauki_resource'
   - 'translate image media'
   - 'translate interface'
   - 'translate keywords taxonomy_term'
@@ -171,20 +127,14 @@ permissions:
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'
-  - 'use views bulk edit'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view announcement revisions'
   - 'view any unpublished content'
-  - 'view any webform submission'
-  - 'view authmap'
   - 'view landing_page revisions'
-  - 'view media'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view page revisions'
-  - 'view remote entities'
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'view webform revisions'
