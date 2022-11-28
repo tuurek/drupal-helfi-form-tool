@@ -1,7 +1,4 @@
 _core:
   default_config_hash: QkouijUZWSmzRC1sUOJntoclIHqPYGTSt2534poifsQ
 ignored_config_entities:
-  - 'eu_cookie_compliance.cookie_category*'
-  - '*.site_settings'
-  - 'eu_cookie_compliance.cookie_category*'
-  - hdbt_admin_tools.site_settings
+  - 'hdbt_admin_tools.site_settings:site_settings'
