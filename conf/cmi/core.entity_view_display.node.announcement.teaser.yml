@@ -1,0 +1,42 @@
+uuid: c96d2705-373f-4076-a131-5988e835504f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.announcement.body
+    - field.field.node.announcement.field_announcement_all_pages
+    - field.field.node.announcement.field_announcement_content_pages
+    - field.field.node.announcement.field_announcement_link
+    - field.field.node.announcement.field_announcement_type
+    - node.type.announcement
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: 1Gnt9nwWV8_9Ez-QIrSSnboslJ8ysGJJfO1C4709D7A
+id: node.announcement.teaser
+targetEntityType: node
+bundle: announcement
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_announcement_all_pages: true
+  field_announcement_content_pages: true
+  field_announcement_link: true
+  field_announcement_type: true
+  langcode: true
+  toc_enabled: true

@@ -61,7 +61,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   links:
     settings: {  }

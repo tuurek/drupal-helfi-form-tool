@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.full_html
     - media.type.file
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
+    - node.type.announcement
     - node.type.article
     - node.type.landing_page
     - node.type.page
@@ -20,11 +22,13 @@ dependencies:
     - eu_cookie_compliance
     - externalauth
     - file
+    - filter
     - form_tool_profile_data
     - form_tool_share
     - helfi_api_base
     - locale
     - media
+    - menu_link_attributes
     - menu_link_content
     - node
     - paragraphs
@@ -32,18 +36,20 @@ dependencies:
     - path
     - pathauto
     - redirect
+    - role_delegation
     - scheduler
     - simple_sitemap
     - system
     - taxonomy
     - toolbar
     - view_unpublished
+    - views_bulk_edit
     - webform
     - webform_templates
 _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
-label: Ylläpitäjä
+label: Administrator
 weight: -1
 is_admin: null
 permissions:
@@ -62,6 +68,7 @@ permissions:
   - 'administer eu cookie compliance popup'
   - 'administer form_tool_profile_data configuration'
   - 'administer form_tool_share configuration'
+  - 'administer hotjar settings'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
@@ -71,9 +78,14 @@ permissions:
   - 'administer url aliases'
   - 'administer users'
   - 'administer webform templates'
+  - 'assign admin role'
+  - 'assign content_producer role'
+  - 'assign editor role'
+  - 'assign read_only role'
   - 'break content lock'
   - 'cancel account'
   - 'change own username'
+  - 'create announcement content'
   - 'create content translations'
   - 'create file media'
   - 'create image media'
@@ -87,6 +99,8 @@ permissions:
   - 'create terms in keywords'
   - 'create url aliases'
   - 'delete all revisions'
+  - 'delete announcement revisions'
+  - 'delete any announcement content'
   - 'delete any article content'
   - 'delete any file media'
   - 'delete any image media'
@@ -100,6 +114,7 @@ permissions:
   - 'delete content translations'
   - 'delete landing_page revisions'
   - 'delete media'
+  - 'delete own announcement content'
   - 'delete own file media'
   - 'delete own image media'
   - 'delete own landing_page content'
@@ -109,6 +124,7 @@ permissions:
   - 'delete page revisions'
   - 'delete remote entities'
   - 'delete terms in keywords'
+  - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any image media'
   - 'edit any landing_page content'
@@ -116,6 +132,7 @@ permissions:
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
   - 'edit any webform content'
+  - 'edit own announcement content'
   - 'edit own file media'
   - 'edit own image media'
   - 'edit own landing_page content'
@@ -126,10 +143,15 @@ permissions:
   - 'edit remote entities'
   - 'edit terms in keywords'
   - 'revert all revisions'
+  - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
   - 'revert webform revisions'
   - 'schedule publishing of nodes'
+  - 'set announcement published on date'
+  - 'set landing_page published on date'
+  - 'set page published on date'
+  - 'translate announcement node'
   - 'translate any entity'
   - 'translate configuration'
   - 'translate editable entities'
@@ -146,9 +168,13 @@ permissions:
   - 'update any media'
   - 'update content translations'
   - 'update media'
+  - 'use menu link attributes'
+  - 'use text format full_html'
+  - 'use text format minimal'
+  - 'use views bulk edit'
   - 'view all media revisions'
   - 'view all revisions'
-  - 'view any unpublished content'
+  - 'view announcement revisions'
   - 'view any unpublished content'
   - 'view any webform submission'
   - 'view authmap'

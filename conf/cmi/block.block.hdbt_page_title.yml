@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
+    - node
   theme:
     - hdbt
 _core:
-  default_config_hash: cWAyHuLWbIx_Tsd04YPaUUGBOdvtYeKIjFXBXJhmi2w
+  default_config_hash: gki7d4_1zelnVT2H1w3HLvPylPAOS_h4P7XIRQwIKM0
 id: hdbt_page_title
 theme: hdbt
 region: content

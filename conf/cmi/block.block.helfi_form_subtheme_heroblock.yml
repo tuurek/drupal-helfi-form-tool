@@ -12,7 +12,7 @@ _core:
 id: helfi_form_subtheme_heroblock
 theme: helfi_form_subtheme
 region: before_content
-weight: -5
+weight: -11
 provider: null
 plugin: hero_block
 settings:

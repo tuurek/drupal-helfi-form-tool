@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - hdbt_content
+    - node
   theme:
     - hdbt
 _core:
-  default_config_hash: 78yiI6vde7AAMhp5ktXyPS5VcKtVs4_JuJccNBI1K7Q
+  default_config_hash: gRV-mUfktXuUWzDVDnmsMnc08HECbMJj0Prdtp4Yl8M
 id: sidebarcontentblock
 theme: hdbt
 region: sidebar_second

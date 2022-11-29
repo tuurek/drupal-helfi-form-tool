@@ -1,0 +1,22 @@
+uuid: 64e3c141-bf07-4b12-ba3f-62f2b6b27a48
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - paragraphs
+_core:
+  default_config_hash: IdOK_VD1z4ET0M1jWl2CJd4r6jGk6OW0ZFygE3TDjjo
+id: paragraph.field_chart_chart
+field_name: field_chart_chart
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

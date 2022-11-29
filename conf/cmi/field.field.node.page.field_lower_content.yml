@@ -44,6 +44,7 @@ settings:
       remote_video: remote_video
       contact_card_listing: contact_card_listing
       phasing: phasing
+      event_list: event_list
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -66,6 +67,9 @@ settings:
         enabled: true
       content_cards:
         weight: -23
+        enabled: true
+      event_list:
+        weight: 30
         enabled: true
       from_library:
         weight: 21

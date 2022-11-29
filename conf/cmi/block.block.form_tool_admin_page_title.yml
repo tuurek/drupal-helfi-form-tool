@@ -8,8 +8,8 @@ _core:
   default_config_hash: kQ8ZeK5QdM2wTFSp4St-Q-7abLAEgHeSCcMp8kyWsEg
 id: form_tool_admin_page_title
 theme: form_tool_admin
-region: content
-weight: -30
+region: header
+weight: -7
 provider: null
 plugin: page_title_block
 settings:
