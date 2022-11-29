@@ -39,8 +39,9 @@ if (isset($_SERVER['WODBY_APP_NAME'])) {
 $config['openid_connect.client.tunnistamo']['settings']['client_id'] = getenv('TUNNISTAMO_CLIENT_ID');
 $config['openid_connect.client.tunnistamo']['settings']['client_secret'] = getenv('TUNNISTAMO_CLIENT_SECRET');
 
-$config['openid_connect.client.tunnistamoadmin']['settings']['client_id'] = getenv('TUNNISTAMOADMIN_CLIENT_ID');
-$config['openid_connect.client.tunnistamoadmin']['settings']['client_secret'] = getenv('TUNNISTAMOADMIN_CLIENT_SECRET');
+if ($tunnistamo_environment_url = getenv('TUNNISTAMO_ENVIRONMENT_URL')) {
+  $config['openid_connect.client.tunnistamo']['settings']['environment_url'] = $tunnistamo_environment_url;
+}
 
 $config['siteimprove.settings']['prepublish_enabled'] = TRUE;
 $config['siteimprove.settings']['api_username'] = getenv('SITEIMPROVE_API_USERNAME');
@@ -210,6 +211,8 @@ if (
   $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 }
 
+$settings['is_azure'] = FALSE;
+
 // Environment specific overrides.
 if (file_exists(__DIR__ . '/all.settings.php')) {
   include __DIR__ . '/all.settings.php';
@@ -220,8 +223,16 @@ if ($env = getenv('APP_ENV')) {
     include __DIR__ . '/' . $env . '.settings.php';
   }
 
-  if (file_exists(__DIR__ . '/' . $env . '.services.yml')) {
-    $settings['container_yamls'][] = __DIR__ . '/' . $env . '.services.yml';
+  $servicesFiles = [
+    'services.yml',
+    'all.services.yml',
+    $env . '.services.yml',
+  ];
+
+  foreach ($servicesFiles as $fileName) {
+    if (file_exists(__DIR__ . '/' . $fileName)) {
+      $settings['container_yamls'][] = __DIR__ . '/' . $fileName;
+    }
   }
 
   if (getenv('OPENSHIFT_BUILD_NAMESPACE') && file_exists(__DIR__ . '/azure.settings.php')) {
