@@ -78,8 +78,9 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       $webform = Webform::load($form['#webform_id']);
       $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
 
-      $privacy_policy_link = _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings);
-      $privacy_policy_string = t('I have read and approved') . ' <a href="' . $privacy_policy_link . '">' . t('the privacy policy') . '</a>.';
+      $privacy_policy_string = t('I have read and approved <a href="@privacy-policy-link">the privacy policy</a>', [
+        '@privacy-policy-link' => _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings),
+      ]);
       $form['privacy_policy_wrapper'] = [
         '#type' => 'webform_section',
         '#title' => t('Privacy Policy'),
