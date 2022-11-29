@@ -1,3 +1,4 @@
+uuid: 7a6a3514-65fc-4c31-86d5-9a3ba176ea8e
 langcode: en
 status: true
 dependencies:
@@ -58,4 +59,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_phasing_item_title_level: true

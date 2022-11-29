@@ -1,11 +1,15 @@
-uuid: 650f0264-b3a9-4238-9974-1640fd0a3969
+uuid: a94d39ca-f343-4841-9947-08db57334474
 langcode: en
 status: true
 dependencies:
+  config:
+    - system.menu.footer-top-navigation-2
+  module:
+    - menu_block_current_language
   theme:
-    - helfi_form_subtheme
-id: helfi_form_subtheme_footertopnavigationsecond
-theme: helfi_form_subtheme
+    - hdbt_subtheme
+id: hdbt_subtheme_footertopnavigationsecond
+theme: hdbt_subtheme
 region: footer_top
 weight: 2
 provider: null
@@ -18,4 +22,8 @@ settings:
   level: 1
   expand_all_items: false
   depth: 1
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
 visibility: {  }

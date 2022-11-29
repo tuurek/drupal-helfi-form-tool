@@ -1,18 +1,17 @@
-uuid: 152e8fdb-87e7-4e59-8fa9-486fa151b35e
+uuid: 9b727fb8-52ee-4f82-8e92-457a6fc3f981
 langcode: en
 status: true
 dependencies:
   config:
     - system.menu.main
   module:
-    - ctools
     - menu_block_current_language
   theme:
-    - helfi_form_subtheme
+    - hdbt_subtheme
 _core:
   default_config_hash: zS9zgTlcanrv75vk0WibXcekGUttnN4EwP1pwFdTAcM
-id: helfi_form_subtheme_main_navigation_level_2
-theme: helfi_form_subtheme
+id: hdbt_subtheme_main_navigation_level_2
+theme: hdbt_subtheme
 region: sidebar_first
 weight: -12
 provider: null

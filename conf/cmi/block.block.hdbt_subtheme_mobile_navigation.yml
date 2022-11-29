@@ -1,4 +1,4 @@
-uuid: 3fc062fc-390f-48eb-9215-14124e8f30cc
+uuid: 3924ac88-6e4f-4a37-bd89-bda8f6c626c3
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,11 @@ dependencies:
   module:
     - menu_block_current_language
   theme:
-    - helfi_form_subtheme
+    - hdbt_subtheme
 _core:
   default_config_hash: zSvqGMlhIHfM1eegCM8Ac0GLT1dhK62SG6upu3PiS2c
-id: helfi_form_subtheme_mobile_navigation
-theme: helfi_form_subtheme
+id: hdbt_subtheme_mobile_navigation
+theme: hdbt_subtheme
 region: header_branding
 weight: 4
 provider: null

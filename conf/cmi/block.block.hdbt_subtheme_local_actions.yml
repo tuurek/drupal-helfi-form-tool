@@ -1,20 +1,20 @@
-uuid: 6cf3e0f2-f923-4987-81aa-9489d931d67a
+uuid: 2f9b211d-c3dd-4d9a-b6d2-e059b956c38a
 langcode: en
 status: true
 dependencies:
   theme:
-    - helfi_form_subtheme
+    - hdbt_subtheme
 _core:
   default_config_hash: H69FvwR04I2gfiz-9B_vOzX7lLLZrz-6FJvXMvMR1yc
-id: helfi_form_subtheme_local_actions
-theme: helfi_form_subtheme
+id: hdbt_subtheme_local_actions
+theme: hdbt_subtheme
 region: tools
 weight: -3
 provider: null
 plugin: local_actions_block
 settings:
   id: local_actions_block
-  label: 'Ensisijaiset ylläpidon toimenpiteet'
+  label: 'Primary admin actions'
   label_display: '0'
   provider: core
 visibility: {  }

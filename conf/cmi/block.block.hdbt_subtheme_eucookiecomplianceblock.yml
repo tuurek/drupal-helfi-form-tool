@@ -1,4 +1,4 @@
-uuid: 49d52e21-778f-45d1-acb4-448a81ec38e1
+uuid: 998ef45f-3e47-4b56-92b5-a7cfd3461bd7
 langcode: en
 status: true
 dependencies:
@@ -6,13 +6,13 @@ dependencies:
     - eu_cookie_compliance
     - system
   theme:
-    - helfi_form_subtheme
+    - hdbt_subtheme
 _core:
   default_config_hash: 28-kb7jihf_0-XOrfhlEDbsUyoxMcH4YtOMyietA-vA
-id: helfi_form_subtheme_eucookiecomplianceblock
-theme: helfi_form_subtheme
+id: hdbt_subtheme_eucookiecomplianceblock
+theme: hdbt_subtheme
 region: after_content
-weight: -8
+weight: -10
 provider: null
 plugin: eu_cookie_compliance_block
 settings:

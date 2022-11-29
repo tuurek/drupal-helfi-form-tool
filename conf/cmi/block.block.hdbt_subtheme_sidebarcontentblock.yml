@@ -1,16 +1,15 @@
-uuid: 9e40fd33-fbf1-4d5c-b635-00fa8c789d51
+uuid: 7bb26e16-cac7-4970-81cb-a84d58cdd8f9
 langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - hdbt_content
   theme:
-    - helfi_form_subtheme
+    - hdbt_subtheme
 _core:
   default_config_hash: 78yiI6vde7AAMhp5ktXyPS5VcKtVs4_JuJccNBI1K7Q
-id: helfi_form_subtheme_sidebarcontentblock
-theme: helfi_form_subtheme
+id: hdbt_subtheme_sidebarcontentblock
+theme: hdbt_subtheme
 region: sidebar_second
 weight: -9
 provider: null

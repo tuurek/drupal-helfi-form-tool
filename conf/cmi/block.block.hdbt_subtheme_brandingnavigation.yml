@@ -1,4 +1,4 @@
-uuid: d39ba15b-a07d-44ec-a60b-4a5d18fbc6f0
+uuid: f2909337-0e3a-436e-a890-b15080e7d0c4
 langcode: en
 status: true
 dependencies:
@@ -7,13 +7,13 @@ dependencies:
   module:
     - menu_block_current_language
   theme:
-    - helfi_form_subtheme
+    - hdbt_subtheme
 _core:
   default_config_hash: vQ4mUU3haOTfe32xjXYEKN1kU9SHBIBCeM15nmCzwqI
-id: helfi_form_subtheme_brandingnavigation
-theme: helfi_form_subtheme
+id: hdbt_subtheme_brandingnavigation
+theme: hdbt_subtheme
 region: header_branding
-weight: 3
+weight: -8
 provider: null
 plugin: 'menu_block_current_language:branding-navigation'
 settings:
