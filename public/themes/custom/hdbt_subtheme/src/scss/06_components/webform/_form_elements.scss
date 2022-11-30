@@ -56,13 +56,13 @@
   padding-left: var(--spacing-layout-s);
   padding-right: var(--spacing-layout-s);
 
-  @include breakpoint(var(--breakpoint-m)) {
+  @include breakpoint($breadcrub-m) {
     flex-flow: row nowrap;
     padding: 0;
   }
 
   > .webform-section-wrapper {
-    @media (max-width: var(--breakpoint-m)) {
+    @media (max-width: $breadcrub-m) {
       padding-left: 0;
     }
   }
@@ -79,7 +79,7 @@
     flex-shrink: 0;
     margin-top: 0;
 
-    @include breakpoint(var(--breakpoint-m)) {
+    @include breakpoint($breadcrub-m) {
       width: 30%;
       max-width: 350px;
     }
