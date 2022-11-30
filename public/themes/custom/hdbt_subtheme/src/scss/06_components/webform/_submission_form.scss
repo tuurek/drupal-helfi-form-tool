@@ -4,7 +4,7 @@
   border-top: 1px rgba(0, 0, 0, 0.6) solid;
   padding-left: var(--spacing-layout-s);
   padding-right: var(--spacing-layout-s);
-  @include breakpoint($breadcrub-m) {
+  @include breakpoint($breakpoint-m) {
     display: flex;
     justify-content: space-between;
     padding-left: 0;
@@ -13,7 +13,7 @@
   input {
     width: 100%;
     margin-bottom: var(--spacing-layout-2-xs);
-    @include breakpoint($breadcrub-m) {
+    @include breakpoint($breakpoint-m) {
       width: auto;
     }
   }

@@ -3,7 +3,7 @@ $item_spacing: $spacing-triple * 0.5;
 .node--form-page .list-of-links {
   margin-left: 0;
   width: 100%;
-  @include breakpoint($breadcrub-m) {
+  @include breakpoint($breakpoint-m) {
     margin-top: 0;
   }
   margin-top: 0;
@@ -18,16 +18,16 @@ $item_spacing: $spacing-triple * 0.5;
     }
     &__container {
 
-      @include breakpoint($breadcrub-s) {
+      @include breakpoint($breakpoint-s) {
         width: calc(100% - #{$item_spacing * 4});
-        @include breakpoint($breadcrub-m) {
+        @include breakpoint($breakpoint-m) {
           width: 100%;
         }
       }
 
     }
     &__content {
-      @include breakpoint($breadcrub-m) {
+      @include breakpoint($breakpoint-m) {
         margin: 0 $item_spacing 0 0;
         display: grid;
         grid-template-columns: auto auto auto;

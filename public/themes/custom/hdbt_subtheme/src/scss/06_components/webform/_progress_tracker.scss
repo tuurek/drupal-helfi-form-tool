@@ -1,7 +1,7 @@
 .webform-progress {
   .webform-progress-tracker-mobile {
     display: block;
-    @include breakpoint($breadcrub-m) {
+    @include breakpoint($breakpoint-m) {
       display: none;
     }
     padding-bottom: var(--spacing-layout-2-xs);
@@ -29,7 +29,7 @@
   }
   .webform-progress-tracker {
     display: none;
-    @include breakpoint($breadcrub-m) {
+    @include breakpoint($breakpoint-m) {
       display: flex;
     }
     .progress-step .progress-text {
