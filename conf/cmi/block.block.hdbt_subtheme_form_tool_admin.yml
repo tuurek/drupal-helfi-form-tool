@@ -1,0 +1,27 @@
+uuid: 15042998-59d0-4471-8529-98b7970caae5
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.admin
+  module:
+    - system
+  theme:
+    - hdbt_subtheme
+_core:
+  default_config_hash: 7XpyHE1Kje-7UTTIzpYPeaWg0qxw86PmbLp0t4Z7lkg
+id: hdbt_subtheme_form_tool_admin
+theme: hdbt_subtheme
+region: sidebar_first
+weight: 1
+provider: null
+plugin: 'system_menu_block:admin'
+settings:
+  id: 'system_menu_block:admin'
+  label: Ylläpito
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

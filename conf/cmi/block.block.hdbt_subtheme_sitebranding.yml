@@ -1,0 +1,25 @@
+uuid: 76ebe3ee-8be5-4a43-8233-8a7ade0112e7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hdbt_subtheme
+_core:
+  default_config_hash: zieswfNu7cMhhsRwkEpe2HFgOvWeHcKNW9iXlTcq49k
+id: hdbt_subtheme_sitebranding
+theme: hdbt_subtheme
+region: header_branding
+weight: -10
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }
