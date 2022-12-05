@@ -4,6 +4,7 @@ Metadata              Examplemetadata          This is a simple browser test for
 Library               Browser
 Suite Setup     
 Variables             browsertestvariables.yaml
+Resource		      ../resources/browsertest.resource
 
 *** Test Cases ***
 Example Test
