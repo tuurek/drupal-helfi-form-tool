@@ -8,7 +8,7 @@ Variables             browsertestvariables.yaml
 *** Test Cases ***
 Example Test
     [Template]  The title must be ${EXPECTED_TITLE} for the url ${URL}
-    TitleToBeExpected                  ${TEST_BASEURL}/${pathToTest}
+    Kirjaudu Sisään | Helsingin Kaupunki                  ${TEST_BASEURL}/${pathToTest}
 
 *** Keywords ***
 The title should be ${EXPECTED_TITLE} for the url ${URL}
