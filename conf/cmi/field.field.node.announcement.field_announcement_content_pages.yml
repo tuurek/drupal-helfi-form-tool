@@ -8,6 +8,7 @@ dependencies:
     - node.type.article
     - node.type.landing_page
     - node.type.page
+    - node.type.webform
 _core:
   default_config_hash: UwT_yrGRrynRfR0F0zXFhepRZ13vlW6y5AJEMPmZ8dY
 id: node.announcement.field_announcement_content_pages
@@ -25,8 +26,9 @@ settings:
   handler_settings:
     target_bundles:
       article: article
-      page: page
       landing_page: landing_page
+      page: page
+      webform: webform
     sort:
       field: title
       direction: ASC
