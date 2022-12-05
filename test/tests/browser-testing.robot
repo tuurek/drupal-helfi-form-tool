@@ -11,7 +11,7 @@ Example Test
     Kirjaudu Sisään | Helsingin Kaupunki                  ${TEST_BASEURL}/${pathToTest}
 
 *** Keywords ***
-The title should be ${EXPECTED_TITLE} for the url ${URL}
+The title must be ${EXPECTED_TITLE} for the url ${URL}
     Set Browser Timeout   10
     Log To Console        \nTesting page: "${URL}" contains "${EXPECTED_TITLE}" as its title.
     New Page              ${URL}
