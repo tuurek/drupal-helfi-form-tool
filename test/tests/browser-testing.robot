@@ -9,7 +9,7 @@ Resource		      ../resources/browsertest.resource
 *** Test Cases ***
 Example Test
     [Template]  The title must be ${EXPECTED_TITLE} for the url ${URL}
-    Kirjaudu Sisään | Helsingin Kaupunki                  ${TEST_BASEURL}/${pathToTest}
+    Kirjaudu sisään | Helsingin kaupunki                  ${TEST_BASEURL}/${pathToTest}
 
 *** Keywords ***
 The title must be ${EXPECTED_TITLE} for the url ${URL}
