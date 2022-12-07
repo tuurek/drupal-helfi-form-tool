@@ -6,16 +6,17 @@
     line-height: var(--spacing-layout-xs);
     position: relative;
   }
+
   .hds-text-input__label {
     margin-bottom: 0;
   }
 }
-form {
-  .hds-icon--check-circle-fill {
-    color: green;
-    vertical-align: middle;
-  }
+
+form .hds-icon--check-circle-fill {
+  color: var(--color-tram);
+  vertical-align: middle;
 }
+
 section fieldset.webform-composite-hidden-title {
   margin-top: -1em;
 }

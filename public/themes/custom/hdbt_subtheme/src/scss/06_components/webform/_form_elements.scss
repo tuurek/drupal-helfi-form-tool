@@ -2,34 +2,40 @@
   table {
     width: 100%;
   }
+
   th {
     text-align: left;
   }
+
   td {
     vertical-align: middle;
+
     > div {
-      margin-bottom: 0;
       height: auto;
+      margin-bottom: 0;
+
       label {
         margin: -1px;
       }
     }
-
   }
+
   .hds-text-input label {
-    position: absolute;
-    width: 1px;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
     height: 1px;
-    padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+    padding: 0;
+    position: absolute;
+    width: 1px;
   }
 }
+
 .hds-checkbox label.hds-checkbox__label::after {
   content: '';
 }
+
 .form-item {
   margin-bottom: var(--spacing-layout-2-xs);
   position: relative;
@@ -42,71 +48,72 @@
 .hds-text-input {
   max-width: fit-content;
   width: 100%;
-
-  &__helper-text {
-    white-space: normal;
-    margin-top: var(--spacing-2-xs);
-  }
 }
+
+.hds-text-input__helper-text {
+  margin-top: var(--spacing-2-xs);
+  white-space: normal;
+}
+
 .webform-section-flex-wrapper {
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
   justify-content: left;
   padding-left: var(--spacing-layout-s);
   padding-right: var(--spacing-layout-s);
+  width: 100%;
 
   @include breakpoint($breakpoint-m) {
     flex-flow: row nowrap;
     padding: 0;
   }
 
-  > .webform-section-wrapper {
-    @media (max-width: $breakpoint-m) {
-      padding-left: 0;
-    }
-  }
-
   > h2.webform-section-title {
     color: var(--hdbt-color-black);
     display: block;
-    font-weight: 500;
-    margin-bottom: var(--spacing-layout-xs);
-    width: 100%;
-    hyphens: none;
-    padding-right: var(--spacing-layout-m);
-    font-size: 24px;
     flex-shrink: 0;
+    font-size: 24px;
+    font-weight: 500;
+    hyphens: none;
+    margin-bottom: var(--spacing-layout-xs);
     margin-top: 0;
+    padding-right: var(--spacing-layout-m);
+    width: 100%;
 
     @include breakpoint($breakpoint-m) {
-      width: 30%;
       max-width: 350px;
+      width: 30%;
     }
   }
 
   > .webform-section-wrapper {
     font-size: $base-font-size;
-    width: 100%;
     padding-left: var(--spacing-layout-m);
+    width: 100%;
+
     p:first-child {
       margin-top: 0;
     }
   }
+
   .form-required::after {
     content: '*';
     display: inline;
   }
-  legend, label {
+
+  legend,
+  label {
+    display: block;
     font-size: $base-font-size;
     font-weight: bold;
     margin-bottom: var(--spacing-2-xs);
-    display: block;
     padding-right: var(--spacing-layout-s);
   }
+
   label.hds-radio-button__label {
     font-weight: normal;
   }
+
   .checkboxes--wrapper label {
     font-weight: normal;
   }
@@ -121,11 +128,13 @@
 }
 
 .hds-text-input .hds-text-input__input {
-  width: auto;
   max-width: 100%;
+  width: auto;
 }
+
 form .hds-text-input__input-wrapper {
-  input, textarea,  {
+  input,
+  textarea, {
     &.webform--small {
       max-width: 184px;
       width: 100%;
@@ -142,26 +151,31 @@ form .hds-text-input__input-wrapper {
     }
   }
 }
-  .webform--small div.form-subtheme--select-wrapper {
-    max-width: 184px;
-    width: 100%;
-  }
-  .webform--medium div.form-subtheme--select-wrapper {
-    max-width: 322px;
-    width: 100%;
-  }
-  .webform--large div.form-subtheme--select-wrapper {
-    max-width: 591px;
-    width: 100%;
-  }
+
+.webform--small div.form-subtheme--select-wrapper {
+  max-width: 184px;
+  width: 100%;
+}
+
+.webform--medium div.form-subtheme--select-wrapper {
+  max-width: 322px;
+  width: 100%;
+}
+
+.webform--large div.form-subtheme--select-wrapper {
+  max-width: 591px;
+  width: 100%;
+}
+
 form .hds-checkbox {
-  display:block;
+  display: block;
+
   label.hds-checkbox__label::after {
     content: '';
   }
 }
 
-form .hds-radio-button .hds-radio-button__input:checked + .hds-radio-button__label:after {
+form .hds-radio-button .hds-radio-button__input:checked + .hds-radio-button__label::after {
   background-color: var(--color-black);
   border-color: var(--color-black);
 }
@@ -171,11 +185,11 @@ form .hds-checkbox .hds-checkbox__input:checked {
 }
 
 fieldset.webform-composite-hidden-title {
-  margin-top: -1em;
   margin-bottom: var(--spacing-layout-xs);
+  margin-top: -1em;
 }
 
 #edit-profile-fields--wrapper--description {
-  border-top: 1px solid lightgrey;
+  border-top: 1px solid var(--color-black-20);
   padding-top: var(--spacing-layout-2-xs);
 }
