@@ -12,9 +12,10 @@
   }
 }
 
-form .hds-icon--check-circle-fill {
+form .hel-icon--check-circle-fill {
+  --icon-size: 20px;
   color: var(--color-tram);
-  vertical-align: middle;
+  vertical-align: text-top;
 }
 
 section fieldset.webform-composite-hidden-title {
