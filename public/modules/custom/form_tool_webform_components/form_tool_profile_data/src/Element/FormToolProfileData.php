@@ -72,7 +72,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedFirstName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"]),
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"]
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedFirstName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -116,7 +118,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['verifiedGivenName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedPermanentAddress']) && $selectedFields['verifiedPermanentAddress'] !== 0) {
-        $permanent_address = [
+        $permanentAddress = [
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"],
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"],
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
@@ -129,7 +131,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($permanent_address),
+          '#description' => self::handleTextValue($permanentAddress),
           '#required' => TRUE,
         ];
         $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -140,7 +142,7 @@ class FormToolProfileData extends WebformCompositeBase {
       $selectedFields = $element['#weak'];
 
       if (isset($selectedFields['primaryAddress']) && $selectedFields['primaryAddress'] !== 0) {
-        $primary_address = [
+        $primaryAddress = [
           $userProfile["myProfile"]["primaryAddress"]["address"],
           $userProfile["myProfile"]["primaryAddress"]["postalCode"],
           $userProfile["myProfile"]["primaryAddress"]["city"],
@@ -155,7 +157,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["countryCode"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($primary_address),
+          '#description' => self::handleTextValue($primaryAddress),
           '#required' => TRUE,
         ];
         $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -207,16 +209,16 @@ class FormToolProfileData extends WebformCompositeBase {
   /**
    * Handle text value for the description fields.
    *
-   * @param string|array $text_value
+   * @param string|array $textValue
    *   String or array containing text values.
    *
    * @return array
    *   Returns render array.
    */
-  private static function handleTextValue(string|array $text_value) : array {
-    $description = is_array($text_value)
-      ? implode(', ', $text_value)
-      : $text_value;
+  private static function handleTextValue(string|array $textValue) : array {
+    $description = is_array($textValue)
+      ? implode(', ', $textValue)
+      : $textValue;
 
     return [
       '#theme' => 'profile_data_icon',
