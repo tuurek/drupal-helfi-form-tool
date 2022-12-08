@@ -205,10 +205,15 @@ class FormToolProfileData extends WebformCompositeBase {
   }
 
   /**
+   * Handle text value for the description fields.
+   *
    * @param string|array $text_value
+   *   String or array containing text values.
+   *
    * @return array
+   *   Returns render array.
    */
-  private static function handleTextValue(string|array $text_value):array {
+  private static function handleTextValue(string|array $text_value) : array {
     $description = is_array($text_value)
       ? implode(', ', $text_value)
       : $text_value;
@@ -218,4 +223,5 @@ class FormToolProfileData extends WebformCompositeBase {
       '#text_value' => $description,
     ];
   }
+
 }
