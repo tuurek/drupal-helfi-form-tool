@@ -72,10 +72,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedFirstName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
-          ],
+          '#description' => self::handleTextValue($userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"]),
           '#required' => TRUE,
         ];
         $elements['verifiedFirstName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -86,10 +83,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedLastName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"],
-          ],
+          '#description' => self::handleTextValue($userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"]),
           '#required' => TRUE,
         ];
         $elements['verifiedLastName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -100,10 +94,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedSsn'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"],
-          ],
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"]
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedSsn']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -115,10 +108,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedGivenName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"],
-          ],
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"]
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedGivenName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -137,10 +129,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => implode(', ', $permanent_address),
-          ],
+          '#description' => self::handleTextValue($permanent_address),
           '#required' => TRUE,
         ];
         $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -166,10 +155,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["countryCode"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => implode(', ', $primary_address),
-          ],
+          '#description' => self::handleTextValue($primary_address),
           '#required' => TRUE,
         ];
         $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -180,10 +166,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['weak']['primaryEmail'],
           '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => $userProfile["myProfile"]["primaryEmail"]["email"],
-          ],
+          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"]),
           '#required' => TRUE,
         ];
         $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -193,10 +176,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#type' => 'textfield',
           '#title' => $options['weak']['primaryPhone'],
           '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-          '#description' => [
-            '#theme' => 'profile_data_icon',
-            '#text_value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-          ],
+          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"]),
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#required' => TRUE,
         ];
@@ -224,4 +204,18 @@ class FormToolProfileData extends WebformCompositeBase {
     return $element;
   }
 
+  /**
+   * @param string|array $text_value
+   * @return array
+   */
+  private static function handleTextValue(string|array $text_value):array {
+    $description = is_array($text_value)
+      ? implode(', ', $text_value)
+      : $text_value;
+
+    return [
+      '#theme' => 'profile_data_icon',
+      '#text_value' => $description,
+    ];
+  }
 }
