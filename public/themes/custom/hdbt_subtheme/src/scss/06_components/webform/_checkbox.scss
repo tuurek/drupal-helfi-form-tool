@@ -21,6 +21,10 @@
   }
 }
 
+.checkboxes--wrapper label {
+  font-weight: normal;
+}
+
 .hds-checkbox__label.form-required::after {
   content: '*';
   display: inline;
@@ -46,4 +50,15 @@
 .hds-checkbox .hds-checkbox__input:not(:disabled):checked:hover:focus + .hds-checkbox__label::after {
   background-color: transparent;
   border-color: transparent;
+}
+
+.hds-checkbox {
+  --background-selected: var(--color-black-90);
+  --background-hover: var(--color-black);
+  --background-disabled: var(--color-black-10);
+  --border-color-selected: var(--color-black-90);
+  --border-color-selected-hover: var(--color-black);
+  --border-color-selected-focus: var(--color-black-90);
+  --focus-outline-color: var(--color-black);
+  display: block;
 }

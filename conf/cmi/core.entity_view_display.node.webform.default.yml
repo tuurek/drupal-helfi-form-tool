@@ -3,11 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.webform.body
+    - field.field.node.webform.field_form_code
+    - field.field.node.webform.field_lower_content
     - field.field.node.webform.webform
     - node.type.webform
   module:
-    - text
+    - entity_reference_revisions
     - user
     - webform
 _core:
@@ -17,25 +18,29 @@ targetEntityType: node
 bundle: webform
 mode: default
 content:
-  body:
-    type: text_default
+  field_lower_content:
+    type: entity_reference_revisions_entity_view
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    weight: 101
+    weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
   webform:
     type: webform_entity_reference_entity_view
     label: hidden
-    settings: {  }
+    settings:
+      source_entity: true
     third_party_settings: {  }
-    weight: 102
+    weight: 1
     region: content
 hidden:
+  field_form_code: true
   langcode: true
   toc_enabled: true

@@ -1,195 +1,39 @@
-.js-form-type-webform-table {
-  table {
-    width: 100%;
-  }
+.webform-submission-form {
+  .form-item {
+    // Switching margins other way around than in hdbt because of hidden form components that appear after selection.
+    margin-bottom: 0;
+    margin-top: $spacing-and-half;
+    position: relative;
 
-  th {
-    text-align: left;
-  }
-
-  td {
-    vertical-align: middle;
-
-    > div {
-      height: auto;
-      margin-bottom: 0;
-
-      label {
-        margin: -1px;
-      }
-    }
-  }
-
-  .hds-text-input label {
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-}
-
-.hds-checkbox label.hds-checkbox__label::after {
-  content: '';
-}
-
-.form-item {
-  margin-bottom: var(--spacing-layout-2-xs);
-  position: relative;
-}
-
-.webform-section {
-  padding-bottom: var(--spacing-layout-2-xs);
-}
-
-.hds-text-input {
-  max-width: fit-content;
-  width: 100%;
-}
-
-.hds-text-input__helper-text {
-  margin-top: var(--spacing-2-xs);
-  white-space: normal;
-}
-
-.webform-section-flex-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: left;
-  padding-left: var(--spacing-layout-s);
-  padding-right: var(--spacing-layout-s);
-  width: 100%;
-
-  @include breakpoint($breakpoint-m) {
-    flex-flow: row nowrap;
-    padding: 0;
-  }
-
-  > h2.webform-section-title {
-    color: var(--hdbt-color-black);
-    display: block;
-    flex-shrink: 0;
-    font-size: 24px;
-    font-weight: 500;
-    hyphens: none;
-    margin-bottom: var(--spacing-layout-xs);
-    margin-top: 0;
-    padding-right: var(--spacing-layout-m);
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      max-width: 350px;
-      width: 30%;
-    }
-  }
-
-  > .webform-section-wrapper {
-    font-size: $base-font-size;
-    padding-left: var(--spacing-layout-m);
-    width: 100%;
-
-    p:first-child {
+    &:first-child {
       margin-top: 0;
     }
   }
 
-  .form-required::after {
-    content: '*';
-    display: inline;
-  }
-
-  legend,
-  label {
-    display: block;
-    font-size: $base-font-size;
-    font-weight: bold;
-    margin-bottom: var(--spacing-2-xs);
-    padding-right: var(--spacing-layout-s);
-  }
-
-  label.hds-radio-button__label {
-    font-weight: normal;
-  }
-
-  .checkboxes--wrapper label {
-    font-weight: normal;
-  }
-
-  .js-form-type-textarea .hds-text-input__input-wrapper {
-    display: block;
+  .description {
+    margin-top: $spacing-quarter;
+    white-space: normal;
   }
 
   fieldset {
-    min-inline-size: auto;
+    margin-left: 0;
+    margin-right: 0;
   }
-}
 
-.hds-text-input .hds-text-input__input {
-  max-width: 100%;
-  width: auto;
-}
-
-form .hds-text-input__input-wrapper {
-  input,
-  textarea, {
-    &.webform--small {
-      max-width: 184px;
-      width: 100%;
-    }
-
-    &.webform--medium {
-      max-width: 322px;
-      width: 100%;
-    }
-
-    &.webform--large {
-      max-width: 591px;
-      width: 100%;
-    }
+  .fieldset-legend,
+  label:not(.hds-radio-button__label, .hds-checkbox__label) {
+    @include font('button');
+    display: block;
+    margin-bottom: $spacing;
+    padding-right: $spacing-double;
   }
-}
 
-.webform--small div.form-subtheme--select-wrapper {
-  max-width: 184px;
-  width: 100%;
-}
-
-.webform--medium div.form-subtheme--select-wrapper {
-  max-width: 322px;
-  width: 100%;
-}
-
-.webform--large div.form-subtheme--select-wrapper {
-  max-width: 591px;
-  width: 100%;
-}
-
-form .hds-checkbox {
-  display: block;
-
-  label.hds-checkbox__label::after {
-    content: '';
+  .form-text {
+    max-width: 100%;
+    width: auto;
   }
-}
 
-form .hds-radio-button .hds-radio-button__input:checked + .hds-radio-button__label::after {
-  background-color: var(--color-black);
-  border-color: var(--color-black);
-}
-
-form .hds-checkbox .hds-checkbox__input:checked {
-  background-color: var(--color-black);
-}
-
-fieldset.webform-composite-hidden-title {
-  margin-bottom: var(--spacing-layout-xs);
-  margin-top: -1em;
-}
-
-#edit-profile-fields--wrapper--description {
-  border-top: 1px solid var(--color-black-20);
-  padding-top: var(--spacing-layout-2-xs);
+  .hds-notification:first-of-type {
+    margin-top: 0;
+  }
 }

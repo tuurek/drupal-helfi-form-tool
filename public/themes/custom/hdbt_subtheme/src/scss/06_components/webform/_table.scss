@@ -1,0 +1,33 @@
+.js-form-type-webform-table {
+  table {
+    width: 100%;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  td {
+    vertical-align: middle;
+
+    > div {
+      height: auto;
+      margin-bottom: 0;
+
+      label {
+        margin: -1px;
+      }
+    }
+  }
+
+  .hds-text-input label {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+}

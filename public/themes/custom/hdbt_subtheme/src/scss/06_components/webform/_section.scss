@@ -1,0 +1,51 @@
+.form-item.webform-section {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+  }
+}
+
+.webform-section-flex-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    flex-flow: row nowrap;
+  }
+
+  .form-required::after {
+    color: $color-error;
+    content: '*';
+    display: inline;
+  }
+}
+
+.webform-section-title {
+  @include font('h4');
+  display: block;
+  flex-shrink: 0;
+  hyphens: none;
+  margin-bottom: $spacing;
+  margin-top: 0;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    width: 30%;
+  }
+}
+
+.webform-section-wrapper {
+  padding-left: $spacing-and-half;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    width: 70%;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+}

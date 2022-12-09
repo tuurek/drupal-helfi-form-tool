@@ -1,0 +1,11 @@
+{% for item in items %}
+  {% block paragraph %}
+    {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--webform' ], } %}
+      {% block component_content %}
+
+        {{ item.content }}
+
+      {% endblock component_content %}
+    {% endembed %}
+  {% endblock paragraph %}
+{% endfor %}

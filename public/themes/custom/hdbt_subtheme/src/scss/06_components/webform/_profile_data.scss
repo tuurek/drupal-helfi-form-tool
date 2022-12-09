@@ -1,22 +1,31 @@
-.form_tool__prefilled_field {
-  .webform-element-description {
-    color: var(--color-black);
-    font-size: var(--fontsize-body-m);
-    line-height: var(--spacing-layout-xs);
-    position: relative;
-  }
-
-  .hds-text-input__label {
+.webform-submission-form .form_tool__prefilled_field {
+  label.hds-text-input__label {
     margin-bottom: 0;
   }
+
+  // The prefilled text is actually inside a description element so it needs to be restyled.
+  .webform-element-description {
+    color: $color-black;
+  }
+
+  .hel-icon--check-circle-fill {
+    --icon-size: 20px;
+    color: $color-tram;
+    vertical-align: text-top;
+  }
 }
 
-form .hel-icon--check-circle-fill {
-  --icon-size: 20px;
-  color: var(--color-tram);
-  vertical-align: text-top;
+// This adds the gray line above the description on the profile data.
+.form-tool-profile-data--wrapper .fieldset-wrapper > .description:last-child {
+  border-top: 1px solid $color-black-20;
+  color: $color-black-60;
+  margin-top: $spacing-and-half;
+  padding-top: $spacing-and-half;
 }
 
-section fieldset.webform-composite-hidden-title {
-  margin-top: -1em;
+// This removes the gray line from above if there is no data above it like for the superadmin.
+.form-tool-profile-data--wrapper .fieldset-wrapper > .description:first-child {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
