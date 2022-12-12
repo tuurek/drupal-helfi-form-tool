@@ -17,10 +17,17 @@
 
 // This adds the gray line above the description on the profile data.
 .form-tool-profile-data--wrapper .fieldset-wrapper > .description:last-child {
+  align-items: center;
   border-top: 1px solid $color-black-20;
   color: $color-black-60;
+  display: flex;
   margin-top: $spacing-and-half;
   padding-top: $spacing-and-half;
+
+  &::before {
+    @include pseudo-icon('check-circle-fill', 20px, $color-tram);
+    margin-right: $spacing-quarter;
+  }
 }
 
 // This removes the gray line from above if there is no data above it like for the superadmin.

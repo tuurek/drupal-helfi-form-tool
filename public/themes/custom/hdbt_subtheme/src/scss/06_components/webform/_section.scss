@@ -16,8 +16,7 @@
     flex-flow: row nowrap;
   }
 
-  .form-required::after {
-    color: $color-error;
+  .form-required:not(.hds-checkbox__label)::after {
     content: '*';
     display: inline;
   }
@@ -34,6 +33,10 @@
 
   @include breakpoint($breakpoint-m) {
     width: 30%;
+  }
+
+  &.form-required::after {
+    margin-left: $spacing-quarter;
   }
 }
 

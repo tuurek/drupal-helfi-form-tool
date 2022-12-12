@@ -13,3 +13,17 @@
     margin-top: 0;
   }
 }
+
+.webform-submission-form .radios--wrapper {
+  .fieldset-legend {
+    margin-bottom: $spacing;
+
+    &.form-required::after {
+      margin-left: $spacing-quarter;
+    }
+  }
+
+  .description {
+    margin-top: $spacing;
+  }
+}

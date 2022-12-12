@@ -24,8 +24,7 @@
   label:not(.hds-radio-button__label, .hds-checkbox__label) {
     @include font('button');
     display: block;
-    margin-bottom: $spacing;
-    padding-right: $spacing-double;
+    margin-bottom: $spacing-quarter;
   }
 
   .form-text {
