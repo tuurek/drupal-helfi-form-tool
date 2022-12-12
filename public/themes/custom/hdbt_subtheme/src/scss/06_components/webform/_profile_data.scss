@@ -17,7 +17,7 @@
 
 // This adds the gray line above the description on the profile data.
 .form-tool-profile-data--wrapper .fieldset-wrapper > .description:last-child {
-  align-items: center;
+  align-items: flex-start;
   border-top: 1px solid $color-black-20;
   color: $color-black-60;
   display: flex;
@@ -26,7 +26,9 @@
 
   &::before {
     @include pseudo-icon('check-circle-fill', 20px, $color-tram);
+    flex-shrink: 0;
     margin-right: $spacing-quarter;
+    margin-top: 2px;
   }
 }
 

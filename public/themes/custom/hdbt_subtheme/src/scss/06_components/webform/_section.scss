@@ -27,11 +27,12 @@
   display: block;
   flex-shrink: 0;
   hyphens: none;
-  margin-bottom: $spacing;
+  margin-bottom: $spacing-and-half;
   margin-top: 0;
   width: 100%;
 
   @include breakpoint($breakpoint-m) {
+    margin-bottom: 0;
     width: 30%;
   }
 
@@ -41,10 +42,10 @@
 }
 
 .webform-section-wrapper {
-  padding-left: $spacing-and-half;
   width: 100%;
 
   @include breakpoint($breakpoint-m) {
+    padding-left: $spacing-and-half;
     width: 70%;
   }
 
