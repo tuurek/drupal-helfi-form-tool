@@ -1,29 +1,24 @@
-.hds-checkbox .hds-checkbox__label {
+.hds-checkbox {
+  --background-selected: var(--color-black-90);
+  --background-hover: var(--color-black);
+  --background-disabled: var(--color-black-10);
+  --border-color-selected: var(--color-black-90);
+  --border-color-selected-hover: var(--color-black);
+  --border-color-selected-focus: var(--color-black-90);
+  --focus-outline-color: var(--color-black);
+
+  .description {
+    margin-top: $spacing-quarter;
+    width: 100%;
+  }
+}
+
+.hds-checkbox__label {
   font-weight: normal;
 
   a {
     font-weight: bold;
   }
-
-  &::before {
-    background-color: var(--background-unselected);
-    border: var(--border-width) solid var(--border-color-unselected);
-    height: var(--size);
-    width: var(--size);
-  }
-
-  &::after {
-    border: 0 var(--color-white) solid;
-    content: '';
-    height: var(--size);
-    position: relative;
-    width: var(--size);
-  }
-}
-
-.hds-checkbox__label.form-required::after {
-  content: '*';
-  display: inline;
 }
 
 .hds-checkbox__input:checked + .hds-checkbox__label::before {
@@ -46,4 +41,18 @@
 .hds-checkbox .hds-checkbox__input:not(:disabled):checked:hover:focus + .hds-checkbox__label::after {
   background-color: transparent;
   border-color: transparent;
+}
+
+.webform-submission-form .checkboxes--wrapper {
+  .fieldset-legend {
+    margin-bottom: $spacing;
+
+    &.form-required::after {
+      margin-left: $spacing-quarter;
+    }
+  }
+
+  .description {
+    margin-top: $spacing;
+  }
 }

@@ -1,0 +1,115 @@
+uuid: f235bf88-fc37-4c37-b7bc-4b3e143a1a33
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lower_content
+    - node.type.webform
+    - paragraphs.paragraphs_type.banner
+  module:
+    - entity_reference_revisions
+id: node.webform.field_lower_content
+field_name: field_lower_content
+entity_type: node
+bundle: webform
+label: 'Lower content region'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      banner: banner
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 30
+        enabled: false
+      accordion_item:
+        weight: 31
+        enabled: false
+      banner:
+        weight: 32
+        enabled: true
+      chart:
+        weight: 33
+        enabled: false
+      columns:
+        weight: 34
+        enabled: false
+      contact_card:
+        weight: 35
+        enabled: false
+      contact_card_listing:
+        weight: 36
+        enabled: false
+      content_cards:
+        weight: 37
+        enabled: false
+      event_list:
+        weight: 38
+        enabled: false
+      from_library:
+        weight: 39
+        enabled: false
+      gallery:
+        weight: 40
+        enabled: false
+      gallery_slide:
+        weight: 41
+        enabled: false
+      hero:
+        weight: 42
+        enabled: false
+      image:
+        weight: 43
+        enabled: false
+      liftup_with_image:
+        weight: 44
+        enabled: false
+      list_of_links:
+        weight: 45
+        enabled: false
+      list_of_links_item:
+        weight: 46
+        enabled: false
+      phasing:
+        weight: 47
+        enabled: false
+      phasing_item:
+        weight: 48
+        enabled: false
+      popular_service_item:
+        weight: 49
+        enabled: false
+      popular_services:
+        weight: 50
+        enabled: false
+      remote_video:
+        weight: 51
+        enabled: false
+      remote_webform:
+        weight: 52
+        enabled: false
+      social_media_link:
+        weight: 53
+        enabled: false
+      target_group_link_item:
+        weight: 54
+        enabled: false
+      target_group_links:
+        weight: 55
+        enabled: false
+      text:
+        weight: 56
+        enabled: false
+      view:
+        weight: 57
+        enabled: false
+      webform:
+        weight: 58
+        enabled: false
+field_type: entity_reference_revisions

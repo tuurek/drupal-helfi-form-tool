@@ -45,7 +45,7 @@ elements: |-
         primaryAddress: primaryAddress
         primaryEmail: primaryEmail
         primaryPhone: primaryPhone
-      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+      '#description': 'Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
       '#description_display': after
       '#strong':
         verifiedFirstName: verifiedFirstName

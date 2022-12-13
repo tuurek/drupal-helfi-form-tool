@@ -1,0 +1,8 @@
+<section aria-label="Notification" class="hds-notification hds-notification--small">
+  <div class="hds-notification__content">
+    <div class="hds-notification__label" role="heading" aria-level="2">
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'info-circle-fill'} %}
+    </div>
+    <div class="hds-notification__body">{{ notice_value }}</div>
+  </div>
+</section>

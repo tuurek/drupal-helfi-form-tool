@@ -1,0 +1,29 @@
+.hds-radio-button {
+  --border-color-selected: var(--color-black-90);
+  --border-color-selected-hover: var(--color-black);
+  --icon-color-selected: var(--color-black-90);
+  --icon-color-hover: var(--color-black);
+  --focus-outline-color: var(--color-black-50);
+}
+
+.webform-submission-form .form-item.hds-radio-button {
+  margin-top: $spacing;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.webform-submission-form .radios--wrapper {
+  .fieldset-legend {
+    margin-bottom: $spacing;
+
+    &.form-required::after {
+      margin-left: $spacing-quarter;
+    }
+  }
+
+  .description {
+    margin-top: $spacing;
+  }
+}

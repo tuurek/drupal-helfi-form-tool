@@ -1,0 +1,55 @@
+.form-item.webform-section {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
+  }
+}
+
+.webform-section-flex-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    flex-flow: row nowrap;
+  }
+
+  .form-required:not(.hds-checkbox__label)::after {
+    content: '*';
+    display: inline;
+  }
+}
+
+.webform-section-title {
+  @include font('h4');
+  display: block;
+  flex-shrink: 0;
+  hyphens: none;
+  margin-bottom: $spacing-and-half;
+  margin-top: 0;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: 0;
+    width: 30%;
+  }
+
+  &.form-required::after {
+    margin-left: $spacing-quarter;
+  }
+}
+
+.webform-section-wrapper {
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    padding-left: $spacing-and-half;
+    width: 70%;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+}

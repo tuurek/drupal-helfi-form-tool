@@ -1,0 +1,10 @@
+.component--webform {
+  margin-top: $spacing-triple;
+  padding-left: $spacing-and-half;
+  padding-right: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    padding-left: $spacing-double;
+    padding-right: $spacing-double;
+  }
+}

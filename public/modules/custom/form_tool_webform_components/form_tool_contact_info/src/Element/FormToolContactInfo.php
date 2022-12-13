@@ -42,14 +42,8 @@ class FormToolContactInfo extends WebformCompositeBase {
     $elements = [];
     $elements['Info'] = [
       '#type' => 'item',
-      '#markup' => '<section aria-label="Notification" class="hds-notification">
-      <div class="hds-notification__content">
-        <div class="hds-notification__label" role="heading" aria-level="2">
-          <span class="hds-icon hds-icon--alert-circle-fill" aria-hidden="true"></span>
-          <span>' . t('Selecting a delivery method may prompt further questions') . '</span>
-        </div>
-      </div>
-    </section>',
+      '#theme' => 'notification_content',
+      '#notice_value' => t('Selecting a delivery method may prompt further questions'),
     ];
     $elements['Toimitustapa: Email'] = [
       '#type' => 'checkbox',

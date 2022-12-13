@@ -1,19 +1,11 @@
 .webform-submission-form .form-actions {
-  border-top: 1px rgb(0 0 0 / 60%) solid;
-  margin-top: var(--spacing-layout-s);
-  padding-left: var(--spacing-layout-s);
-  padding-right: var(--spacing-layout-s);
-  padding-top: var(--spacing-layout-m);
+  margin-top: $spacing-double;
 
   @include breakpoint($breakpoint-m) {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 0;
-    padding-right: 0;
+    margin-top: $spacing-quadruple;
   }
 
   input {
-    margin-bottom: var(--spacing-layout-2-xs);
     width: 100%;
 
     @include breakpoint($breakpoint-m) {
@@ -30,7 +22,7 @@
   }
 
   input.webform-button--previous {
-    background: white;
+    background: $color-white;
     color: var(--border-color);
   }
 }
