@@ -53,7 +53,7 @@ class FormToolProfileData extends WebformCompositeBase {
     $userProfile = $hpud->getUserProfileData();
 
     if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
-      if ($userProfile == NULL || empty($userProfile) || empty($userProfile['myProfile'])) {
+      if (empty($userProfile) || empty($userProfile['myProfile'])) {
         throw new AccessDeniedHttpException('No profile data available');
       }
     }
@@ -73,7 +73,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"]
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] ?: '-'
           ),
           '#required' => TRUE,
         ];
@@ -85,7 +85,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedLastName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"]),
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] ?: '-'
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedLastName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -97,7 +99,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"]
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] ?: '-'
           ),
           '#required' => TRUE,
         ];
@@ -111,7 +113,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"]
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] ?: '-'
           ),
           '#required' => TRUE,
         ];
@@ -131,7 +133,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($permanentAddress),
+          '#description' => self::handleTextValue($permanentAddress ?: '-'),
           '#required' => TRUE,
         ];
         $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -157,7 +159,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["countryCode"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($primaryAddress),
+          '#description' => self::handleTextValue($primaryAddress ?: '-'),
           '#required' => TRUE,
         ];
         $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -168,7 +170,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['weak']['primaryEmail'],
           '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"]),
+          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?: '-'),
           '#required' => TRUE,
         ];
         $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -178,7 +180,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#type' => 'textfield',
           '#title' => $options['weak']['primaryPhone'],
           '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"]),
+          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-'),
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#required' => TRUE,
         ];
