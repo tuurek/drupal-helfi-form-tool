@@ -53,7 +53,7 @@ class FormToolProfileData extends WebformCompositeBase {
     $userProfile = $hpud->getUserProfileData();
 
     if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
-      if ($userProfile == NULL || empty($userProfile) || empty($userProfile['myProfile'])) {
+      if (empty($userProfile) || empty($userProfile['myProfile'])) {
         throw new AccessDeniedHttpException('No profile data available');
       }
     }
@@ -72,8 +72,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedFirstName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] ?: '-'
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedFirstName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -84,8 +85,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedLastName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] ?: '-'
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedLastName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -96,8 +98,9 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedSsn'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] ?: '-'
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedSsn']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -109,13 +112,19 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['strong']['verifiedGivenName'],
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue(
+            $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] ?: '-'
+          ),
           '#required' => TRUE,
         ];
         $elements['verifiedGivenName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedPermanentAddress']) && $selectedFields['verifiedPermanentAddress'] !== 0) {
+        $permanentAddress = [
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"],
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"],
+          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
+        ];
         $elements['verifiedPermanentAddress'] = [
           '#type' => 'textfield',
           '#title' => $options['strong']['verifiedPermanentAddress'],
@@ -124,11 +133,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' =>
-          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"] . ', ' .
-          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
-          $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue($permanentAddress ?: '-'),
           '#required' => TRUE,
         ];
         $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -139,6 +144,12 @@ class FormToolProfileData extends WebformCompositeBase {
       $selectedFields = $element['#weak'];
 
       if (isset($selectedFields['primaryAddress']) && $selectedFields['primaryAddress'] !== 0) {
+        $primaryAddress = [
+          $userProfile["myProfile"]["primaryAddress"]["address"],
+          $userProfile["myProfile"]["primaryAddress"]["postalCode"],
+          $userProfile["myProfile"]["primaryAddress"]["city"],
+          $userProfile["myProfile"]["primaryAddress"]["countryCode"],
+        ];
         $elements['primaryAddress'] = [
           '#type' => 'textfield',
           '#title' => $options['weak']['primaryAddress'],
@@ -148,12 +159,7 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["countryCode"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' =>
-          $userProfile["myProfile"]["primaryAddress"]["address"] . ', ' .
-          $userProfile["myProfile"]["primaryAddress"]["postalCode"] . ', ' .
-          $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
-          $userProfile["myProfile"]["primaryAddress"]["countryCode"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue($primaryAddress ?: '-'),
           '#required' => TRUE,
         ];
         $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -164,8 +170,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#title' => $options['weak']['primaryEmail'],
           '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => $userProfile["myProfile"]["primaryEmail"]["email"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?: '-'),
           '#required' => TRUE,
         ];
         $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
@@ -175,8 +180,7 @@ class FormToolProfileData extends WebformCompositeBase {
           '#type' => 'textfield',
           '#title' => $options['weak']['primaryPhone'],
           '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-          '#description' => $userProfile["myProfile"]["primaryPhone"]["phone"] .
-          ' <span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-s"></span>',
+          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-'),
           '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
           '#required' => TRUE,
         ];
@@ -202,6 +206,26 @@ class FormToolProfileData extends WebformCompositeBase {
     // disabling the entire table row when this element is disabled.
     $element['#wrapper_attributes']['class'][] = 'js-form-wrapper';
     return $element;
+  }
+
+  /**
+   * Handle text value for the description fields.
+   *
+   * @param string|array $textValue
+   *   String or array containing text values.
+   *
+   * @return array
+   *   Returns render array.
+   */
+  private static function handleTextValue(string|array $textValue) : array {
+    $description = is_array($textValue)
+      ? implode(', ', $textValue)
+      : $textValue;
+
+    return [
+      '#theme' => 'profile_data_icon',
+      '#text_value' => $description,
+    ];
   }
 
 }

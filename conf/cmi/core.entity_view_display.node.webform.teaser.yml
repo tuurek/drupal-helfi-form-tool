@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.webform.body
+    - field.field.node.webform.field_form_code
+    - field.field.node.webform.field_lower_content
     - field.field.node.webform.webform
     - node.type.webform
   module:
-    - text
     - user
 _core:
   default_config_hash: Ls5l3Xs7-YstJnurxFLKj38Exqr2JMZs1j9YeX1Kh2o
@@ -17,20 +17,14 @@ targetEntityType: node
 bundle: webform
 mode: teaser
 content:
-  body:
-    type: text_summary_or_trimmed
-    label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    weight: 101
-    region: content
   links:
     settings: {  }
     third_party_settings: {  }
     weight: 100
     region: content
 hidden:
+  field_form_code: true
+  field_lower_content: true
   langcode: true
   toc_enabled: true
   webform: true

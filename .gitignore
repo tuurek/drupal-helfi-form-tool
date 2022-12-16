@@ -26,3 +26,6 @@ public/sites/default/local.services.yml
 !*.gitkeep
 !*.keepme
 .phpunit.*
+
+# Ignore files in robot-tests folder
+robot-tests/logit

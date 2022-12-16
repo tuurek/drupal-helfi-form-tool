@@ -1,21 +1,40 @@
-.form_tool__prefilled_field {
-  .webform-element-description {
-    color: var(--color-black);
-    cursor: pointer;
-    font-size: var(--fontsize-body-m);
-    line-height: var(--spacing-layout-xs);
-    position: relative;
-  }
-  .hds-text-input__label {
+.webform-submission-form .form_tool__prefilled_field {
+  label.hds-text-input__label {
     margin-bottom: 0;
   }
-}
-form {
-  .hds-icon--check-circle-fill {
-    color: green;
-    vertical-align: middle;
+
+  // The prefilled text is actually inside a description element so it needs to be restyled.
+  .webform-element-description {
+    color: $color-black;
+  }
+
+  .hel-icon--check-circle-fill {
+    --icon-size: 20px;
+    color: $color-tram;
+    vertical-align: text-top;
   }
 }
-section fieldset.webform-composite-hidden-title {
-  margin-top: -1em;
+
+// This adds the gray line above the description on the profile data.
+.form-tool-profile-data--wrapper .fieldset-wrapper > .description:last-child {
+  align-items: flex-start;
+  border-top: 1px solid $color-black-20;
+  color: $color-black-60;
+  display: flex;
+  margin-top: $spacing-and-half;
+  padding-top: $spacing-and-half;
+
+  &::before {
+    @include pseudo-icon('check-circle-fill', 20px, $color-tram);
+    flex-shrink: 0;
+    margin-right: $spacing-quarter;
+    margin-top: 2px;
+  }
+}
+
+// This removes the gray line from above if there is no data above it like for the superadmin.
+.form-tool-profile-data--wrapper .fieldset-wrapper > .description:first-child {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }

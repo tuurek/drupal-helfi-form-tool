@@ -1,116 +1,131 @@
 .webform-progress {
   .webform-progress-tracker-mobile {
+    border-bottom: 1px rgb(0 0 0 / 60%) solid;
     display: block;
+    margin-bottom: var(--spacing-layout-2-xs);
+    padding-bottom: var(--spacing-layout-2-xs);
+
     @include breakpoint($breakpoint-m) {
       display: none;
     }
-    padding-bottom: var(--spacing-layout-2-xs);
-    margin-bottom: var(--spacing-layout-2-xs);
-    border-bottom: 1px rgba(0, 0, 0, 0.6) solid;
+
     .webform-progress-tracker-mobile-wrapper {
-      display: flex;
       align-items: baseline;
+      display: flex;
 
       .progress-marker::before {
         background-color: var(--hdbt-color-black);
-        color: var(--color-white);
         border: 2px var(--hdbt-color-black) solid;
-        width: var(--spacing-layout-l);
-        height: var(--spacing-layout-l);
+        color: var(--color-white);
         font-size: $base-font-size * 1.5;
-        margin-bottom: var(--spacing-layout-2-xs);
         font-weight: 500;
+        height: var(--spacing-layout-l);
         letter-spacing: -2px;
+        margin-bottom: var(--spacing-layout-2-xs);
+        width: var(--spacing-layout-l);
       }
+
       .progress-info {
         padding-left: var(--spacing-layout-2-xs);
       }
     }
   }
+
   .webform-progress-tracker {
     display: none;
+
     @include breakpoint($breakpoint-m) {
       display: flex;
     }
+
     .progress-step .progress-text {
-    color: #666;
+      color: var(--color-black-60);
     }
 
     .is-active .progress-title {
       color: var(--hdbt-color-black);
     }
-    .progress-title[role="link"] {
-      text-decoration: underline;
+
+    .progress-title[role='link'] {
       color: var(--hdbt-color-black);
+      text-decoration: underline;
+
       &:hover {
         text-decoration: none;
       }
     }
 
-
     .progress-step {
       margin-top: 0;
+
       .progress-marker::after {
+        background:
+          repeating-linear-gradient(
+            90deg,
+            var(--color-white),
+            var(--color-white) 8px,
+            rgb(0 0 0 / 60%) 1px,
+            rgb(0 0 0 / 60%) 20px
+          );
+        height: 2px;
         right: calc(-50% - 12px);
         top: var(--spacing-layout-2-xs);
-        height: 2px;
-        background: repeating-linear-gradient(
-          90deg,
-          var(--color-white),
-          var(--color-white) 8px,
-          rgba(0, 0, 0, 0.6) 1px,
-          rgba(0, 0, 0, 0.6) 20px
-        );
       }
+
       .progress-marker::before {
         background-color: var(--color-white);
-        color: var(--hdbt-color-black);
         border: 2px var(--hdbt-color-black) solid;
-        width: var(--spacing-layout-s);
-        height: var(--spacing-layout-s);
+        color: var(--hdbt-color-black);
         font-size: $base-font-size;
-        margin-bottom: var(--spacing-layout-2-xs);
         font-weight: bold;
+        height: var(--spacing-layout-s);
+        margin-bottom: var(--spacing-layout-2-xs);
+        width: var(--spacing-layout-s);
       }
+
       &.is-active {
         &:hover {
           .progress-marker::before {
             background-color: var(--hdbt-color-black);
-            color: var(--color-white);
             border: 4px var(--hdbt-color-black) solid;
+            color: var(--color-white);
           }
         }
+
         .progress-marker::before {
           background-color: var(--hdbt-color-black);
-          color: var(--color-white);
           border: 4px var(--hdbt-color-black) solid;
+          color: var(--color-white);
         }
       }
+
       .progress-marker::before {
         background-color: var(--color-white);
-        color: #666;
-        border-color: #666;
+        border-color: var(--color-black-60);
+        color: var(--color-black-60);
       }
+
       &:hover .progress-marker::before {
         background-color: var(--color-white);
-        color: #666;
-        border-color: #666;
+        border-color: var(--color-black-60);
+        color: var(--color-black-60);
       }
 
       &:not(.is-active).is-complete {
         .progress-marker::before {
           background-color: var(--color-white);
-          color: var(--hdbt-color-black);
           border: 4px var(--hdbt-color-black) solid;
-          content: "L";
-          transform: scale(-1, 1) rotate(-45deg);
+          color: var(--hdbt-color-black);
+          content: 'L';
           font-size: $base-font-size * 2;
+          transform: scale(-1, 1) rotate(-45deg);
         }
+
         &:hover {
           .progress-marker::before {
             background-color: var(--color-white);
-            color: var(--hdbt-color-black);
             border: 4px var(--hdbt-color-black) solid;
+            color: var(--hdbt-color-black);
           }
         }
       }

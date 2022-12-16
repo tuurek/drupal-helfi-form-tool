@@ -1,0 +1,19 @@
+uuid: 59e1ffd1-6d71-4533-b99a-4e9bb47c4053
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_form_code
+    - node.type.webform
+id: node.webform.field_form_code
+field_name: field_form_code
+entity_type: node
+bundle: webform
+label: 'Form code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,36 +1,28 @@
 .webform-submission-form .form-actions {
-  margin-top: var(--spacing-layout-s);
-  padding-top: var(--spacing-layout-m);
-  border-top: 1px rgba(0, 0, 0, 0.6) solid;
-  padding-left: var(--spacing-layout-s);
-  padding-right: var(--spacing-layout-s);
+  margin-top: $spacing-double;
+
   @include breakpoint($breakpoint-m) {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 0;
-    padding-right: 0;
+    margin-top: $spacing-quadruple;
   }
+
   input {
     width: 100%;
-    margin-bottom: var(--spacing-layout-2-xs);
+
     @include breakpoint($breakpoint-m) {
       width: auto;
     }
   }
+
   input.webform-button--draft {
-    color: var(--hdbt-color-black);
     background: transparent;
-    border: 0px transparent solid;
-    text-decoration: underline;
+    border: 0 transparent solid;
+    color: var(--hdbt-color-black);
     order: 3;
+    text-decoration: underline;
   }
+
   input.webform-button--previous {
-    background: white;
+    background: $color-white;
     color: var(--border-color);
-  }
-}
-webform-submission-data--view-mode-full {
-  label {
-    display: block;
   }
 }
